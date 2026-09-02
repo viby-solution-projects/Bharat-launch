@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Funding Radar & Investment Rounds — BharatLaunch</title>
+  <meta name="description" content="Track verified venture funding rounds, valuation benchmarks, and institutional lead investors across India." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    .funding-hero {
+      background: #FFFFFF;
+      padding: 52px 0 40px;
+      border-bottom: 1px solid var(--color-border);
+      text-align: center;
+    }
+    .funding-hero h1 {
+      font-size: 2.6rem;
+      color: var(--color-black);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+    .funding-hero p {
+      font-size: 1.05rem;
+      color: var(--color-text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .deals-table-container {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      box-shadow: var(--shadow-card);
+      margin: 28px 0 60px;
+    }
+    .deals-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    .deals-table th {
+      background: var(--color-bg-subtle);
+      padding: 14px 18px;
+      font-weight: 700;
+      color: var(--color-black);
+      border-bottom: 1px solid var(--color-border);
+      white-space: nowrap;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .deals-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      color: var(--color-text-secondary);
+      vertical-align: middle;
+    }
+    .deals-table tr:hover td {
+      background: var(--color-bg-subtle);
+    }
+    .deal-amount {
+      font-family: var(--font-family-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-black);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header / Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Home">
+        <div class="brand-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div>BharatLaunch</div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Directory</a>
+        <a href="ecosystem.html" class="nav-link">Ecosystem</a>
+        <a href="funding.html" class="nav-link active">Funding Radar</a>
+        <a href="pr-news.html" class="nav-link">PR News</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login-link">Login</a>
+        <a href="submit.html" class="btn btn-primary btn-sm">
+          Submit Startup
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    
+    <!-- Funding Hero Header -->
+    <section class="funding-hero">
+      <div class="container">
+        <h1>Venture Capital & Funding Radar</h1>
+        <p>
+          Verified tracking of institutional investment rounds, growth equity checks, and valuation benchmarks across India's venture landscape.
+        </p>
+      </div>
+    </section>
+
+    <!-- Deals Tracker Section -->
+    <section style="padding: 40px 0; background: var(--color-bg-subtle);">
+      <div class="container">
+        
+        <!-- Controls & Filters -->
+        <div class="filter-bar-box">
+          <div class="filter-categories-pills" id="funding-sector-filters">
+            <button class="category-pill active" onclick="window.filterDeals('All')">All Deals</button>
+            <button class="category-pill" onclick="window.filterDeals('Quick Commerce')">Quick Commerce</button>
+            <button class="category-pill" onclick="window.filterDeals('EdTech')">EdTech</button>
+            <button class="category-pill" onclick="window.filterDeals('CleanTech & EV')">CleanTech</button>
+            <button class="category-pill" onclick="window.filterDeals('AI & GenAI')">AI & GenAI</button>
+            <button class="category-pill" onclick="window.filterDeals('DeepTech & SpaceTech')">SpaceTech</button>
+            <button class="category-pill" onclick="window.filterDeals('FinTech')">FinTech</button>
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <input type="text" id="deal-search-input" placeholder="Search company or investor..." style="padding: 7px 12px; font-size: 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); width: 220px; outline: none;" oninput="window.searchDeals(this.value)" />
+          </div>
+        </div>
+
+        <div class="deals-table-container">
+          <table class="deals-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Startup / Venture</th>
+                <th>Sector</th>
+                <th>Round Stage</th>
+                <th>Capital Raised</th>
+                <th>Post-Money Valuation</th>
+                <th>Lead Institutional Investors</th>
+                <th>Profile</th>
+              </tr>
+            </thead>
+            <tbody id="deals-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <div>BharatLaunch</div>
+          </div>
+          <p>The premier platform discovering, showcasing, and cataloging the next generation of Indian startups across all stages.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Startup Directory</a></li>
+            <li><a href="ecosystem.html">Ecosystem Map</a></li>
+            <li><a href="funding.html">Funding Radar</a></li>
+            <li><a href="pr-news.html">PR News</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Ecosystem</h4>
+          <ul>
+            <li><a href="ecosystem.html">AI & GenAI Startups</a></li>
+            <li><a href="ecosystem.html">SpaceTech & DeepTech</a></li>
+            <li><a href="ecosystem.html">FinTech Hubs</a></li>
+            <li><a href="ecosystem.html">CleanTech & EV</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About BharatLaunch</a></li>
+            <li><a href="submit.html">Submit Your Startup</a></li>
+            <li><a href="login.html">Founder Login</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 BharatLaunch. Built for the Indian Startup Ecosystem.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="about.html#terms">Privacy Policy</a>
+          <a href="about.html#terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data/startups.js"></script>
+  <script src="js/data/funding.js"></script>
+  <script src="js/data/news.js"></script>
+  <script src="js/data/ecosystem.js"></script>
+  <script src="js/data.js"></script>
+  <script>
+    let activeFilter = 'All';
+    let searchQuery = '';
+
+    function renderDeals() {
+      const deals = window.BharatData.getAllFundingDeals();
+      const filtered = deals.filter(d => {
+        if (activeFilter !== 'All' && !d.sector.includes(activeFilter)) return false;
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          const match = (d.company || d.startupName || '').toLowerCase().includes(q) ||
+                        (d.leadInvestors || '').toLowerCase().includes(q) ||
+                        (d.sector || '').toLowerCase().includes(q);
+          if (!match) return false;
+        }
+        return true;
+      });
+
+      const body = document.getElementById('deals-table-body');
+      if (!body) return;
+
+      if (filtered.length === 0) {
+        body.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align: center; padding: 40px; color: var(--color-text-muted);">
+              No verified deals found matching your search.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      body.innerHTML = filtered.map(d => `
+        <tr>
+          <td style="font-weight: 500; color: var(--color-text-muted); white-space: nowrap;">${d.date}</td>
+          <td style="font-weight: 700; color: var(--color-black);">
+            <a href="startup-detail.html?id=${d.startupId || d.company.toLowerCase()}" style="color: var(--color-black); text-decoration: underline; text-decoration-color: #CBD5E1;">
+              ${d.company || d.startupName}
+            </a>
+          </td>
+          <td><span class="badge badge-outline">${d.sector}</span></td>
+          <td><span class="badge badge-dark">${d.stage || d.round}</span></td>
+          <td class="deal-amount">${d.amount}</td>
+          <td style="font-weight: 600; color: var(--color-black);">${d.valuation || 'Not disclosed'}</td>
+          <td style="font-size: 0.84rem; max-width: 260px;">${d.leadInvestors}</td>
+          <td>
+            <a href="startup-detail.html?id=${d.startupId || d.company.toLowerCase()}" class="btn btn-secondary btn-sm">
+              Profile →
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.filterDeals = function(sector) {
+      activeFilter = sector;
+      document.querySelectorAll('#funding-sector-filters .category-pill').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim().includes(sector) || (sector === 'All' && btn.textContent.includes('All')));
+      });
+      renderDeals();
+    };
+
+    window.searchDeals = function(q) {
+      searchQuery = (q || '').trim();
+      renderDeals();
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderDeals();
+    });
+  </script>
+</body>
+</html>

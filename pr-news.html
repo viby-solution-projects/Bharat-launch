@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PR News & Ecosystem Dispatches — BharatLaunch</title>
+  <meta name="description" content="Curated, source-backed reporting on institutional venture rounds, deeptech milestones, and strategic market shifts across India." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    .news-hero {
+      background: #FFFFFF;
+      padding: 52px 0 40px;
+      border-bottom: 1px solid var(--color-border);
+      text-align: center;
+    }
+    .news-hero h1 {
+      font-size: 2.6rem;
+      color: var(--color-black);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+    .news-hero p {
+      font-size: 1.05rem;
+      color: var(--color-text-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .news-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 26px;
+      margin: 36px 0 60px;
+    }
+    .news-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+    .news-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card-hover);
+      border-color: #A1A1AA;
+    }
+    .news-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .news-title {
+      font-size: 1.18rem;
+      color: var(--color-black);
+      line-height: 1.4;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .news-excerpt {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .news-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header / Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Home">
+        <div class="brand-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div>BharatLaunch</div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Directory</a>
+        <a href="ecosystem.html" class="nav-link">Ecosystem</a>
+        <a href="funding.html" class="nav-link">Funding Radar</a>
+        <a href="pr-news.html" class="nav-link active">PR News</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login-link">Login</a>
+        <a href="submit.html" class="btn btn-primary btn-sm">
+          Submit Startup
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    
+    <!-- Hero Header -->
+    <section class="news-hero">
+      <div class="container">
+        <h1>PR News & Ecosystem Dispatches</h1>
+        <p>
+          Curated, source-backed reporting on institutional venture rounds, deeptech milestones, and strategic market shifts across India.
+        </p>
+      </div>
+    </section>
+
+    <!-- News Grid Section -->
+    <section class="section-wrapper" style="background: var(--color-bg-subtle);">
+      <div class="container">
+        
+        <!-- Category Filter Pills -->
+        <div class="filter-bar-box">
+          <div class="filter-categories-pills" id="news-category-filters">
+            <button class="category-pill active" onclick="window.filterNews('All')">All News</button>
+            <button class="category-pill" onclick="window.filterNews('Funding')">Funding Deals</button>
+            <button class="category-pill" onclick="window.filterNews('Product Launch')">Product Launches</button>
+            <button class="category-pill" onclick="window.filterNews('DeepTech')">DeepTech</button>
+            <button class="category-pill" onclick="window.filterNews('IPO')">IPO & Markets</button>
+            <button class="category-pill" onclick="window.filterNews('Financials')">Financials</button>
+          </div>
+        </div>
+
+        <div class="news-cards-grid" id="news-grid-container">
+          <!-- Rendered dynamically -->
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <div>BharatLaunch</div>
+          </div>
+          <p>The premier platform discovering, showcasing, and cataloging the next generation of Indian startups across all stages.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Startup Directory</a></li>
+            <li><a href="ecosystem.html">Ecosystem Map</a></li>
+            <li><a href="funding.html">Funding Radar</a></li>
+            <li><a href="pr-news.html">PR News</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Ecosystem</h4>
+          <ul>
+            <li><a href="ecosystem.html">AI & GenAI Startups</a></li>
+            <li><a href="ecosystem.html">SpaceTech & DeepTech</a></li>
+            <li><a href="ecosystem.html">FinTech Hubs</a></li>
+            <li><a href="ecosystem.html">CleanTech & EV</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About BharatLaunch</a></li>
+            <li><a href="submit.html">Submit Your Startup</a></li>
+            <li><a href="login.html">Founder Login</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 BharatLaunch. Built for the Indian Startup Ecosystem.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="about.html#terms">Privacy Policy</a>
+          <a href="about.html#terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data/startups.js"></script>
+  <script src="js/data/funding.js"></script>
+  <script src="js/data/news.js"></script>
+  <script src="js/data/ecosystem.js"></script>
+  <script src="js/data.js"></script>
+  <script>
+    let activeNewsCategory = 'All';
+
+    function renderNewsArticles() {
+      const articles = window.BharatData.getAllNews();
+      const container = document.getElementById('news-grid-container');
+      if (!container || !articles) return;
+
+      const filtered = articles.filter(a => {
+        if (activeNewsCategory === 'All') return true;
+        return a.category.toLowerCase().includes(activeNewsCategory.toLowerCase());
+      });
+
+      container.innerHTML = filtered.map(a => `
+        <article class="news-card">
+          <div>
+            <div class="news-card-meta">
+              <span class="badge badge-outline">${a.category}</span>
+              <span style="font-size: 0.78rem; color: var(--color-text-muted);">${a.date}</span>
+            </div>
+            <h3 class="news-title">${a.headline || a.title}</h3>
+            <p class="news-excerpt">${a.excerpt}</p>
+          </div>
+          <div class="news-footer">
+            <span style="font-size: 0.8rem; font-weight: 600; color: var(--color-black);">📰 ${a.publication}</span>
+            <div style="display: flex; gap: 8px;">
+              ${a.startupId ? `<a href="startup-detail.html?id=${a.startupId}" class="btn btn-secondary btn-sm">Profile →</a>` : ''}
+              <a href="${a.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Read Article ↗</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    window.filterNews = function(cat) {
+      activeNewsCategory = cat;
+      document.querySelectorAll('#news-category-filters .category-pill').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.trim().includes(cat) || (cat === 'All' && btn.textContent.includes('All')));
+      });
+      renderNewsArticles();
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNewsArticles();
+    });
+  </script>
+</body>
+</html>

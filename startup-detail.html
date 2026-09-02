@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Startup Profile — BharatLaunch</title>
+  <meta name="description" content="Detailed profile, founders, financials, and verified milestones of Indian technology startups." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    .profile-hero {
+      background: #FFFFFF;
+      padding: 48px 0 36px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .profile-header-grid {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .profile-brand-group {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .profile-logo-box {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-lg);
+      background: var(--color-black);
+      color: #FFFFFF;
+      font-size: 1.8rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .profile-title-group h1 {
+      font-size: 2.3rem;
+      margin-bottom: 4px;
+      color: var(--color-black);
+    }
+    .profile-subtitle {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .profile-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .profile-meta-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+      padding: 20px 24px;
+      background: var(--color-bg-subtle);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+    }
+    .profile-meta-item {
+      border-left: 2px solid var(--color-black);
+      padding-left: 16px;
+    }
+    .profile-meta-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      letter-spacing: 0.05em;
+    }
+    .profile-meta-val {
+      font-family: var(--font-family-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-black);
+      margin-top: 2px;
+    }
+    .profile-content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 36px;
+      padding: 48px 0 64px;
+    }
+    .profile-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-card);
+    }
+    .profile-card h2, .profile-card h3 {
+      font-size: 1.25rem;
+      color: var(--color-black);
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: 12px;
+    }
+    .founder-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .founder-item:last-child {
+      border-bottom: none;
+    }
+    .founder-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--color-bg-muted);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--color-black);
+    }
+    .highlight-pill {
+      padding: 10px 14px;
+      background: var(--color-bg-subtle);
+      border-left: 2px solid var(--color-black);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--color-black);
+    }
+    .tech-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--color-bg-muted);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin: 3px;
+    }
+    @media (max-width: 900px) {
+      .profile-content-grid {
+        grid-template-columns: 1fr;
+      }
+      .profile-meta-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header / Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Home">
+        <div class="brand-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <div>BharatLaunch</div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Directory</a>
+        <a href="ecosystem.html" class="nav-link">Ecosystem</a>
+        <a href="funding.html" class="nav-link">Funding Radar</a>
+        <a href="pr-news.html" class="nav-link">PR News</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login-link">Login</a>
+        <a href="submit.html" class="btn btn-primary btn-sm">
+          Submit Startup
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Profile Container -->
+  <main id="main-content">
+    
+    <!-- Hero Profile Header -->
+    <section class="profile-hero">
+      <div class="container" id="profile-header-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- Profile Details & Sidebar -->
+    <div class="container">
+      <div class="profile-content-grid">
+        
+        <!-- Left Column: Narrative, Milestones, Technology -->
+        <div id="profile-main-body">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Right Column: Founders, Key Investors, Verified Sources -->
+        <div id="profile-sidebar-body">
+          <!-- Rendered dynamically -->
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #FFFFFF;">
+            <div class="brand-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <div>BharatLaunch</div>
+          </div>
+          <p>The premier platform discovering, showcasing, and cataloging the next generation of Indian startups across all stages.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Startup Directory</a></li>
+            <li><a href="ecosystem.html">Ecosystem Map</a></li>
+            <li><a href="funding.html">Funding Radar</a></li>
+            <li><a href="pr-news.html">PR News</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Ecosystem</h4>
+          <ul>
+            <li><a href="ecosystem.html">AI & GenAI Startups</a></li>
+            <li><a href="ecosystem.html">SpaceTech & DeepTech</a></li>
+            <li><a href="ecosystem.html">FinTech Hubs</a></li>
+            <li><a href="ecosystem.html">CleanTech & EV</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About BharatLaunch</a></li>
+            <li><a href="submit.html">Submit Your Startup</a></li>
+            <li><a href="login.html">Founder Login</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 BharatLaunch. Built for the Indian Startup Ecosystem.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="about.html#terms">Privacy Policy</a>
+          <a href="about.html#terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data/startups.js"></script>
+  <script src="js/data/funding.js"></script>
+  <script src="js/data/news.js"></script>
+  <script src="js/data/ecosystem.js"></script>
+  <script src="js/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const startupId = params.get('id') || 'zepto';
+      const startup = window.BharatData.getStartupById(startupId);
+
+      if (!startup) {
+        document.getElementById('profile-header-container').innerHTML = `
+          <div style="text-align: center; padding: 48px 0;">
+            <h1 style="color: var(--color-black); margin-bottom: 8px;">Startup Not Found</h1>
+            <p style="color: var(--color-text-secondary); margin-bottom: 20px;">The requested venture profile is not available in our verified index.</p>
+            <a href="index.html" class="btn btn-dark">Return to Directory</a>
+          </div>
+        `;
+        return;
+      }
+
+      document.title = `${startup.name} — Startup Profile | BharatLaunch`;
+
+      const fundingVal = startup.funding || 'Not publicly disclosed';
+      const valuationVal = startup.valuation || 'Not publicly disclosed';
+      const teamVal = startup.teamSize || 'Not publicly disclosed';
+      const modelVal = startup.businessModel || 'Not publicly disclosed';
+
+      document.getElementById('profile-header-container').innerHTML = `
+        <div class="profile-header-grid">
+          <div class="profile-brand-group">
+            <div class="profile-logo-box">${startup.monogram || startup.name.slice(0, 2).toUpperCase()}</div>
+            <div class="profile-title-group">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <h1>${startup.name}</h1>
+                <span class="badge badge-outline">${startup.stage}</span>
+                ${startup.verified ? '<span class="badge badge-verified">✓ Verified Profile</span>' : ''}
+              </div>
+              <div class="profile-subtitle">
+                <span>📍 ${startup.headquarters || (startup.city + ', ' + startup.state)}</span>
+                <span>•</span>
+                <span>🏷️ ${startup.sector}</span>
+                <span>•</span>
+                <span>📅 Founded ${startup.foundedYear}</span>
+              </div>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <a href="${startup.website}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Visit Website ↗
+            </a>
+            <a href="submit.html?edit=${startup.id}" class="btn btn-secondary btn-sm">
+              Update Profile
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-meta-bar">
+          <div class="profile-meta-item">
+            <div class="profile-meta-label">Total Capital Raised</div>
+            <div class="profile-meta-val">${fundingVal}</div>
+          </div>
+          <div class="profile-meta-item">
+            <div class="profile-meta-label">Estimated Valuation</div>
+            <div class="profile-meta-val">${valuationVal}</div>
+          </div>
+          <div class="profile-meta-item">
+            <div class="profile-meta-label">Team Size</div>
+            <div class="profile-meta-val">${teamVal}</div>
+          </div>
+          <div class="profile-meta-item">
+            <div class="profile-meta-label">Business Model</div>
+            <div class="profile-meta-val" style="font-size: 1.1rem; padding-top: 3px;">${modelVal}</div>
+          </div>
+        </div>
+      `;
+
+      // Render Main Body
+      document.getElementById('profile-main-body').innerHTML = `
+        <div class="profile-card">
+          <h2>About ${startup.name}</h2>
+          <p style="font-size: 1.05rem; line-height: 1.65; color: var(--color-black); margin-bottom: 14px; font-weight: 500;">
+            ${startup.tagline}
+          </p>
+          <p style="line-height: 1.65; color: var(--color-text-secondary);">
+            ${startup.description}
+          </p>
+        </div>
+
+        <div class="profile-card">
+          <h2>Key Milestones & Operational Highlights</h2>
+          ${(startup.highlights && startup.highlights.length) ? startup.highlights.map(h => `
+            <div class="highlight-pill">✓ ${h}</div>
+          `).join('') : '<p style="color: var(--color-text-muted);">Not publicly disclosed</p>'}
+        </div>
+
+        <div class="profile-card">
+          <h2>Core Technology Stack</h2>
+          <div style="margin-top: 10px;">
+            ${(startup.techStack && startup.techStack.length) ? startup.techStack.map(t => `<span class="tech-tag">${t}</span>`).join('') : '<p style="color: var(--color-text-muted);">Not publicly disclosed</p>'}
+          </div>
+        </div>
+      `;
+
+      // Render Sidebar
+      document.getElementById('profile-sidebar-body').innerHTML = `
+        <div class="profile-card">
+          <h3>Founders & Leadership</h3>
+          ${(startup.founders && startup.founders.length) ? startup.founders.map(f => `
+            <div class="founder-item">
+              <div class="founder-avatar">${f.name.slice(0, 1)}</div>
+              <div>
+                <div style="font-weight: 700; color: var(--color-black); font-size: 0.92rem;">${f.name}</div>
+                <div style="font-size: 0.78rem; color: var(--color-text-muted);">${f.role}</div>
+              </div>
+            </div>
+          `).join('') : '<p style="color: var(--color-text-muted);">Not publicly disclosed</p>'}
+        </div>
+
+        <div class="profile-card">
+          <h3>Key Institutional Investors</h3>
+          <ul style="list-style: none; padding-left: 0;">
+            ${(startup.investors && startup.investors.length) ? startup.investors.map(inv => `
+              <li style="padding: 8px 0; font-size: 0.88rem; color: var(--color-black); border-bottom: 1px solid var(--color-border-subtle);">
+                🏛️ ${inv}
+              </li>
+            `).join('') : '<li style="color: var(--color-text-muted);">Not publicly disclosed</li>'}
+          </ul>
+        </div>
+
+        <div class="profile-card" style="background: var(--color-bg-subtle);">
+          <h3>Data Verification Source</h3>
+          <p style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 8px;">
+            This profile is indexed from official regulatory disclosures, audited reports, and verified press releases.
+          </p>
+          <div style="font-size: 0.82rem; color: var(--color-black); font-weight: 600;">
+            • ${startup.sourceName || startup.source || 'Official Company Disclosures'} (${startup.sourceDate || 'Verified'})
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
