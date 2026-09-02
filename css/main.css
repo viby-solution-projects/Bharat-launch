@@ -9,7 +9,7 @@
   --color-black: #1F2937;
   --color-dark: #EEF0FF;
   --color-dark-surface: #F3EDFF;
-  --color-dark-border: #D7DDF5;
+  --color-dark-border: #DDE2D8;
 
   --color-text: #1F2937;
   --color-text-primary: #27324A;
@@ -22,42 +22,42 @@
   --color-background: #FFFFFF;
   --color-bg-subtle: #F6F7F9;
   --color-bg-card: #FFFFFF;
-  --color-bg-muted: #EEF2FF;
+  --color-bg-muted: #E8EEE3;
   --color-surface: #FFFFFF;
 
   /* Borders & Dividers */
   --color-border: #D7E0EB;
   --color-border-subtle: #E8EEF5;
-  --color-border-dark: #223A59;
+  --color-border-dark: #C8D3C2;
 
   /* Restrained accents for tags, states, and small visual details */
-  --color-primary: #4F46E5;
-  --color-primary-hover: #4338CA;
-  --color-primary-light: #EEF2FF;
-  --color-cobalt: #2563EB;
-  --color-violet: #7C3AED;
-  --color-teal: #0D9488;
-  --color-coral: #F97316;
-  --color-blue: #2563EB;
-  --color-indigo: #4F46E5;
-  --color-violet-bright: #7C3AED;
-  --color-teal-bright: #0D9488;
-  --color-emerald: #10B981;
-  --color-rose: #F43F5E;
-  --color-amber: #F59E0B;
-  --color-soft-blue: #E8F1FF;
-  --color-soft-indigo: #EEF0FF;
-  --color-soft-violet: #F3EDFF;
-  --color-soft-lavender: #F7F0FF;
-  --color-soft-teal: #E8F8F5;
-  --color-soft-mint: #EAF8F1;
-  --color-soft-green: #EEF9F1;
-  --color-soft-peach: #FFF0E8;
-  --color-soft-coral: #FFF0ED;
-  --color-soft-pink: #FFF0F5;
-  --color-soft-yellow: #FFF8E6;
-  --color-success: #10B981;
-  --color-success-soft: #EEF9F1;
+  --color-primary: #71856A;
+  --color-primary-hover: #5F7358;
+  --color-primary-light: #E8EEE3;
+  --color-cobalt: #71856A;
+  --color-violet: #71856A;
+  --color-teal: #71856A;
+  --color-coral: #71856A;
+  --color-blue: #71856A;
+  --color-indigo: #71856A;
+  --color-violet-bright: #71856A;
+  --color-teal-bright: #71856A;
+  --color-emerald: #71856A;
+  --color-rose: #71856A;
+  --color-amber: #71856A;
+  --color-soft-blue: #F3F5EF;
+  --color-soft-indigo: #F3F5EF;
+  --color-soft-violet: #F7F3E8;
+  --color-soft-lavender: #F7F3E8;
+  --color-soft-teal: #E8EEE3;
+  --color-soft-mint: #E8EEE3;
+  --color-soft-green: #E8EEE3;
+  --color-soft-peach: #F7F3E8;
+  --color-soft-coral: #F7F3E8;
+  --color-soft-pink: #F7F3E8;
+  --color-soft-yellow: #F7F3E8;
+  --color-success: #71856A;
+  --color-success-soft: #E8EEE3;
 
   --shadow-card-hover: 0 10px 24px rgba(15, 39, 71, 0.10);
   --shadow-sm: 0 1px 2px rgba(15, 39, 71, 0.04);
@@ -191,8 +191,8 @@ p {
 }
 
 .btn-dark:hover {
-  background: #4338CA;
-  border-color: #4338CA;
+  background: #5F7358;
+  border-color: #5F7358;
 }
 
 .btn-secondary {
@@ -203,7 +203,7 @@ p {
 
 .btn-secondary:hover {
   background: var(--color-bg-subtle);
-  border-color: #CBD5E1;
+  border-color: #DDE2D8;
 }
 
 .btn-sm {
@@ -243,7 +243,7 @@ p {
 .badge-verified {
   background: var(--color-success-soft);
   color: var(--color-success);
-  border: 1px solid rgba(22, 163, 74, 0.25);
+  border: 1px solid rgba(113, 133, 106, 0.28);
   font-weight: 700;
 }
 

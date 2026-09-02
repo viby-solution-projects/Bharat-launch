@@ -37,7 +37,7 @@
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  box-shadow: inset 3px 0 0 var(--color-cobalt);
+  box-shadow: inset 3px 0 0 var(--color-primary);
 }
 
 .nav-links {
@@ -112,7 +112,7 @@
 
 .composite-search-bar:focus-within {
   border-color: var(--color-cobalt);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+  box-shadow: 0 0 0 3px rgba(113, 133, 106, 0.14);
 }
 
 .search-input-field {
@@ -205,7 +205,7 @@
 .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .pillar-card { padding: 32px 28px; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal); display: flex; flex-direction: column; }
 .pillar-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); border-color: var(--color-cobalt); }
-.pillar-icon-circle { width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background: var(--color-primary-light); border: 1px solid rgba(37, 99, 235, 0.16); color: var(--color-cobalt); }
+.pillar-icon-circle { width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background: var(--color-primary-light); border: 1px solid rgba(113, 133, 106, 0.20); color: var(--color-primary); }
 .pillar-card h3 { font-size: 1.2rem; color: var(--color-black); margin-bottom: 10px; }
 .pillar-card p { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.6; }
 
@@ -275,13 +275,11 @@
 
 /* Coordinated color rhythm across existing page surfaces */
 .site-header .btn-primary { background: var(--color-blue); border-color: var(--color-blue); }
-.site-header .btn-primary:hover { background: var(--color-indigo); border-color: var(--color-indigo); }
+.site-header .btn-primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
 .about-hero, .ecosystem-hero, .funding-hero, .news-hero, .submit-hero {
   background: var(--color-soft-blue) !important;
 }
-.about-hero h1, .ecosystem-hero h1, .funding-hero h1, .news-hero h1, .submit-hero h1 {
-  text-shadow: 0 8px 24px rgba(37, 99, 235, 0.10);
-}
+.about-hero h1, .ecosystem-hero h1, .funding-hero h1, .news-hero h1, .submit-hero h1 { text-shadow: none; }
 .startup-card:nth-child(4n + 1) .card-logo-box { box-shadow: inset 3px 0 0 var(--color-blue); }
 .startup-card:nth-child(4n + 2) .card-logo-box { box-shadow: inset 3px 0 0 var(--color-indigo); }
 .startup-card:nth-child(4n + 3) .card-logo-box { box-shadow: inset 3px 0 0 var(--color-teal-bright); }
