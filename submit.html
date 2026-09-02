@@ -97,6 +97,33 @@
     .form-input.is-invalid ~ .invalid-feedback {
       display: block;
     }
+    .upload-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 132px;
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg-subtle);
+      color: var(--color-text-secondary);
+      font-size: 0.86rem;
+      cursor: pointer;
+      text-align: center;
+    }
+    .upload-area-copy {
+      display: grid;
+      gap: 6px;
+    }
+    .upload-area-copy small {
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+    }
+    .upload-area input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
     .char-count {
       font-size: 0.75rem;
       color: var(--color-text-muted);
@@ -189,11 +216,18 @@
 
         <form id="startup-submit-form" novalidate onsubmit="window.handleStartupSubmit(event)">
           
-          <h3 class="form-section-title">1. Company Identity & Classification</h3>
+          <h3 class="form-section-title">COMPANY INFORMATION</h3>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="startup-name">Company Name <span class="req">*</span></label>
+              <label class="form-label" for="startup-logo">Startup Logo</label>
+              <label class="upload-area" for="startup-logo">
+                <span class="upload-area-copy"><span>Click to upload or drag and drop</span><small>SVG, PNG, JPG or GIF (max. 800×400px)</small></span>
+                <input type="file" id="startup-logo" accept="image/*" />
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="startup-name">Startup Name <span class="req">*</span></label>
               <input type="text" id="startup-name" class="form-input" placeholder="e.g. Pixxel" required />
               <div class="invalid-feedback">Please enter the registered company name.</div>
             </div>
@@ -206,7 +240,7 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="startup-tagline">Tagline / Mission Statement <span class="req">*</span></label>
+            <label class="form-label" for="startup-tagline">One-liner Description <span class="req">*</span></label>
             <input type="text" id="startup-tagline" class="form-input" placeholder="e.g. High-resolution hyperspectral satellite constellation for earth observation" maxlength="120" required oninput="document.getElementById('tagline-count').textContent = this.value.length + '/120'" />
             <div class="char-count" id="tagline-count">0/120</div>
             <div class="invalid-feedback">Please enter a concise tagline (up to 120 characters).</div>
@@ -214,7 +248,7 @@
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="startup-sector">Industry / Sector <span class="req">*</span></label>
+              <label class="form-label" for="startup-sector">Industry <span class="req">*</span></label>
               <select id="startup-sector" class="form-select-custom" required>
                 <option value="">Select Industry Sector</option>
                 <option value="AI & GenAI">AI & GenAI</option>
@@ -230,102 +264,83 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="startup-model">Business Model <span class="req">*</span></label>
-              <input type="text" id="startup-model" class="form-input" placeholder="e.g. B2B / Space Data SaaS" required />
-              <div class="invalid-feedback">Please specify the business model.</div>
-            </div>
-          </div>
-
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label class="form-label" for="startup-city">Headquarters (City, State) <span class="req">*</span></label>
-              <input type="text" id="startup-city" class="form-input" placeholder="e.g. Bengaluru, Karnataka" required />
-              <div class="invalid-feedback">Please enter headquarters location.</div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="startup-year">Founded Year <span class="req">*</span></label>
+              <label class="form-label" for="startup-year">Year of Commencement <span class="req">*</span></label>
               <input type="number" id="startup-year" class="form-input" placeholder="2019" min="1990" max="2026" required />
               <div class="invalid-feedback">Please enter a valid year (1990 - 2026).</div>
             </div>
           </div>
 
-          <h3 class="form-section-title" style="margin-top: 24px;">2. Funding & Capital Structure</h3>
+          <h3 class="form-section-title" style="margin-top: 24px;">FOUNDER DETAILS</h3>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="startup-stage">Funding Stage <span class="req">*</span></label>
-              <select id="startup-stage" class="form-select-custom" required>
-                <option value="">Select Stage</option>
+              <label class="form-label" for="founder-names">Founder Name <span class="req">*</span></label>
+              <input type="text" id="founder-names" class="form-input" placeholder="e.g. Awais Ahmed" required />
+              <div class="invalid-feedback">Please enter the founder name.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="founder-linkedin">Founder LinkedIn URL</label>
+              <input type="url" id="founder-linkedin" class="form-input" placeholder="https://linkedin.com/in/..." />
+            </div>
+          </div>
+
+          <h3 class="form-section-title" style="margin-top: 24px;">FUNDING &amp; GROWTH</h3>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="startup-team">Team Size</label>
+              <input type="text" id="startup-team" class="form-input" placeholder="e.g. 180+" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="startup-stage">Funding Status</label>
+              <select id="startup-stage" class="form-select-custom">
+                <option value="">Select Funding Status</option>
                 <option value="Bootstrapped">Bootstrapped</option>
                 <option value="Seed">Seed</option>
                 <option value="Series A">Series A</option>
                 <option value="Series B">Series B</option>
                 <option value="Series C+">Series C+</option>
-                <option value="Unicorn">Unicorn ($1B+ Valuation)</option>
+                <option value="Unicorn">Unicorn</option>
               </select>
-              <div class="invalid-feedback">Please select the current funding stage.</div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="startup-funding">Total Funding (e.g. $71M or Not publicly disclosed)</label>
-              <input type="text" id="startup-funding" class="form-input" placeholder="e.g. $71M" />
-            </div>
-          </div>
-
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label class="form-label" for="startup-investors">Key Institutional Investors</label>
-              <input type="text" id="startup-investors" class="form-input" placeholder="e.g. Google, Lightspeed, Blume Ventures" />
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="startup-team">Team Size (Full-Time Employees)</label>
-              <input type="text" id="startup-team" class="form-input" placeholder="e.g. 180+" />
-            </div>
-          </div>
-
-          <h3 class="form-section-title" style="margin-top: 24px;">3. Leadership, Narrative & Social</h3>
-
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label class="form-label" for="founder-names">Founder Name(s) <span class="req">*</span></label>
-              <input type="text" id="founder-names" class="form-input" placeholder="e.g. Awais Ahmed, Kshitij Khandelwal" required />
-              <div class="invalid-feedback">Please enter founder name(s).</div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="founder-email">Founder Work Email <span class="req">*</span></label>
-              <input type="email" id="founder-email" class="form-input" placeholder="founder@company.com" required />
-              <div class="invalid-feedback">Please enter a valid work email.</div>
-            </div>
-          </div>
-
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label class="form-label" for="startup-linkedin">LinkedIn URL</label>
-              <input type="url" id="startup-linkedin" class="form-input" placeholder="https://linkedin.com/company/..." />
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="startup-twitter">X / Twitter Handle</label>
-              <input type="text" id="startup-twitter" class="form-input" placeholder="@company" />
             </div>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="startup-desc">Company Description & Tech Stack</label>
-            <textarea id="startup-desc" class="form-textarea" rows="4" placeholder="Describe your proprietary technology architecture, key milestones, and customer traction..."></textarea>
+            <label class="form-label" for="startup-desc">Brief Pitch</label>
+            <textarea id="startup-desc" class="form-textarea" rows="4" placeholder="Describe your startup, product, and growth..."></textarea>
+            <div class="char-count" id="pitch-count">0/200 words</div>
+            <div class="invalid-feedback" id="pitch-feedback">Please keep the brief pitch within 200 words.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="startup-screenshots">Product Screenshots</label>
+            <label class="upload-area" for="startup-screenshots">
+              <span class="upload-area-copy"><span>Click to upload or drag and drop</span><small>Maximum 5 images, 5MB per image</small></span>
+              <input type="file" id="startup-screenshots" accept="image/*" multiple />
+            </label>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="startup-linkedin">LinkedIn</label>
+              <input type="url" id="startup-linkedin" class="form-input" placeholder="https://linkedin.com/company/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="startup-twitter">X (Twitter)</label>
+              <input type="text" id="startup-twitter" class="form-input" placeholder="@company" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="startup-instagram">Instagram</label>
+              <input type="url" id="startup-instagram" class="form-input" placeholder="https://instagram.com/..." />
+            </div>
           </div>
 
           <div style="margin-top: 28px; display: flex; align-items: center; justify-content: flex-end; gap: 14px;">
             <a href="index.html" class="btn btn-secondary">Cancel</a>
             <button type="submit" class="btn btn-primary" id="submit-btn">
-              Submit Venture for Verification →
+              Submit Listing
             </button>
           </div>
-          <p class="backend-note">Backend/API integration is required for real authentication and persistent startup submissions.</p>
-
         </form>
       </div>
     </div>
@@ -406,11 +421,7 @@
           document.getElementById('startup-tagline').value = existing.tagline;
           document.getElementById('startup-sector').value = existing.sector;
           document.getElementById('startup-stage').value = existing.stage;
-          document.getElementById('startup-city').value = `${existing.city}, ${existing.state || 'India'}`;
           document.getElementById('startup-year').value = existing.foundedYear;
-          document.getElementById('startup-model').value = existing.businessModel || '';
-          document.getElementById('startup-funding').value = existing.funding || '';
-          document.getElementById('startup-investors').value = (existing.investors || []).join(', ');
           document.getElementById('startup-team').value = existing.teamSize || '';
           document.getElementById('startup-desc').value = existing.description || '';
           if (existing.founders && existing.founders.length) {
@@ -420,7 +431,21 @@
       }
     });
 
-    window.handleStartupSubmit = function(e) {
+    document.getElementById('startup-desc').addEventListener('input', (event) => {
+      const words = event.target.value.trim() ? event.target.value.trim().split(/\s+/).length : 0;
+      document.getElementById('pitch-count').textContent = `${words}/200 words`;
+    });
+
+    function imageDimensions(file) {
+      return new Promise(resolve => {
+        const image = new Image();
+        image.onload = () => resolve({ width: image.naturalWidth, height: image.naturalHeight });
+        image.onerror = () => resolve(null);
+        image.src = URL.createObjectURL(file);
+      });
+    }
+
+    window.handleStartupSubmit = async function(e) {
       e.preventDefault();
       const form = document.getElementById('startup-submit-form');
       let isValid = true;
@@ -434,6 +459,28 @@
           input.classList.remove('is-invalid');
         }
       });
+
+      const pitch = document.getElementById('startup-desc');
+      const pitchWords = pitch.value.trim() ? pitch.value.trim().split(/\s+/).length : 0;
+      const pitchFeedback = document.getElementById('pitch-feedback');
+      pitch.classList.toggle('is-invalid', pitchWords > 200);
+      pitchFeedback.style.display = pitchWords > 200 ? 'block' : 'none';
+      if (pitchWords > 200) isValid = false;
+
+      const logo = document.getElementById('startup-logo').files[0];
+      if (logo) {
+        const dimensions = await imageDimensions(logo);
+        if (logo.size > 5 * 1024 * 1024 || !dimensions || dimensions.width > 800 || dimensions.height > 400) {
+          isValid = false;
+          alert('Startup logo must be an image no larger than 800x400px and 5MB.');
+        }
+      }
+
+      const screenshots = [...document.getElementById('startup-screenshots').files];
+      if (screenshots.length > 5 || screenshots.some(file => file.size > 5 * 1024 * 1024)) {
+        isValid = false;
+        alert('Product screenshots must contain no more than 5 images, with a maximum of 5MB per image.');
+      }
 
       if (!isValid) return;
 
