@@ -7,27 +7,27 @@
 :root {
   /* Editorial Monochromatic Palette */
   --color-black: #1F2937;
-  --color-dark: #EEF0FF;
-  --color-dark-surface: #F3EDFF;
-  --color-dark-border: #DDE2D8;
+  --color-dark: #082A2D;
+  --color-dark-surface: #155C59;
+  --color-dark-border: #D5E2D7;
 
-  --color-text: #1F2937;
-  --color-text-primary: #27324A;
-  --color-text-secondary: #526174;
-  --color-text-muted: #728096;
-  --color-text-light: #B8C3D1;
+  --color-text: #16383A;
+  --color-text-primary: #16383A;
+  --color-text-secondary: #5F716C;
+  --color-text-muted: #71827A;
+  --color-text-light: #DDE7D7;
   --color-text-white: #FFFFFF;
 
   /* Surfaces & Backgrounds */
-  --color-background: #FFFFFF;
-  --color-bg-subtle: #F6F7F9;
+  --color-background: #FFFDF7;
+  --color-bg-subtle: #F3F5EF;
   --color-bg-card: #FFFFFF;
   --color-bg-muted: #E8EEE3;
   --color-surface: #FFFFFF;
 
   /* Borders & Dividers */
-  --color-border: #D7E0EB;
-  --color-border-subtle: #E8EEF5;
+  --color-border: #D5E2D7;
+  --color-border-subtle: #E8EEE3;
   --color-border-dark: #C8D3C2;
 
   /* Restrained accents for tags, states, and small visual details */
