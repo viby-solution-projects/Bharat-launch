@@ -179,7 +179,6 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="login.html" class="nav-login-link">Login</a>
         <a href="submit.html" class="btn btn-primary btn-sm">
           Submit Startup
         </a>
@@ -209,7 +208,7 @@
           <div style="font-size: 2rem; margin-bottom: 8px;">✓</div>
           <h3 style="color: var(--color-black); margin-bottom: 6px;">Frontend Validation Passed</h3>
           <p style="color: var(--color-text-secondary); font-size: 0.92rem; margin-bottom: 20px;">
-            Backend/API integration is required for real authentication and persistent startup submissions.
+            This is a frontend-only demo; submissions are not persisted.
           </p>
           <a href="index.html" class="btn btn-dark btn-sm">Return to Directory</a>
         </div>
@@ -388,7 +387,6 @@
           <ul>
             <li><a href="about.html">About BharatLaunch</a></li>
             <li><a href="submit.html">Submit Your Startup</a></li>
-            <li><a href="login.html">Founder Login</a></li>
           </ul>
         </div>
       </div>
@@ -491,7 +489,7 @@
       setTimeout(() => {
         form.style.display = 'none';
         const successBox = document.getElementById('submission-success-msg');
-        successBox.innerHTML = '<div style="font-size: 2rem; margin-bottom: 8px;">✓</div><h3 style="color: var(--color-black); margin-bottom: 6px;">Frontend Validation Passed</h3><p style="color: var(--color-text-secondary); font-size: 0.92rem; margin-bottom: 20px;">Backend/API integration is required for real authentication and persistent startup submissions.</p><a href="index.html" class="btn btn-dark btn-sm">Return to Directory</a>';
+        successBox.innerHTML = '<div style="font-size: 2rem; margin-bottom: 8px;">✓</div><h3 style="color: var(--color-black); margin-bottom: 6px;">Frontend Validation Passed</h3><p style="color: var(--color-text-secondary); font-size: 0.92rem; margin-bottom: 20px;">This is a frontend-only demo; submissions are not persisted.</p><a href="index.html" class="btn btn-dark btn-sm">Return to Directory</a>';
         successBox.style.display = 'block';
         window.scrollTo({ top: 150, behavior: 'smooth' });
       }, 1000);
