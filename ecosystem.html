@@ -264,6 +264,7 @@
       const hubsContainer = document.getElementById('hubs-container');
       
       if (hubsContainer && hubs) {
+        const listedNames = new Set(window.BharatData.getListedStartups().map(s => s.name.toLowerCase()));
         hubsContainer.innerHTML = hubs.map(h => `
           <div class="hub-card">
             <div class="hub-card-header">
@@ -278,7 +279,7 @@
             <div>
               <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 6px; letter-spacing: 0.04em;">Key Anchors</div>
               <div>
-                ${(h.keyCompanies || h.keyAnchors || []).map(a => `<a href="startup-detail.html?id=${a.toLowerCase().replace(/[^a-z0-9]/g, '-')}" class="anchor-tag">${a}</a>`).join('')}
+                ${(h.keyCompanies || h.keyAnchors || []).filter(a => listedNames.has(a.toLowerCase())).map(a => `<a href="startup-detail.html?id=${a.toLowerCase().replace(/[^a-z0-9]/g, '-')}" class="anchor-tag">${a}</a>`).join('')}
               </div>
             </div>
           </div>

@@ -230,7 +230,8 @@
     let searchQuery = '';
 
     function renderDeals() {
-      const deals = window.BharatData.getAllFundingDeals();
+      const listedIds = new Set(window.BharatData.getListedStartups().map(s => s.id));
+      const deals = window.BharatData.getAllFundingDeals().filter(d => !d.startupId || listedIds.has(d.startupId));
       const filtered = deals.filter(d => {
         if (activeFilter !== 'All' && !d.sector.includes(activeFilter)) return false;
         if (searchQuery) {

@@ -220,7 +220,8 @@
     let activeNewsCategory = 'All';
 
     function renderNewsArticles() {
-      const articles = window.BharatData.getAllNews();
+      const listedIds = new Set(window.BharatData.getListedStartups().map(s => s.id));
+      const articles = window.BharatData.getAllNews().filter(a => !a.startupId || listedIds.has(a.startupId));
       const container = document.getElementById('news-grid-container');
       if (!container || !articles) return;
 
