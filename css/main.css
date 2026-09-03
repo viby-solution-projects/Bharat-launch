@@ -277,3 +277,55 @@ p {
 ::-webkit-scrollbar-thumb:hover {
   background: #71856A;
 }
+
+@media (max-width: 600px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section-wrapper,
+  .section-wrapper-subtle {
+    padding: 40px 0;
+  }
+
+  .site-header {
+    height: 62px;
+  }
+
+  .nav-container {
+    gap: 12px;
+  }
+
+  .brand-logo {
+    font-size: 1.08rem;
+  }
+
+  .nav-actions {
+    gap: 0;
+  }
+
+  .nav-actions .btn-sm {
+    padding: 7px 10px;
+    font-size: 0.74rem;
+  }
+
+  .btn {
+    min-height: 40px;
+  }
+
+  .btn-sm {
+    min-height: 34px;
+  }
+
+  .footer-bottom-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .footer-bottom-bar > div:last-child {
+    flex-wrap: wrap;
+    gap: 12px !important;
+  }
+}

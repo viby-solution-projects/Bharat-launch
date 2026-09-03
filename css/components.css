@@ -310,3 +310,216 @@
 .stat-item-box:nth-child(4) { background: var(--color-soft-peach); }
 .site-footer .brand-logo { color: #FAF9F5 !important; }
 .site-footer .brand-logo-icon { background: #55704F; color: #FFFFFF; }
+
+@media (max-width: 600px) {
+  .site-header {
+    height: 62px;
+  }
+
+  .hero-section {
+    padding: 40px 0 32px;
+  }
+
+  .hero-grid {
+    gap: 28px;
+  }
+
+  .hero-text h1,
+  .about-hero h1,
+  .ecosystem-hero h1,
+  .funding-hero h1,
+  .news-hero h1,
+  .submit-hero h1 {
+    font-size: 2rem;
+    line-height: 1.12;
+  }
+
+  .hero-text p,
+  .about-hero p,
+  .ecosystem-hero p,
+  .funding-hero p,
+  .news-hero p,
+  .submit-hero p {
+    font-size: 0.94rem;
+  }
+
+  .hero-visual-light-card {
+    height: 260px;
+  }
+
+  .composite-search-bar {
+    height: auto;
+    min-height: 50px;
+    flex-wrap: wrap;
+    padding: 6px;
+  }
+
+  .search-input-field {
+    min-width: 0;
+    flex: 1 1 calc(100% - 32px);
+    height: 36px;
+  }
+
+  .search-industry-select {
+    flex: 1 1 58%;
+    width: auto;
+    max-width: none;
+    min-height: 38px;
+  }
+
+  .composite-search-bar .btn {
+    flex: 1 1 36%;
+    min-width: 92px;
+  }
+
+  .stats-grid {
+    gap: 10px;
+  }
+
+  .stat-item-box {
+    padding: 12px 14px;
+  }
+
+  .stat-val {
+    font-size: 1.8rem;
+  }
+
+  .section-header-flex {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 22px;
+  }
+
+  .section-header-flex h2,
+  .section-header-center h2 {
+    font-size: 1.7rem;
+  }
+
+  .recent-launches-grid,
+  .startup-cards-grid,
+  .hub-cards-grid,
+  .news-cards-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .launch-card,
+  .startup-card,
+  .hub-card,
+  .news-card,
+  .about-card,
+  .profile-card {
+    padding: 18px;
+  }
+
+  .launch-footer,
+  .card-footer-action,
+  .news-footer {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .filter-bar-box {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .filter-categories-pills {
+    padding-bottom: 4px;
+  }
+
+  .filter-bar-box > div:last-child,
+  .filter-bar-box select {
+    width: 100%;
+  }
+
+  .newsletter-cta-banner {
+    padding: 28px 20px;
+    gap: 22px;
+  }
+
+  .newsletter-text h3 {
+    font-size: 1.45rem;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .newsletter-form .btn {
+    width: 100%;
+  }
+
+  .profile-brand-group {
+    align-items: flex-start;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .profile-title-group {
+    min-width: 0;
+  }
+
+  .profile-title-group > div:first-child {
+    align-items: flex-start !important;
+    flex-wrap: wrap;
+    gap: 6px !important;
+  }
+
+  .profile-logo-box {
+    width: 56px;
+    height: 56px;
+    font-size: 1.35rem;
+  }
+
+  .profile-title-group h1 {
+    font-size: 1.8rem;
+  }
+
+  .profile-actions {
+    width: 100%;
+  }
+
+  .profile-actions .btn {
+    flex: 1;
+  }
+
+  .profile-meta-bar {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px;
+  }
+
+  .profile-meta-item {
+    padding-left: 12px;
+  }
+
+  .profile-meta-val {
+    font-size: 1.25rem;
+  }
+
+  .form-container-box {
+    margin-top: 24px;
+    margin-bottom: 40px;
+  }
+
+  .form-grid-2 {
+    gap: 0;
+  }
+
+  .hub-card-header,
+  .news-card-meta {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .catalyst-table,
+  .deals-table {
+    min-width: 700px;
+  }
+}
