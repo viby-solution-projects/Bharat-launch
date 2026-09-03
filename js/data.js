@@ -17,6 +17,10 @@
       return (window.STARTUPS && window.STARTUPS.length) ? window.STARTUPS : startups;
     },
 
+    getListedStartups: function() {
+      return this.getAllStartups().filter(s => s.foundedYear >= 2018);
+    },
+
     getStartupById: function(id) {
       if (!id) return null;
       const list = this.getAllStartups();
@@ -24,17 +28,17 @@
     },
 
     getFeaturedStartups: function() {
-      return this.getAllStartups().filter(s => s.featured);
+      return this.getListedStartups().filter(s => s.featured);
     },
 
     getRecentLaunches: function() {
-      const list = this.getAllStartups();
+      const list = this.getListedStartups();
       const recent = list.filter(s => s.recentLaunch);
       return recent.length ? recent : list.slice(0, 3);
     },
 
     filterStartups: function(criteria) {
-      let results = this.getAllStartups();
+      let results = this.getListedStartups();
       if (!criteria) return results;
 
       if (criteria.sector && criteria.sector !== 'All') {
