@@ -235,6 +235,15 @@
 .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .card-brand { display: flex; align-items: center; gap: 12px; }
 .card-logo-box { width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--color-indigo); color: #FFFFFF; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: inset 3px 0 0 var(--color-violet); }
+.startup-logo-image { width: 100%; height: 100%; object-fit: contain; padding: 7px; display: block; border-radius: inherit; background: #FFFFFF; }
+.logo-fallback { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; color: #FFFFFF; font-weight: 800; }
+.card-logo-box:has(.startup-logo-image),
+.launch-logo:has(.startup-logo-image),
+.profile-logo-box:has(.startup-logo-image) { background: #FFFFFF; box-shadow: none; }
+.card-logo-box:has(.startup-logo-image) .logo-fallback,
+.launch-logo:has(.startup-logo-image) .logo-fallback,
+.profile-logo-box:has(.startup-logo-image) .logo-fallback { color: #55704F; }
+.directory-view-all { display: flex; justify-content: center; margin-top: 8px; }
 .card-name-group h3 { font-size: 1.12rem; color: var(--color-black); margin-bottom: 2px; }
 .card-location { font-size: 0.8rem; color: var(--color-text-muted); }
 .card-description { font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.55; margin-bottom: 18px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -521,5 +530,9 @@
   .catalyst-table,
   .deals-table {
     min-width: 700px;
+  }
+
+  .directory-view-all {
+    margin-top: 4px;
   }
 }

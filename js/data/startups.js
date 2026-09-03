@@ -31,5 +31,10 @@ const STARTUPS = [
   { id:"renee-cosmetics",name:"RENEE Cosmetics",tagline:"Indian beauty and fragrance brand creating contemporary products.",description:"RENEE Cosmetics develops beauty and personal-care products.",sector:"D2C",stage:"Series B",fundingStage:"Series B",foundedYear:2018,city:"Ahmedabad",state:"Gujarat",headquarters:"Ahmedabad, Gujarat",funding:"Not publicly disclosed.",valuation:"Not publicly disclosed.",businessModel:"D2C / Beauty & Personal Care",teamSize:"Not publicly disclosed.",website:"https://www.reneecosmetics.in",monogram:"RC",verified:true,featured:false,recentLaunch:false,founders:[],investors:[],highlights:[],techStack:[],source:"RENEE Cosmetics company disclosures",sourceName:"RENEE Cosmetics profile",sourceDate:"Verified 2026"}
 ];
 
+STARTUPS.forEach(startup => {
+  const hostname = startup.website ? new URL(startup.website).hostname.replace(/^www\./, '') : '';
+  startup.logo = hostname ? `https://www.google.com/s2/favicons?domain=${hostname}&sz=128` : '';
+});
+
 if (typeof window !== 'undefined') window.STARTUPS = STARTUPS;
 if (typeof module !== 'undefined' && module.exports) module.exports = { STARTUPS };

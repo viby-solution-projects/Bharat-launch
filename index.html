@@ -271,6 +271,10 @@
           <!-- Rendered dynamically from window.BharatData -->
         </div>
 
+        <div class="directory-view-all" id="view-all-startups-wrap">
+          <a href="index.html?view=all#directory" class="btn btn-primary">View All Startups</a>
+        </div>
+
         <!-- 7. Newsletter / CTA Banner -->
         <div class="newsletter-cta-banner">
           <div class="newsletter-text">
@@ -353,6 +357,13 @@
     let activeSector = 'All';
     let activeStage = 'All';
     let searchQuery = '';
+    const showAllStartups = new URLSearchParams(window.location.search).get('view') === 'all';
+
+    function startupLogoMarkup(startup, className) {
+      const initials = startup.monogram || startup.name.slice(0, 2).toUpperCase();
+      if (!startup.logo) return `<div class="${className}"><span class="logo-fallback">${initials}</span></div>`;
+      return `<div class="${className}"><span class="logo-fallback">${initials}</span><img class="startup-logo-image" src="${startup.logo}" alt="${startup.name} logo" loading="lazy" decoding="async" hidden onload="this.hidden=false; this.previousElementSibling.hidden=true;" onerror="this.hidden=true;"></div>`;
+    }
 
     function renderRecentLaunches() {
       const container = document.getElementById('recent-launches-container');
@@ -363,7 +374,7 @@
         <article class="launch-card">
           <div>
             <div class="launch-card-header">
-              <div class="launch-logo">${s.monogram || s.name.slice(0,2).toUpperCase()}</div>
+              ${startupLogoMarkup(s, 'launch-logo')}
               <div>
                 <h3>${s.name}</h3>
                 <div class="launch-location">${s.city}, ${s.state || 'India'}</div>
@@ -400,13 +411,17 @@
         return;
       }
 
-      container.innerHTML = filtered.map(s => {
+      const showLimitedSet = !showAllStartups && activeSector === 'All' && activeStage === 'All' && !searchQuery;
+      const visibleStartups = showLimitedSet ? filtered.slice(0, window.matchMedia('(max-width: 600px)').matches ? 3 : 6) : filtered;
+      document.getElementById('view-all-startups-wrap').hidden = showAllStartups || !showLimitedSet;
+
+      container.innerHTML = visibleStartups.map(s => {
         return `
           <article class="startup-card">
             <div>
               <div class="card-top">
                 <div class="card-brand">
-                  <div class="card-logo-box">${s.monogram || s.name.slice(0,2).toUpperCase()}</div>
+                  ${startupLogoMarkup(s, 'card-logo-box')}
                   <div class="card-name-group">
                     <h3>${s.name}</h3>
                     <div class="card-location">${s.city}, ${s.state || 'India'}</div>

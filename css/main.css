@@ -294,7 +294,7 @@ p {
   }
 
   .nav-container {
-    gap: 12px;
+    gap: 8px;
   }
 
   .brand-logo {
@@ -306,7 +306,7 @@ p {
   }
 
   .nav-actions .btn-sm {
-    padding: 7px 10px;
+    padding: 7px 9px;
     font-size: 0.74rem;
   }
 
