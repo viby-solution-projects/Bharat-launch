@@ -360,9 +360,8 @@
     const showAllStartups = new URLSearchParams(window.location.search).get('view') === 'all';
 
     function startupLogoMarkup(startup, className) {
-      const initials = startup.monogram || startup.name.slice(0, 2).toUpperCase();
-      if (!startup.logo) return `<div class="${className}"><span class="logo-fallback">${initials}</span></div>`;
-      return `<div class="${className}"><span class="logo-fallback">${initials}</span><img class="startup-logo-image" src="${startup.logo}" alt="${startup.name} logo" loading="lazy" decoding="async" hidden onload="this.hidden=false; this.previousElementSibling.hidden=true;" onerror="this.hidden=true;"></div>`;
+      if (!startup.logo) return `<div class="${className}" aria-hidden="true"></div>`;
+      return `<div class="${className}"><img class="startup-logo-image" src="${startup.logo}" alt="${startup.name} brand mark" loading="lazy" decoding="async" onerror="this.hidden=true;"></div>`;
     }
 
     function renderRecentLaunches() {

@@ -312,7 +312,7 @@
       document.getElementById('profile-header-container').innerHTML = `
         <div class="profile-header-grid">
           <div class="profile-brand-group">
-            <div class="profile-logo-box">${startup.logo ? `<span class="logo-fallback">${startup.monogram || startup.name.slice(0, 2).toUpperCase()}</span><img class="startup-logo-image" src="${startup.logo}" alt="${startup.name} logo" decoding="async" hidden onload="this.hidden=false; this.previousElementSibling.hidden=true;" onerror="this.hidden=true;">` : `<span class="logo-fallback">${startup.monogram || startup.name.slice(0, 2).toUpperCase()}</span>`}</div>
+            <div class="profile-logo-box">${startup.logo ? `<img class="startup-logo-image" src="${startup.logo}" alt="${startup.name} brand mark" decoding="async" onerror="this.hidden=true;">` : ''}</div>
             <div class="profile-title-group">
               <div style="display: flex; align-items: center; gap: 10px;">
                 <h1>${startup.name}</h1>
