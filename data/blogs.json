@@ -1,38 +1,50 @@
 [
   {
     "id": "blog-indias-next-generation",
-    "title": "Why India's Next Generation of Startups Matters",
-    "slug": "why-indias-next-generation-of-startups-matters",
-    "featuredImage": "",
-    "category": "Ecosystem",
-    "excerpt": "India's startup story is moving beyond a handful of metros. Here is why the next wave will be defined by depth, local insight, and ambitious infrastructure.",
-    "content": "India's next generation of founders is building for complexity: many languages, uneven infrastructure, and customers who expect world-class experiences. That constraint is becoming an advantage.\n\nThe strongest companies are pairing deep local understanding with products that can travel. They are building logistics, financial tools, climate infrastructure, and software for sectors that were previously difficult to serve.\n\nFor founders, investors, and ecosystem partners, the opportunity is to look beyond familiar names and pay attention to the quality of the problem, the speed of learning, and the resilience of the team.",
+    "title": "India's Startup Ecosystem Is Entering a New Chapter",
+    "slug": "indias-startup-ecosystem-is-entering-a-new-chapter",
+    "featuredImage": "assets/blog-ecosystem.svg",
+    "category": "Startup Ecosystem",
+    "excerpt": "India's startup landscape is evolving beyond rapid growth. The next chapter is being shaped by stronger businesses, ambitious founders, and a deeper ecosystem of innovation.",
+    "content": "## A wider, more ambitious startup story\n\nIndia's startup ecosystem is no longer defined only by a small group of venture-backed companies in a handful of metros. More founders are building for the practical complexity of the country: multiple languages, uneven infrastructure, different spending patterns, and customers who adopt technology on their own terms.\n\nThat complexity is creating durable opportunities. Consumer internet, climate technology, financial services, health, logistics, and industrial software are all being reshaped by teams that understand local context and can still build with global ambition.\n\n## The next wave is more distributed\n\nTier 2 and Tier 3 cities are becoming important sources of both founders and customers. Better connectivity, digital payments, remote work, and a growing network of accelerators mean that a company does not need to begin in Bengaluru or Mumbai to reach a serious market. Regional knowledge is often the advantage: founders see needs that larger markets overlook.\n\n## Technology as an equalizer\n\nAI is lowering the cost of experimentation while creating new demand for Indian-language products, intelligent operations, and specialized tools. The most interesting teams will use AI as part of a clear customer solution, not as a substitute for understanding the problem.\n\n## Why discovery matters\n\nFinding these companies early matters to more than investors. Customers, employees, partners, researchers, and policymakers all need a clearer view of where new capability is being built. Better discovery helps good founders earn attention and helps the ecosystem direct resources toward meaningful work.\n\nThe opportunity ahead is substantial: a larger founder base, deeper technology capability, and a market that continues to generate new problems worth solving. India's next generation deserves to be seen on the quality of its work, not only on the size of its funding round.",
     "publicationDate": "2026-08-18",
     "published": true,
     "createdAt": "2026-08-18T09:00:00.000Z"
   },
   {
     "id": "blog-validate-startup-idea",
-    "title": "How to Build and Validate Your Startup Idea",
-    "slug": "how-to-build-and-validate-your-startup-idea",
-    "featuredImage": "",
-    "category": "Founder Playbook",
-    "excerpt": "A practical sequence for moving from an interesting insight to evidence that someone will use and pay for your product.",
-    "content": "Start with the user and the painful moment, not the feature list. Interview people who recently experienced the problem and ask what they did next. Specific behaviour is more useful than compliments.\n\nBuild the smallest test that can produce a meaningful signal. This might be a concierge service, a landing page, or a prototype used by five real customers. Track what people do, not only what they say.\n\nOnce the signal is clear, document the assumptions that still need testing. A focused learning loop gives an early team more leverage than a large roadmap.",
-    "publicationDate": "2026-08-05",
+    "title": "From Idea to Startup: What Founders Should Validate First",
+    "slug": "from-idea-to-startup-what-founders-should-validate-first",
+    "featuredImage": "assets/blog-founders.svg",
+    "category": "Founders",
+    "excerpt": "A strong startup begins with a validated problem. Before building the product, founders need to understand the customer, market, and real demand.",
+    "content": "## Start with a problem that has consequences\n\nA promising idea is not the same as a painful problem. Begin by identifying who experiences the problem, how often it occurs, what it currently costs, and what people do to work around it. The strongest early signals usually come from problems people are already spending time or money to solve.\n\n## Talk to customers before writing too much code\n\nCustomer interviews should focus on recent behavior rather than hypothetical interest. Ask what happened the last time the problem appeared, who was involved, and which alternatives were considered. Five detailed conversations can reveal more than a broad survey built around your preferred solution.\n\n## Size the market honestly\n\nA market estimate should connect to a real customer segment, a credible price, and a reachable distribution path. Founders do not need a giant top-down number at the start; they need to understand whether the first narrow segment can support learning and expansion.\n\n## Study alternatives and build the smallest useful test\n\nCompetitor research includes spreadsheets, manual processes, agencies, and doing nothing. Then design an MVP that tests the riskiest assumption. It might be a concierge service, a workflow prototype, or a simple product used by a small group of real customers.\n\n## Watch for common mistakes\n\nBuilding in private for too long, treating compliments as demand, choosing a market because it sounds large, and adding features before measuring retention are recurring traps. Early validation is not about proving that the idea is perfect. It is about learning quickly enough to change direction while the cost of changing is still low.",
+    "publicationDate": "2026-08-28",
     "published": true,
-    "createdAt": "2026-08-05T09:00:00.000Z"
+    "createdAt": "2026-08-28T09:00:00.000Z"
   },
   {
-    "id": "blog-idea-to-launch-indian-founders",
-    "title": "From Idea to Launch: A Practical Guide for Indian Founders",
-    "slug": "from-idea-to-launch-a-practical-guide-for-indian-founders",
-    "featuredImage": "",
-    "category": "Launch Strategy",
-    "excerpt": "A clear launch checklist covering customer discovery, distribution, compliance, and the first 90 days of operating in India.",
-    "content": "A launch is a coordination problem. Before shipping, define one customer segment, one promise, and one channel where you can reach people repeatedly.\n\nIndia also rewards operational preparation. Map the payments, privacy, tax, and sector-specific requirements that apply to your product early, then build trust into the experience from day one.\n\nIn the first 90 days, review activation and retention every week. Keep the team close to customer conversations, and let evidence decide which parts of the plan deserve more investment.",
-    "publicationDate": "2026-07-22",
+    "id": "blog-beyond-big-cities",
+    "title": "Why Indian Startups Are Building for a Global Market",
+    "slug": "why-indian-startups-are-building-for-a-global-market",
+    "featuredImage": "assets/blog-global.svg",
+    "category": "Market",
+    "excerpt": "Indian founders are increasingly building products that can compete beyond domestic borders. Here is what is changing and why it matters.",
+    "content": "## Indian products are earning global trust\n\nIndian founders are increasingly building for customers beyond domestic borders. The shift is visible in software, fintech infrastructure, developer tools, climate technology, and specialized services where a product born in India can solve a problem shared by companies everywhere.\n\n## SaaS gives Indian teams leverage\n\nGlobal SaaS rewards product quality, reliability, and a clear return on investment. Indian teams have developed strong advantages in engineering depth, operational discipline, and the ability to serve complex workflows at competitive cost. The strongest companies are moving from cost arbitrage to category leadership.\n\n## Talent is only the starting point\n\nA global company needs more than technical skill. It needs customer research across markets, thoughtful onboarding, reliable support, security practices, and an understanding of how buying decisions differ by region. Indian founders are investing earlier in these capabilities because international customers expect them from the first interaction.\n\n## Product quality travels\n\nThe best global products are not simply exported versions of a domestic workflow. They are designed around a clear user problem, with language, permissions, integrations, and reliability that make the product feel native wherever it is used. That product thinking is becoming a defining advantage.\n\nThe opportunity is significant. Indian founders can build companies that begin with local insight and grow through global relevance, but the path demands focus, patience, and a standard of execution that earns trust market by market.",
+    "publicationDate": "2026-08-20",
     "published": true,
-    "createdAt": "2026-07-22T09:00:00.000Z"
+    "createdAt": "2026-08-20T09:00:00.000Z"
+  },
+  {
+    "id": "blog-first-big-opportunity",
+    "title": "The Founder's Guide to Building Before You Scale",
+    "slug": "the-founders-guide-to-building-before-you-scale",
+    "featuredImage": "assets/blog-scale.svg",
+    "category": "Growth",
+    "excerpt": "Scaling too early can hide problems instead of solving them. Before chasing growth, founders need to build a strong foundation.",
+    "content": "## Product-market fit comes before acceleration\n\nScaling too early can make a weak foundation look busy. Before adding channels or headcount, founders should know which customers receive real value, why they return, and what evidence shows that demand is becoming repeatable. Growth should amplify a working system, not conceal its gaps.\n\n## Listen until the pattern is clear\n\nCustomer feedback is most useful when it is connected to behavior. Track where users hesitate, what they work around, and which parts of the product they would miss. A consistent pattern across conversations and usage data is more valuable than a long list of isolated feature requests.\n\n## Know the economics\n\nRevenue growth is not enough. Founders need a clear view of contribution margin, acquisition cost, payback period, retention, and the operational cost of serving each customer. The exact metrics vary by model, but the principle is constant: understand what becomes stronger as volume increases and what becomes more expensive.\n\n## Build the team and operating rhythm\n\nA scaling team needs clear ownership, reliable hiring standards, and simple ways to review priorities. Document the workflows that matter, keep decision-making close to the customer, and avoid adding management layers before the work requires them.\n\nSustainable growth is the result of product quality, customer trust, healthy economics, and repeatable operations working together. Build those foundations first, then scale with confidence rather than momentum alone.",
+    "publicationDate": "2026-08-12",
+    "published": true,
+    "createdAt": "2026-08-12T09:00:00.000Z"
   }
 ]

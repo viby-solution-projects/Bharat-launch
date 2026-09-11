@@ -6,68 +6,68 @@
 
 :root {
   /* Editorial Monochromatic Palette */
-  --color-black: #1B1420;
-  --color-dark: #64324D;
-  --color-dark-surface: #64324D;
-  --color-dark-border: #E6DDE2;
+  --color-black: #1F1F1F;
+  --color-dark: #1F1F1F;
+  --color-dark-surface: #1F1F1F;
+  --color-dark-border: #E8E3D8;
 
-  --color-text: #1B1420;
-  --color-text-primary: #1B1420;
-  --color-text-secondary: #625A66;
-  --color-text-muted: #817782;
-  --color-text-light: #F3EAF0;
+  --color-text: #1F1F1F;
+  --color-text-primary: #1F1F1F;
+  --color-text-secondary: #666670;
+  --color-text-muted: #666670;
+  --color-text-light: #FFFFFF;
   --color-text-white: #FFFFFF;
 
   /* Surfaces & Backgrounds */
-  --color-background: #FCFAFC;
-  --color-bg-subtle: #F5F0F4;
+  --color-background: #FFF8E7;
+  --color-bg-subtle: #FFF8E7;
   --color-bg-card: #FFFFFF;
-  --color-bg-muted: #F5F0F4;
+  --color-bg-muted: #FFF8E7;
   --color-surface: #FFFFFF;
 
   /* Borders & Dividers */
-  --color-border: #E5DCE3;
-  --color-border-subtle: #F0E9EF;
-  --color-border-dark: #D8CAD3;
+  --color-border: #E8E3D8;
+  --color-border-subtle: #E8E3D8;
+  --color-border-dark: #E8E3D8;
 
   /* Restrained accents for tags, states, and small visual details */
-  --color-primary: #D81650;
-  --color-primary-hover: #B61043;
-  --color-primary-light: #FCE4EC;
-  --color-cobalt: #0B81AC;
-  --color-violet: #3B33D1;
-  --color-teal: #0B81AC;
-  --color-coral: #D81650;
-  --color-blue: #0B81AC;
-  --color-indigo: #3B33D1;
-  --color-violet-bright: #3B33D1;
-  --color-teal-bright: #0B81AC;
-  --color-emerald: #0B81AC;
-  --color-rose: #D81650;
-  --color-amber: #AC1818;
-  --color-soft-blue: #E7F5FA;
-  --color-soft-indigo: #EEEDFF;
-  --color-soft-violet: #F3EAF0;
-  --color-soft-lavender: #F3EFFF;
-  --color-soft-teal: #E7F5FA;
-  --color-soft-mint: #E7F5FA;
-  --color-soft-green: #EAF5F0;
-  --color-soft-peach: #FFF0F1;
-  --color-soft-coral: #FCE4EC;
-  --color-soft-pink: #FCE4EC;
-  --color-soft-yellow: #FFF0E7;
-  --color-success: #0B81AC;
-  --color-success-soft: #E7F5FA;
+  --color-primary: #D4AF37;
+  --color-primary-hover: #B99420;
+  --color-primary-light: #FFF8E7;
+  --color-cobalt: #D4AF37;
+  --color-violet: #D4AF37;
+  --color-teal: #D4AF37;
+  --color-coral: #D4AF37;
+  --color-blue: #D4AF37;
+  --color-indigo: #D4AF37;
+  --color-violet-bright: #D4AF37;
+  --color-teal-bright: #D4AF37;
+  --color-emerald: #D4AF37;
+  --color-rose: #D4AF37;
+  --color-amber: #D4AF37;
+  --color-soft-blue: #FFF8E7;
+  --color-soft-indigo: #EDE9F7;
+  --color-soft-violet: #EDE9F7;
+  --color-soft-lavender: #EDE9F7;
+  --color-soft-teal: #E8F1EA;
+  --color-soft-mint: #E8F1EA;
+  --color-soft-green: #E8F1EA;
+  --color-soft-peach: #FDEDEF;
+  --color-soft-coral: #FDEDEF;
+  --color-soft-pink: #FDEDEF;
+  --color-soft-yellow: #FFF8E7;
+  --color-success: #D4AF37;
+  --color-success-soft: #FFF8E7;
 
-  --shadow-card-hover: 0 10px 24px rgba(11, 48, 51, 0.10);
-  --shadow-sm: 0 1px 2px rgba(11, 48, 51, 0.04);
-  --shadow-card: 0 1px 3px rgba(11, 48, 51, 0.06), 0 1px 2px rgba(11, 48, 51, 0.03);
-  --shadow-search: 0 2px 10px rgba(11, 48, 51, 0.04);
-  --shadow-banner: 0 8px 24px rgba(11, 48, 51, 0.12);
+  --shadow-card-hover: 0 8px 20px rgba(31, 31, 31, 0.08);
+  --shadow-sm: 0 1px 2px rgba(31, 31, 31, 0.04);
+  --shadow-card: 0 1px 3px rgba(31, 31, 31, 0.05);
+  --shadow-search: 0 2px 10px rgba(31, 31, 31, 0.04);
+  --shadow-banner: 0 8px 24px rgba(31, 31, 31, 0.08);
 
   /* Typography Hierarchy */
-  --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-family-display: 'Outfit', var(--font-family-sans);
+  --font-family-sans: 'Manrope', 'Segoe UI', sans-serif;
+  --font-family-display: Georgia, 'Times New Roman', serif;
 
   /* Spacing & Radii */
   --radius-sm: 4px;
@@ -197,14 +197,14 @@ p {
 
 .btn-secondary {
   background: #FFFFFF;
-  color: #394238;
-  border: 1px solid #71856A;
+  color: var(--color-indigo);
+  border: 1px solid var(--color-indigo);
 }
 
 .btn-secondary:hover {
   background: var(--color-primary-light);
   border-color: var(--color-primary);
-  color: #394238;
+  color: var(--color-indigo);
 }
 
 .directory-section .section-header-flex > .btn-secondary {
@@ -266,7 +266,7 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FAF9F5;
+  background: #F7F7FA;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -275,7 +275,7 @@ p {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #71856A;
+  background: var(--color-indigo);
 }
 
 @media (max-width: 600px) {
