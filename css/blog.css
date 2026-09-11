@@ -1,0 +1,34 @@
+.page-hero { padding: 64px 0 52px; background: var(--color-dark); color: #FFFFFF; }
+.page-hero h1 { color: #FFFFFF; font-size: clamp(2.2rem, 5vw, 4rem); max-width: 760px; margin-bottom: 14px; }
+.page-hero p:not(.eyebrow) { color: #E8DCE5; max-width: 620px; font-size: 1.04rem; }
+.blog-list-section { padding: 64px 0 88px; }
+.blog-list-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.article-shell { padding: 64px 0 88px; }
+.article { max-width: 780px; margin: 0 auto; }
+.article-header { margin-bottom: 32px; }
+.article-header h1 { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.08; color: var(--color-black); margin: 12px 0 18px; }
+.article-meta { display: flex; gap: 14px; color: var(--color-text-muted); font-size: 0.85rem; }
+.article-image { min-height: 260px; margin: 0 0 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #3B33D1, #64324D 60%, #D81650); border-radius: var(--radius-lg); color: #FFFFFF; font: 800 4rem var(--font-family-display); }
+.article-image img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; border-radius: inherit; }
+.article-content { color: var(--color-text-primary); font-size: 1.06rem; line-height: 1.85; }
+.article-content p { color: var(--color-text-primary); margin-bottom: 1.5em; }
+.back-link { display: inline-flex; margin-bottom: 30px; color: var(--color-indigo); font-weight: 700; }
+.admin-section { padding: 48px 0 80px; }
+.admin-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 28px; align-items: start; }
+.admin-panel { background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 26px; box-shadow: var(--shadow-card); }
+.admin-panel h2 { margin-bottom: 18px; color: var(--color-black); }
+.admin-form { display: grid; gap: 14px; }
+.admin-form label { display: grid; gap: 6px; color: var(--color-black); font-size: 0.8rem; font-weight: 800; }
+.admin-form input, .admin-form textarea { width: 100%; padding: 11px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-black); background: #FFFFFF; }
+.admin-form textarea { min-height: 150px; resize: vertical; }
+.admin-form .checkbox { display: flex; grid-template-columns: auto 1fr; align-items: center; gap: 8px; }
+.admin-toolbar { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 18px; }
+.admin-blog-row { display: flex; justify-content: space-between; gap: 16px; padding: 15px 0; border-top: 1px solid var(--color-border-subtle); }
+.admin-blog-row h3 { font-size: 1rem; color: var(--color-black); margin-bottom: 4px; }
+.admin-blog-row p { font-size: 0.8rem; }
+.admin-row-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.status-dot { color: var(--color-primary); font-size: 0.78rem; font-weight: 800; }
+.status-dot.draft { color: var(--color-text-muted); }
+.notice { padding: 12px 14px; background: var(--color-soft-blue); border: 1px solid #B8E1EE; color: var(--color-dark); border-radius: var(--radius-md); font-size: 0.85rem; }
+.notice.error { background: var(--color-soft-pink); border-color: #F4B6C8; color: var(--color-mustard, #AC1818); }
+@media (max-width: 800px) { .blog-list-grid, .admin-grid { grid-template-columns: minmax(0, 1fr); } .admin-blog-row { align-items: flex-start; flex-direction: column; } }

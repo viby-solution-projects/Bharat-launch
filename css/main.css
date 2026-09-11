@@ -6,58 +6,58 @@
 
 :root {
   /* Editorial Monochromatic Palette */
-  --color-black: #394238;
-  --color-dark: #0B3033;
-  --color-dark-surface: #0B3033;
-  --color-dark-border: #D5DED3;
+  --color-black: #1B1420;
+  --color-dark: #64324D;
+  --color-dark-surface: #64324D;
+  --color-dark-border: #E6DDE2;
 
-  --color-text: #394238;
-  --color-text-primary: #394238;
-  --color-text-secondary: #687268;
-  --color-text-muted: #687268;
-  --color-text-light: #DDE7D7;
+  --color-text: #1B1420;
+  --color-text-primary: #1B1420;
+  --color-text-secondary: #625A66;
+  --color-text-muted: #817782;
+  --color-text-light: #F3EAF0;
   --color-text-white: #FFFFFF;
 
   /* Surfaces & Backgrounds */
-  --color-background: #FAF9F5;
-  --color-bg-subtle: #EEF3EB;
+  --color-background: #FCFAFC;
+  --color-bg-subtle: #F5F0F4;
   --color-bg-card: #FFFFFF;
-  --color-bg-muted: #EEF3EB;
+  --color-bg-muted: #F5F0F4;
   --color-surface: #FFFFFF;
 
   /* Borders & Dividers */
-  --color-border: #D5DED3;
-  --color-border-subtle: #DDE7D7;
-  --color-border-dark: #D5DED3;
+  --color-border: #E5DCE3;
+  --color-border-subtle: #F0E9EF;
+  --color-border-dark: #D8CAD3;
 
   /* Restrained accents for tags, states, and small visual details */
-  --color-primary: #55704F;
-  --color-primary-hover: #3F5A3A;
-  --color-primary-light: #DDE7D7;
-  --color-cobalt: #55704F;
-  --color-violet: #55704F;
-  --color-teal: #55704F;
-  --color-coral: #55704F;
-  --color-blue: #55704F;
-  --color-indigo: #55704F;
-  --color-violet-bright: #55704F;
-  --color-teal-bright: #55704F;
-  --color-emerald: #55704F;
-  --color-rose: #55704F;
-  --color-amber: #55704F;
-  --color-soft-blue: #EEF3EB;
-  --color-soft-indigo: #EEF3EB;
-  --color-soft-violet: #F7F3E8;
-  --color-soft-lavender: #F7F3E8;
-  --color-soft-teal: #DDE7D7;
-  --color-soft-mint: #DDE7D7;
-  --color-soft-green: #DDE7D7;
-  --color-soft-peach: #F7F3E8;
-  --color-soft-coral: #F7F3E8;
-  --color-soft-pink: #F7F3E8;
-  --color-soft-yellow: #F7F3E8;
-  --color-success: #55704F;
-  --color-success-soft: #EEF3EB;
+  --color-primary: #D81650;
+  --color-primary-hover: #B61043;
+  --color-primary-light: #FCE4EC;
+  --color-cobalt: #0B81AC;
+  --color-violet: #3B33D1;
+  --color-teal: #0B81AC;
+  --color-coral: #D81650;
+  --color-blue: #0B81AC;
+  --color-indigo: #3B33D1;
+  --color-violet-bright: #3B33D1;
+  --color-teal-bright: #0B81AC;
+  --color-emerald: #0B81AC;
+  --color-rose: #D81650;
+  --color-amber: #AC1818;
+  --color-soft-blue: #E7F5FA;
+  --color-soft-indigo: #EEEDFF;
+  --color-soft-violet: #F3EAF0;
+  --color-soft-lavender: #F3EFFF;
+  --color-soft-teal: #E7F5FA;
+  --color-soft-mint: #E7F5FA;
+  --color-soft-green: #EAF5F0;
+  --color-soft-peach: #FFF0F1;
+  --color-soft-coral: #FCE4EC;
+  --color-soft-pink: #FCE4EC;
+  --color-soft-yellow: #FFF0E7;
+  --color-success: #0B81AC;
+  --color-success-soft: #E7F5FA;
 
   --shadow-card-hover: 0 10px 24px rgba(11, 48, 51, 0.10);
   --shadow-sm: 0 1px 2px rgba(11, 48, 51, 0.04);
@@ -66,7 +66,7 @@
   --shadow-banner: 0 8px 24px rgba(11, 48, 51, 0.12);
 
   /* Typography Hierarchy */
-  --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-display: 'Outfit', var(--font-family-sans);
 
   /* Spacing & Radii */
@@ -174,25 +174,25 @@ p {
 }
 
 .btn-primary {
-  background: #55704F;
+  background: var(--color-primary);
   color: #FFFFFF;
-  border: 1px solid #55704F;
+  border: 1px solid var(--color-primary);
 }
 
 .btn-primary:hover {
-  background: #3F5A3A;
-  border-color: #3F5A3A;
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
 }
 
 .btn-dark {
-  background: #55704F;
+  background: var(--color-dark);
   color: #FFFFFF;
-  border: 1px solid #55704F;
+  border: 1px solid var(--color-dark);
 }
 
 .btn-dark:hover {
-  background: #3F5A3A;
-  border-color: #3F5A3A;
+  background: var(--color-black);
+  border-color: var(--color-black);
 }
 
 .btn-secondary {
@@ -202,20 +202,20 @@ p {
 }
 
 .btn-secondary:hover {
-  background: #DDE7D7;
-  border-color: #55704F;
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
   color: #394238;
 }
 
 .directory-section .section-header-flex > .btn-secondary {
-  background: #55704F;
+  background: var(--color-primary);
   color: #FFFFFF;
-  border-color: #55704F;
+  border-color: var(--color-primary);
 }
 
 .directory-section .section-header-flex > .btn-secondary:hover {
-  background: #3F5A3A;
-  border-color: #3F5A3A;
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
 }
 
 .btn-sm {
@@ -270,7 +270,7 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #DDE7D7;
+  background: var(--color-primary-light);
   border-radius: var(--radius-full);
 }
 

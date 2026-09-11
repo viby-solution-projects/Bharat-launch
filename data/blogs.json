@@ -1,0 +1,38 @@
+[
+  {
+    "id": "blog-indias-next-generation",
+    "title": "Why India's Next Generation of Startups Matters",
+    "slug": "why-indias-next-generation-of-startups-matters",
+    "featuredImage": "",
+    "category": "Ecosystem",
+    "excerpt": "India's startup story is moving beyond a handful of metros. Here is why the next wave will be defined by depth, local insight, and ambitious infrastructure.",
+    "content": "India's next generation of founders is building for complexity: many languages, uneven infrastructure, and customers who expect world-class experiences. That constraint is becoming an advantage.\n\nThe strongest companies are pairing deep local understanding with products that can travel. They are building logistics, financial tools, climate infrastructure, and software for sectors that were previously difficult to serve.\n\nFor founders, investors, and ecosystem partners, the opportunity is to look beyond familiar names and pay attention to the quality of the problem, the speed of learning, and the resilience of the team.",
+    "publicationDate": "2026-08-18",
+    "published": true,
+    "createdAt": "2026-08-18T09:00:00.000Z"
+  },
+  {
+    "id": "blog-validate-startup-idea",
+    "title": "How to Build and Validate Your Startup Idea",
+    "slug": "how-to-build-and-validate-your-startup-idea",
+    "featuredImage": "",
+    "category": "Founder Playbook",
+    "excerpt": "A practical sequence for moving from an interesting insight to evidence that someone will use and pay for your product.",
+    "content": "Start with the user and the painful moment, not the feature list. Interview people who recently experienced the problem and ask what they did next. Specific behaviour is more useful than compliments.\n\nBuild the smallest test that can produce a meaningful signal. This might be a concierge service, a landing page, or a prototype used by five real customers. Track what people do, not only what they say.\n\nOnce the signal is clear, document the assumptions that still need testing. A focused learning loop gives an early team more leverage than a large roadmap.",
+    "publicationDate": "2026-08-05",
+    "published": true,
+    "createdAt": "2026-08-05T09:00:00.000Z"
+  },
+  {
+    "id": "blog-idea-to-launch-indian-founders",
+    "title": "From Idea to Launch: A Practical Guide for Indian Founders",
+    "slug": "from-idea-to-launch-a-practical-guide-for-indian-founders",
+    "featuredImage": "",
+    "category": "Launch Strategy",
+    "excerpt": "A clear launch checklist covering customer discovery, distribution, compliance, and the first 90 days of operating in India.",
+    "content": "A launch is a coordination problem. Before shipping, define one customer segment, one promise, and one channel where you can reach people repeatedly.\n\nIndia also rewards operational preparation. Map the payments, privacy, tax, and sector-specific requirements that apply to your product early, then build trust into the experience from day one.\n\nIn the first 90 days, review activation and retention every week. Keep the team close to customer conversations, and let evidence decide which parts of the plan deserve more investment.",
+    "publicationDate": "2026-07-22",
+    "published": true,
+    "createdAt": "2026-07-22T09:00:00.000Z"
+  }
+]

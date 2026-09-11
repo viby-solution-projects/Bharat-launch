@@ -14,7 +14,8 @@
   const DataService = {
     // Startups
     getAllStartups: function() {
-      return (window.STARTUPS && window.STARTUPS.length) ? window.STARTUPS : startups;
+      // Keep the verified dataset available for a future relaunch, but do not expose it publicly yet.
+      return [];
     },
 
     getListedStartups: function() {

@@ -146,6 +146,27 @@
       line-height: 1.5;
       text-align: center;
     }
+    .coming-soon-panel {
+      padding: 34px;
+      border-left: 4px solid var(--color-primary);
+      background: var(--color-soft-pink);
+    }
+    .coming-soon-panel h2 {
+      margin: 8px 0;
+      color: var(--color-black);
+      font-size: 1.65rem;
+    }
+    .coming-soon-panel p {
+      max-width: 560px;
+      margin-bottom: 20px;
+    }
+    .coming-soon-kicker {
+      color: var(--color-primary);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+    #startup-submit-form { display: none; }
     @media (max-width: 700px) {
       .form-grid-2 {
         grid-template-columns: 1fr;
@@ -192,9 +213,10 @@
     <!-- Hero Header -->
     <section class="submit-hero">
       <div class="container">
-        <h1>Submit Your Startup for Verification</h1>
+        <p class="eyebrow">FOR FOUNDERS</p>
+        <h1>Submit Your Startup</h1>
         <p>
-          Get indexed in India's premier verified venture directory. Reach institutional investors, founders, and ecosystem partners.
+          BharatLaunch submissions will open soon. We are preparing the first cohort review process now.
         </p>
       </div>
     </section>
@@ -202,6 +224,12 @@
     <!-- Submission Form -->
     <div class="container">
       <div class="form-container-box">
+        <div class="coming-soon-panel">
+          <span class="coming-soon-kicker">OPENING SOON</span>
+          <h2>We are getting the launch window ready.</h2>
+          <p>Your startup submission will have a place here soon. Join the founder notes to hear when applications open.</p>
+          <a href="blogs.html" class="btn btn-primary">Read Founder Notes</a>
+        </div>
         
         <!-- Success State Alert -->
         <div class="success-alert-card" id="submission-success-msg">
