@@ -116,6 +116,9 @@
     </div>
   </footer>
 
+  <!-- Reusable Markdown Article Parser -->
+  <script src="js/article-parser.js"></script>
+
   <script>
     const menuBtn = document.getElementById('mobile-menu-toggle');
     const drawer = document.getElementById('mobile-drawer');
@@ -159,190 +162,17 @@
     }
 
     function escapeHtml(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-
-    function sanitizeUrl(url) {
-      if (!url) return '#';
-      const clean = url.trim();
-      if (/^(https?:\/\/|\/|\.\/|\.\.\/|#|blog-detail\.html)/i.test(clean)) {
-        return clean.replace(/"/g, '&quot;');
+      if (window.BharatLaunchParser && typeof window.BharatLaunchParser.escapeHtml === 'function') {
+        return window.BharatLaunchParser.escapeHtml(str);
       }
-      return '#';
-    }
-
-    function formatInlineMarkdown(text) {
-      if (!text) return '';
-      return text
-        // Markdown Links: [text](url)
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, href) => {
-          const safeHref = sanitizeUrl(href);
-          const isExternal = /^https?:\/\//i.test(safeHref) && !safeHref.includes(location.hostname);
-          const targetRel = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-          return `<a href="${safeHref}" class="article-link"${targetRel}>${label}</a>`;
-        })
-        // Bold: **text**
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        // Italic: *text* or _text_
-        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+      return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
     function renderContent(rawContent) {
-      if (!rawContent) return '';
-
-      const blocks = rawContent.split(/\n\n+/);
-      return blocks.map(block => {
-        const rawTrimmed = block.trim();
-        if (!rawTrimmed) return '';
-
-        // 1. Horizontal Divider
-        if (/^(\-{3,}|\*{3,})$/.test(rawTrimmed)) {
-          return '<div class="article-divider-wrap"><span class="article-divider-ornament">✦ ✦ ✦</span></div>';
-        }
-
-        // 2. Step Headings: "## Step 1: Title", "## Phase 2: Title", "## Pillar 1: Title"
-        const stepHeadingMatch = rawTrimmed.match(/^##\s+(Step|Phase|Pillar)\s+(\d+)[:.]\s*(.*)$/i);
-        if (stepHeadingMatch) {
-          const type = stepHeadingMatch[1].toUpperCase();
-          const num = stepHeadingMatch[2].padStart(2, '0');
-          const title = formatInlineMarkdown(escapeHtml(stepHeadingMatch[3]));
-          return `
-            <div class="article-step-heading">
-              <div class="article-step-badge">${type} ${num}</div>
-              <h2 class="article-step-title">${title}</h2>
-            </div>
-          `;
-        }
-
-        // Numbered Section Headings: "## 1. Title"
-        const numberedHeadingMatch = rawTrimmed.match(/^##\s+(\d+)[:.]\s*(.*)$/);
-        if (numberedHeadingMatch) {
-          const num = numberedHeadingMatch[1].padStart(2, '0');
-          const title = formatInlineMarkdown(escapeHtml(numberedHeadingMatch[2]));
-          return `
-            <div class="article-step-heading">
-              <div class="article-step-badge">SECTION ${num}</div>
-              <h2 class="article-step-title">${title}</h2>
-            </div>
-          `;
-        }
-
-        // Conclusion / Takeaway Section
-        const conclusionMatch = rawTrimmed.match(/^##\s+(Conclusion|Summary|Key Takeaways?)[:.]?\s*(.*)$/i);
-        if (conclusionMatch) {
-          const sectionName = conclusionMatch[1];
-          const title = conclusionMatch[2] ? `: ${formatInlineMarkdown(escapeHtml(conclusionMatch[2]))}` : '';
-          return `
-            <div class="article-takeaway-heading">
-              <div class="article-step-badge">FINAL TAKEAWAY</div>
-              <h2 class="article-step-title">${escapeHtml(sectionName)}${title}</h2>
-            </div>
-          `;
-        }
-
-        // Standard H2
-        if (rawTrimmed.startsWith('## ')) {
-          return `<h2 class="article-h2">${formatInlineMarkdown(escapeHtml(rawTrimmed.slice(3)))}</h2>`;
-        }
-
-        // Standard H3
-        if (rawTrimmed.startsWith('### ')) {
-          return `<h3 class="article-h3">${formatInlineMarkdown(escapeHtml(rawTrimmed.slice(4)))}</h3>`;
-        }
-
-        // 3. Callout / Alert / Pullquote
-        if (rawTrimmed.startsWith('> ')) {
-          const quoteBody = rawTrimmed.replace(/^>\s*/gm, '');
-          const calloutMatch = quoteBody.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|KEY TAKEAWAY)\]\s*([\s\S]*)$/i);
-          if (calloutMatch) {
-            const type = calloutMatch[1].toUpperCase();
-            const text = formatInlineMarkdown(escapeHtml(calloutMatch[2].trim()));
-            return `
-              <div class="article-callout article-callout-tip">
-                <div class="article-callout-header">
-                  <span aria-hidden="true">💡</span>
-                  <span>${type}</span>
-                </div>
-                <p>${text}</p>
-              </div>
-            `;
-          }
-          return `
-            <blockquote class="article-pullquote">
-              <p>${formatInlineMarkdown(escapeHtml(quoteBody))}</p>
-            </blockquote>
-          `;
-        }
-
-        // 4. Checklist: - [ ] or - [x]
-        if (/^-\s+\[([ xX])\]/.test(rawTrimmed)) {
-          const items = rawTrimmed.split('\n').map(line => {
-            const checkMatch = line.match(/^-\s+\[([ xX])\]\s*(.*)$/);
-            if (!checkMatch) return '';
-            const isChecked = checkMatch[1].toLowerCase() === 'x';
-            const label = formatInlineMarkdown(escapeHtml(checkMatch[2]));
-            return `
-              <li class="article-checklist-item ${isChecked ? 'checked' : ''}">
-                <span class="checklist-box" aria-hidden="true">${isChecked ? '✓' : ''}</span>
-                <span>${label}</span>
-              </li>
-            `;
-          }).filter(Boolean);
-          return `<ul class="article-checklist">${items.join('')}</ul>`;
-        }
-
-        // 5. Unordered Bullet List: - item
-        if (rawTrimmed.startsWith('- ')) {
-          const items = rawTrimmed.split('\n').map(line => {
-            const cleanLine = line.replace(/^-\s+/, '');
-            return `<li>${formatInlineMarkdown(escapeHtml(cleanLine))}</li>`;
-          });
-          return `<ul class="article-bullet-list">${items.join('')}</ul>`;
-        }
-
-        // 6. Ordered List: 1. item
-        if (/^\d+\.\s+/.test(rawTrimmed)) {
-          const items = rawTrimmed.split('\n').map(line => {
-            const cleanLine = line.replace(/^\d+\.\s+/, '');
-            return `<li>${formatInlineMarkdown(escapeHtml(cleanLine))}</li>`;
-          });
-          return `<ol class="article-ordered-list">${items.join('')}</ol>`;
-        }
-
-        // 7. Markdown Table (Timelines, Comparisons, Plans)
-        if (rawTrimmed.includes('|') && rawTrimmed.split('\n').length >= 2) {
-          const lines = rawTrimmed.split('\n').filter(l => l.trim().startsWith('|'));
-          if (lines.length >= 2) {
-            const headerCells = lines[0].split('|').slice(1, -1).map(c => c.trim());
-            const bodyLines = lines.slice(2);
-            const tbodyRows = bodyLines.map(rowLine => {
-              const cells = rowLine.split('|').slice(1, -1).map(c => c.trim());
-              return `<tr>${cells.map(c => `<td>${formatInlineMarkdown(escapeHtml(c))}</td>`).join('')}</tr>`;
-            });
-            return `
-              <div class="article-table-wrap">
-                <table class="article-table">
-                  <thead>
-                    <tr>${headerCells.map(h => `<th>${formatInlineMarkdown(escapeHtml(h))}</th>`).join('')}</tr>
-                  </thead>
-                  <tbody>
-                    ${tbodyRows.join('')}
-                  </tbody>
-                </table>
-              </div>
-            `;
-          }
-        }
-
-        // 8. Standard Paragraph
-        const escapedParagraph = escapeHtml(rawTrimmed);
-        return `<p>${formatInlineMarkdown(escapedParagraph.replace(/\n/g, '<br />'))}</p>`;
-      }).join('');
+      if (window.BharatLaunchParser && typeof window.BharatLaunchParser.parseMarkdownArticle === 'function') {
+        return window.BharatLaunchParser.parseMarkdownArticle(rawContent);
+      }
+      return String(rawContent || '').replace(/\n/g, '<br />');
     }
 
     function relatedCard(blog) {

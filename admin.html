@@ -166,6 +166,13 @@
           <!-- Form Actions Row -->
           <div class="cms-actions-row">
             <button id="btn-cancel-story" class="cms-btn-secondary" type="button">Cancel</button>
+            <button id="btn-preview-story" class="cms-btn-secondary" type="button" style="display: inline-flex; align-items: center; gap: 6px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>Preview Article</span>
+            </button>
             <button id="btn-save-story" class="cms-btn-primary" type="submit">Save Story</button>
           </div>
 
@@ -450,6 +457,82 @@
 
       $('btn-cancel-story').onclick = resetEditorForm;
 
+      // Article Live Preview
+      const previewModal = $('cms-preview-modal');
+      const previewContent = $('preview-modal-content');
+      const closePreviewBtn = $('btn-close-preview');
+
+      function openPreview() {
+        const title = $('story-title').value.trim() || 'Untitled Story';
+        const category = $('story-category').value || 'Founder Playbook';
+        const author = $('story-author').value.trim() || 'BharatLaunch Editorial';
+        const pubDate = $('story-date').value || new Date().toISOString().slice(0, 10);
+        const excerpt = $('story-excerpt').value.trim();
+        const image = $('story-image').value.trim();
+        const content = $('story-content').value;
+
+        const dateFormatted = new Date(pubDate + (pubDate.includes('T') ? '' : 'T00:00:00')).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        const wordCount = content.split(/\s+/).length;
+        const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+        const authorInitial = author.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+
+        const visual = image ? `<div class="article-hero-frame"><img src="${escapeHtml(image)}" alt="Preview cover" onerror="this.parentElement.style.display='none'"></div>` : '';
+
+        const parser = window.BharatLaunchParser;
+        const parsedBody = parser ? parser.parseMarkdownArticle(content) : content.replace(/\n/g, '<br />');
+
+        previewContent.innerHTML = `
+          <div class="article-layout" style="max-width: 760px; margin: 0 auto;">
+            <header class="article-header">
+              <div class="article-eyebrow-wrap">
+                <span class="article-category-badge">${escapeHtml(category)}</span>
+              </div>
+              <h1 class="article-main-title">${escapeHtml(title)}</h1>
+              ${excerpt ? `<div class="article-dek">${escapeHtml(excerpt)}</div>` : ''}
+
+              <div class="article-byline-bar">
+                <div class="article-author-card">
+                  <div class="article-author-avatar" aria-hidden="true">${authorInitial}</div>
+                  <div class="article-author-text">
+                    <span class="article-author-name">${escapeHtml(author)}</span>
+                    <div class="article-meta-row">
+                      <time datetime="${pubDate}">${dateFormatted}</time>
+                      <span>•</span>
+                      <span>${readingTime} min read (estimated)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </header>
+
+            ${visual}
+
+            <div class="article-reading-body">
+              ${parsedBody || '<p style="color: #999; font-style: italic;">No article content written yet.</p>'}
+            </div>
+          </div>
+        `;
+
+        previewModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePreview() {
+        previewModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      $('btn-preview-story').onclick = openPreview;
+      if (closePreviewBtn) closePreviewBtn.onclick = closePreview;
+      if (previewModal) {
+        previewModal.onclick = e => {
+          if (e.target === previewModal) closePreview();
+        };
+      }
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && previewModal.classList.contains('active')) closePreview();
+      });
+
       $('logout-btn').onclick = async () => {
         await api('/api/auth/logout', { method: 'POST' }).catch(() => {});
         location.reload();
@@ -465,5 +548,24 @@
         .catch(() => {});
     })();
   </script>
+
+  <!-- Reusable Markdown Article Parser -->
+  <script src="js/article-parser.js"></script>
+
+  <!-- Article Live Preview Modal -->
+  <div id="cms-preview-modal" class="cms-preview-backdrop" role="dialog" aria-modal="true" aria-labelledby="preview-modal-title">
+    <div class="cms-preview-window">
+      <div class="cms-preview-header">
+        <h3 id="preview-modal-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <span>Live Article Preview</span>
+        </h3>
+        <button type="button" class="cms-preview-close-btn" id="btn-close-preview" aria-label="Close preview">✕ Close Preview</button>
+      </div>
+      <div class="cms-preview-body" id="preview-modal-content">
+        <!-- Rendered article content goes here -->
+      </div>
+    </div>
+  </div>
 </body>
 </html>

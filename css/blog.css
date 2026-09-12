@@ -1635,3 +1635,104 @@
     font-size: 1.08rem;
   }
 }
+
+/* ==========================================================================
+   6. ADMIN ARTICLE LIVE PREVIEW MODAL
+   ========================================================================== */
+.cms-preview-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.cms-preview-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cms-preview-window {
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: cmsModalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cmsModalSlideUp {
+  from {
+    transform: translateY(20px) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.cms-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.cms-preview-header h3 {
+  font-family: var(--font-family-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-black);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cms-preview-close-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--color-black);
+  transition: all var(--transition-fast);
+}
+
+.cms-preview-close-btn:hover {
+  background: var(--color-black);
+  color: #FFFFFF;
+}
+
+.cms-preview-body {
+  padding: 36px 32px 60px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .cms-preview-backdrop {
+    padding: 12px;
+  }
+  .cms-preview-body {
+    padding: 24px 16px 40px;
+  }
+}

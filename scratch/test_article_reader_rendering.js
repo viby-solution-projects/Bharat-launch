@@ -16,18 +16,21 @@ assert.ok(html.includes('id="article-toast"'), 'Toast element must be present');
 assert.ok(html.includes('copyArticleLink'), 'copyArticleLink function must be present');
 console.log('PASS: Share and toast functionality verified');
 
-// 3. Step heading parsing verified in renderContent
-assert.ok(html.includes('article-step-badge'), 'Step badge rendering verified in renderContent');
-assert.ok(html.includes('article-step-heading'), 'Step heading rendering verified in renderContent');
-assert.ok(html.includes('article-callout'), 'Callout block rendering verified in renderContent');
-assert.ok(html.includes('article-checklist'), 'Checklist rendering verified in renderContent');
-assert.ok(html.includes('article-table'), 'Markdown table rendering verified in renderContent');
-console.log('PASS: Rich markdown visual elements verified in renderContent');
+// 3. Parser integration verified
+assert.ok(html.includes('src="js/article-parser.js"'), 'js/article-parser.js script must be included');
+assert.ok(html.includes('BharatLaunchParser.parseMarkdownArticle'), 'BharatLaunchParser.parseMarkdownArticle must be called in renderContent');
+console.log('PASS: Article parser integration verified');
 
-// 4. Safe URL sanitization verified
-assert.ok(html.includes('sanitizeUrl'), 'sanitizeUrl function verified in script');
-assert.ok(html.includes('escapeHtml'), 'escapeHtml function verified in script');
-console.log('PASS: HTML escaping and safe URL sanitization verified');
+// 4. Verify parser output contains rich editorial classes
+const parser = require('../js/article-parser');
+const sampleMarkdown = '## Step 1: Validate\n\n- [ ] Task 1\n- Item 1\n\n> [!TIP]\n> Pro tip\n\n| H1 | H2 |\n|---|---|\n| C1 | C2 |';
+const parsedSample = parser.parseMarkdownArticle(sampleMarkdown);
+assert.ok(parsedSample.includes('article-step-badge'), 'Step badge rendering verified');
+assert.ok(parsedSample.includes('article-step-heading'), 'Step heading rendering verified');
+assert.ok(parsedSample.includes('article-callout'), 'Callout block rendering verified');
+assert.ok(parsedSample.includes('article-checklist'), 'Checklist rendering verified');
+assert.ok(parsedSample.includes('article-table'), 'Markdown table rendering verified');
+console.log('PASS: Rich markdown visual elements verified in article parser');
 
 // 5. Check CSS definitions in css/blog.css
 const css = fs.readFileSync(path.join(__dirname, '../css/blog.css'), 'utf8');
