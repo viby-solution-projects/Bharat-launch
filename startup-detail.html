@@ -185,11 +185,39 @@
         <a href="ecosystem.html" class="nav-link">Ecosystem</a>
         <a href="funding.html" class="nav-link">Funding Radar</a>
         <a href="pr-news.html" class="nav-link">PR News</a>
-        <a href="about.html" class="nav-link">About</a>
-      </nav>
-
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop"></div>
+  <aside class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </span>
+        <span>BharatLaunch</span>
+      </a>
+      <button class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Close Navigation Menu">✕</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="index.html" class="mobile-drawer-link">Home</a>
+      <a href="blogs.html" class="mobile-drawer-link">Blog</a>
+      <a href="ecosystem.html" class="mobile-drawer-link">Ecosystem Map</a>
+      <a href="funding.html" class="mobile-drawer-link">Funding Radar</a>
+      <a href="pr-news.html" class="mobile-drawer-link">PR News</a>
+      <a href="about.html" class="mobile-drawer-link">About BharatLaunch</a>
+    </nav>
+  </aside>
 
   <!-- Main Profile Container -->
   <main id="main-content">
@@ -280,6 +308,14 @@
   <script src="js/data.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.getElementById('mobile-menu-toggle');
+      const drawer = document.getElementById('mobile-drawer');
+      const backdrop = document.getElementById('mobile-drawer-backdrop');
+      const closeBtn = document.getElementById('mobile-drawer-close');
+      if (menuBtn) menuBtn.onclick = () => { drawer.classList.add('active'); backdrop.classList.add('active'); };
+      if (closeBtn) closeBtn.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
+      if (backdrop) backdrop.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
+
       const params = new URLSearchParams(window.location.search);
       const startupId = params.get('id') || 'zepto';
       const startup = window.BharatData.getStartupById(startupId);

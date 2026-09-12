@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BharatLaunch — India's Startup Ecosystem</title>
-  <meta name="description" content="Insights, opportunities and stories from the people building India's next generation of companies." />
+  <title>BharatLaunch — India's Startup Ecosystem & Directory</title>
+  <meta name="description" content="Discover verified Indian startups, funding intelligence, and playbooks shaping India's next generation of companies." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,14 +21,15 @@
   <header class="site-header" role="banner">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo" aria-label="BharatLaunch Home">
-        <div class="brand-logo-icon">
+        <span class="brand-logo-icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
           </svg>
-        </div>
-        <div>BharatLaunch</div>
+        </span>
+        <span>BharatLaunch</span>
       </a>
 
+      <!-- Desktop Navigation -->
       <nav class="nav-links" aria-label="Primary Navigation">
         <a href="index.html" class="nav-link active">Home</a>
         <a href="blogs.html" class="nav-link">Blog</a>
@@ -38,294 +39,308 @@
         <a href="about.html" class="nav-link">About</a>
       </nav>
 
+      <!-- Mobile Menu Toggle Button -->
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </span>
+        <span>BharatLaunch</span>
+      </a>
+      <button class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Close Navigation Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="index.html" class="mobile-drawer-link active">Home</a>
+      <a href="blogs.html" class="mobile-drawer-link">Blog</a>
+      <a href="ecosystem.html" class="mobile-drawer-link">Ecosystem Map</a>
+      <a href="funding.html" class="mobile-drawer-link">Funding Radar</a>
+      <a href="pr-news.html" class="mobile-drawer-link">PR News</a>
+      <a href="about.html" class="mobile-drawer-link">About BharatLaunch</a>
+    </nav>
+  </aside>
 
   <!-- Main Content -->
   <main id="main-content">
     
-    <!-- 2. Hero Section -->
+    <!-- 2. Short Hero / Intro Section -->
     <section class="hero-section">
       <div class="container hero-grid">
         
-        <!-- Hero Left Column: Headline, Description & 3-segment Composite Search -->
         <div class="hero-text">
-          <p class="eyebrow">BHARATLAUNCH</p>
+          <span class="eyebrow">BHARATLAUNCH PLATFORM</span>
           <h1>Discover the <span class="gold-highlight">ideas</span> shaping India's startup ecosystem.</h1>
           <p>
-            BharatLaunch brings together useful insight, ecosystem intelligence, and the stories behind India's most ambitious builders.
+            Explore verified profiles of high-growth Indian startups, track emerging ecosystem intelligence, and read actionable playbooks from visionary founders.
           </p>
-
           <div class="hero-actions">
-            <a href="blogs.html" class="btn btn-primary">Explore Insights</a>
-            <a href="ecosystem.html" class="btn btn-secondary btn-hero-secondary">Explore Ecosystem</a>
+            <a href="#directory" class="btn btn-primary">Explore Directory ↓</a>
+            <a href="blogs.html" class="btn btn-secondary">Read Insights →</a>
           </div>
         </div>
 
-        <!-- Hero Right Column: Light Minimalist Technology & Network Vector Illustration -->
-        <div class="hero-visual-light-card">
-          <svg class="hero-light-svg" viewBox="0 0 460 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="lightBgGlow" cx="50%" cy="50%" r="65%">
-                <stop offset="0%" stop-color="#EDE9F7" stop-opacity="0.9" />
-                <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0.4" />
-                <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
-              </radialGradient>
-              
-              <filter id="softNodeShadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#15151A" flood-opacity="0.06" />
-              </filter>
-            </defs>
-
-            <!-- Background Subtle Ambient Glow -->
-            <circle cx="230" cy="180" r="160" fill="url(#lightBgGlow)" />
-
-            <!-- Perspective Orbit Ellipses -->
-            <ellipse cx="230" cy="180" rx="170" ry="75" stroke="#E7E7EC" stroke-width="1.2" stroke-dasharray="5 5" />
-            <ellipse cx="230" cy="180" rx="130" ry="52" stroke="#E7E7EC" stroke-width="1.2" />
-            <ellipse cx="230" cy="180" rx="85" ry="34" stroke="#E7E7EC" stroke-width="1" />
-
-            <!-- Geometric Connection Grid Lines -->
-            <line x1="230" y1="180" x2="110" y2="120" stroke="#D4AF37" stroke-width="1.2" />
-            <line x1="230" y1="180" x2="350" y2="130" stroke="#D4AF37" stroke-width="1.2" />
-            <line x1="230" y1="180" x2="140" y2="250" stroke="#D4AF37" stroke-width="1.2" />
-            <line x1="230" y1="180" x2="320" y2="240" stroke="#D4AF37" stroke-width="1.2" />
-            <line x1="110" y1="120" x2="70" y2="180" stroke="#E7E7EC" stroke-width="1" stroke-dasharray="3 3" />
-            <line x1="350" y1="130" x2="390" y2="190" stroke="#E7E7EC" stroke-width="1" stroke-dasharray="3 3" />
-            <line x1="140" y1="250" x2="230" y2="290" stroke="#E7E7EC" stroke-width="1" />
-            <line x1="320" y1="240" x2="230" y2="290" stroke="#E7E7EC" stroke-width="1" />
-
-            <!-- Isometric Minimalist 3D Cube in Center -->
-            <g filter="url(#softNodeShadow)">
-              <polygon points="230,145 265,162 230,179 195,162" fill="#FFFFFF" stroke="#E7E7EC" stroke-width="1" />
-              <polygon points="195,162 230,179 230,215 195,198" fill="#F0EFFF" stroke="#F0EFFF" stroke-width="1" />
-              <polygon points="230,179 265,162 265,198 230,215" fill="#F7F7FA" stroke="#E7E7EC" stroke-width="1" />
-
-              <circle cx="230" cy="145" r="8" fill="#D4AF37" />
-            </g>
-
-            <!-- Network Nodes -->
-            <g filter="url(#softNodeShadow)">
-              <circle cx="110" cy="120" r="10" fill="#FFFFFF" stroke="#D4AF37" stroke-width="2.5" />
-              <circle cx="110" cy="120" r="4" fill="#D4AF37" />
-
-              <circle cx="350" cy="130" r="10" fill="#FFFFFF" stroke="#D4AF37" stroke-width="2.5" />
-              <circle cx="350" cy="130" r="4" fill="#D4AF37" />
-
-              <circle cx="140" cy="250" r="9" fill="#FFFFFF" stroke="#D4AF37" stroke-width="2" />
-              <circle cx="140" cy="250" r="3.5" fill="#D4AF37" />
-
-              <circle cx="320" cy="240" r="9" fill="#FFFFFF" stroke="#D4AF37" stroke-width="2" />
-              <circle cx="320" cy="240" r="3.5" fill="#D4AF37" />
-
-              <circle cx="70" cy="180" r="5" fill="#D4AF37" />
-              <circle cx="390" cy="190" r="5" fill="#D4AF37" />
-              <circle cx="230" cy="290" r="6" fill="#D4AF37" />
-            </g>
-          </svg>
+        <div class="hero-visual-card">
+          <div class="hero-visual-badge">
+            <span class="dot"></span>
+            <span>Verified Indian Ventures</span>
+          </div>
+          <h3>Curated Intelligence on Bharat's High-Growth Startups</h3>
+          <p>
+            From GenAI and SpaceTech to FinTech and Clean Mobility, discover the teams building scalable infrastructure across India.
+          </p>
+          <div class="hero-visual-tags">
+            <span class="hero-visual-tag">🚀 SpaceTech</span>
+            <span class="hero-visual-tag">🤖 AI & Indic LLMs</span>
+            <span class="hero-visual-tag">⚡ Clean Mobility</span>
+            <span class="hero-visual-tag">💳 B2B FinTech</span>
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- 3. Key Statistics Strip (Figma Exact 4 Values) -->
-    <section class="stats-strip-section legacy-startup-content">
-      <div class="container stats-grid">
-        <div class="stat-item-box">
-          <div class="stat-val">500+</div>
-          <div class="stat-label">STARTUPS</div>
-        </div>
-        <div class="stat-item-box">
-          <div class="stat-val">200+</div>
-          <div class="stat-label">INVESTORS</div>
-        </div>
-        <div class="stat-item-box">
-          <div class="stat-val">50+</div>
-          <div class="stat-label">NEWS FEATURES</div>
-        </div>
-        <div class="stat-item-box">
-          <div class="stat-val">10k+</div>
-          <div class="stat-label">COMMUNITY MEMBERS</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. "Why BharatLaunch?" Value Pillars -->
-    <section class="pillars-section legacy-startup-content">
+    <!-- 3. Startup Directory Section -->
+    <section class="directory-section" id="directory">
       <div class="container">
-        <div class="section-header-center">
-          <h2>Why BharatLaunch?</h2>
-          <p>Built to catalog, amplify, and connect the world's most dynamic startup ecosystem.</p>
+        
+        <div class="directory-heading-row">
+          <p class="eyebrow">BHARATLAUNCH DIRECTORY</p>
+          <h2>Indian Startups, <span class="gold-highlight">Real Impact.</span></h2>
+          <p>Search, filter, and discover verified startups driving innovation across India's economic corridors.</p>
         </div>
 
-        <div class="pillars-grid">
-          <div class="pillar-card">
-            <div class="pillar-icon-circle">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <!-- Filter Controls Box -->
+        <div class="directory-controls">
+          
+          <div class="directory-search-row">
+            <div class="directory-search-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input 
+                id="directory-search" 
+                class="directory-search-input" 
+                type="search" 
+                placeholder="Search by startup name, founder, sector, or city..." 
+                aria-label="Search Startups"
+              />
             </div>
-            <h3>Curated Startup Database</h3>
-            <p>Access high-integrity profiles of verified Indian ventures with founded years, team size, core tech stacks, and active business models.</p>
+            
+            <button class="mobile-filter-toggle" id="open-mobile-filters" aria-label="Open filter options">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
+              <span>Filters</span>
+            </button>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon-circle">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          <!-- Sector Filter Pills (Horizontally scrollable on mobile) -->
+          <div class="filter-pills-wrap" id="sector-pills" role="toolbar" aria-label="Sector Filter">
+            <button class="filter-pill active" data-sector="All">All Sectors</button>
+            <button class="filter-pill" data-sector="AI & GenAI">AI & GenAI</button>
+            <button class="filter-pill" data-sector="DeepTech & SpaceTech">DeepTech & SpaceTech</button>
+            <button class="filter-pill" data-sector="FinTech">FinTech</button>
+            <button class="filter-pill" data-sector="CleanTech & EV">CleanTech & EV</button>
+            <button class="filter-pill" data-sector="EnterpriseTech">EnterpriseTech</button>
+            <button class="filter-pill" data-sector="Quick Commerce">Quick Commerce</button>
+            <button class="filter-pill" data-sector="D2C">D2C</button>
+          </div>
+
+          <!-- Desktop Dropdowns Row -->
+          <div class="directory-dropdowns-row">
+            <div class="dropdown-group">
+              <label for="filter-stage" style="font-size: 0.82rem; font-weight: 700; color: var(--color-black);">Stage:</label>
+              <select id="filter-stage" class="filter-select" aria-label="Filter by Stage">
+                <option value="All">All Stages</option>
+                <option value="Seed">Seed</option>
+                <option value="Series A">Series A</option>
+                <option value="Series B">Series B</option>
+                <option value="Series C">Series C</option>
+                <option value="Unicorn">Unicorn</option>
+              </select>
+
+              <label for="filter-year" style="font-size: 0.82rem; font-weight: 700; color: var(--color-black); margin-left: 8px;">Founded:</label>
+              <select id="filter-year" class="filter-select" aria-label="Filter by Year">
+                <option value="All">All Years</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+              </select>
             </div>
-            <h3>Real-Time Ecosystem Intelligence</h3>
-            <p>Track funding rounds, valuation benchmarks, sector breakdowns, and geographic innovation clusters across Tier 1, 2, and 3 cities.</p>
-          </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon-circle">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <div class="dropdown-group">
+              <label for="filter-sort" style="font-size: 0.82rem; font-weight: 700; color: var(--color-black);">Sort:</label>
+              <select id="filter-sort" class="filter-select" aria-label="Sort Startups">
+                <option value="latest">Latest Founded</option>
+                <option value="oldest">Oldest Founded</option>
+                <option value="name">Alphabetical (A-Z)</option>
+              </select>
+              <button class="directory-reset-btn" id="filter-reset" type="button">Reset Filters</button>
             </div>
-            <h3>Direct Founder & Investor Connections</h3>
-            <p>Connect with visionary builders, explore active ecosystem signals, and follow the companies shaping India's next chapter.</p>
+          </div>
+
+        </div>
+
+        <!-- Mobile Filter Sheet Modal -->
+        <div class="mobile-filter-modal" id="mobile-filter-modal" aria-hidden="true">
+          <div class="mobile-filter-content">
+            <div class="mobile-filter-header">
+              <h3>Filter Startups</h3>
+              <button class="mobile-filter-close" id="close-mobile-filters" aria-label="Close filters">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="mobile-filter-body">
+              <label class="mobile-filter-label">
+                Funding Stage
+                <select id="mobile-stage-select">
+                  <option value="All">All Stages</option>
+                  <option value="Seed">Seed</option>
+                  <option value="Series A">Series A</option>
+                  <option value="Series B">Series B</option>
+                  <option value="Series C">Series C</option>
+                  <option value="Unicorn">Unicorn</option>
+                </select>
+              </label>
+
+              <label class="mobile-filter-label">
+                Founded Year
+                <select id="mobile-year-select">
+                  <option value="All">All Years</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                </select>
+              </label>
+
+              <label class="mobile-filter-label">
+                Sort Order
+                <select id="mobile-sort-select">
+                  <option value="latest">Latest Founded</option>
+                  <option value="oldest">Oldest Founded</option>
+                  <option value="name">Alphabetical (A-Z)</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="mobile-filter-actions">
+              <button class="btn btn-secondary" id="mobile-reset-btn" type="button">Reset</button>
+              <button class="btn btn-primary" id="mobile-apply-btn" type="button">Apply Filters</button>
+            </div>
           </div>
         </div>
+
+        <!-- Results Count Bar -->
+        <div class="directory-status-bar">
+          <span class="directory-count-text" id="directory-count">Loading startups...</span>
+        </div>
+
+        <!-- Startup Cards Grid -->
+        <div class="directory-cards-grid" id="directory-cards-container" aria-live="polite">
+          <!-- Rendered dynamically -->
+        </div>
+
       </div>
     </section>
 
-    <!-- 5. "Recent Launches" Section -->
-    <section class="recent-launches-section legacy-startup-content">
+    <!-- 4. Latest Blogs Section -->
+    <section class="blog-section" id="blogs">
       <div class="container">
-        <div class="section-header-flex">
+        
+        <div class="blog-section-header">
           <div>
-            <h2>Recent Launches</h2>
-            <p>Newly discovered ventures and ecosystem signals making waves across Bharat.</p>
+            <p class="eyebrow">FROM THE BHARATLAUNCH DESK</p>
+            <h2>Latest Insights & Playbooks</h2>
+            <p>Practical perspectives, ecosystem analysis, and frameworks for Indian founders.</p>
           </div>
-          <a href="ecosystem.html" style="font-weight: 700; color: var(--color-black); font-size: 0.92rem;">View All Launches →</a>
+          <a href="blogs.html" class="btn btn-secondary">View All Articles →</a>
         </div>
 
-        <div class="recent-launches-grid" id="recent-launches-container">
-          <!-- Rendered dynamically from window.BharatData -->
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. "Featured Startups" / Directory Section -->
-    <section class="directory-section legacy-startup-content" id="directory">
-      <div class="container">
-        <div class="section-header-flex">
-          <div>
-            <h2>Featured Startups</h2>
-            <p>Filter by industry sector, development stage, or innovation hub.</p>
-          </div>
+        <!-- Blog Cards Grid -->
+        <div class="blog-grid" id="featured-blogs-container" aria-live="polite">
+          <!-- Rendered dynamically from /api/blogs -->
         </div>
 
-        <!-- Filter Bar with Category Pills & Stage Select -->
-        <div class="filter-bar-box">
-          <div class="filter-categories-pills">
-            <button class="category-pill active" onclick="window.filterBySector('All')">All Sectors</button>
-            <button class="category-pill" onclick="window.filterBySector('AI & GenAI')">AI & GenAI</button>
-            <button class="category-pill" onclick="window.filterBySector('DeepTech & SpaceTech')">DeepTech & SpaceTech</button>
-            <button class="category-pill" onclick="window.filterBySector('FinTech')">FinTech</button>
-            <button class="category-pill" onclick="window.filterBySector('CleanTech & EV')">CleanTech & EV</button>
-            <button class="category-pill" onclick="window.filterBySector('B2B SaaS')">B2B SaaS</button>
-            <button class="category-pill" onclick="window.filterBySector('AgriTech')">AgriTech</button>
-            <button class="category-pill" onclick="window.filterBySector('Quick Commerce')">Quick Commerce</button>
-            <button class="category-pill" onclick="window.filterBySector('EdTech')">EdTech</button>
-          </div>
-
-          <div>
-            <select class="form-select" id="stage-select-filter" style="padding: 7px 14px; font-size: 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: #FFFFFF;" onchange="window.filterByStage(this.value)">
-              <option value="All">All Stages</option>
-              <option value="Bootstrapped">Bootstrapped</option>
-              <option value="Series A">Series A</option>
-              <option value="Series B">Series B</option>
-              <option value="Series E">Series E</option>
-              <option value="Unicorn">Unicorn</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Startup Cards Container -->
-        <div class="startup-cards-grid" id="startups-container">
-          <!-- Rendered dynamically from window.BharatData -->
-        </div>
-
-        <div class="directory-view-all" id="view-all-startups-wrap">
-          <a href="index.html?view=all#directory" class="btn btn-primary">View All Startups</a>
-        </div>
-
-        <!-- 7. Newsletter / CTA Banner -->
-        <div class="newsletter-cta-banner">
-          <div class="newsletter-text">
-            <h3>Get the latest insights on India's startup ecosystem</h3>
-            <p>Join thousands of founders, investors, and operators receiving our weekly deals and launch breakdown.</p>
-          </div>
-          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to BharatLaunch Weekly!'); this.reset();">
-            <input type="email" placeholder="Enter your work email..." required />
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-          </form>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="platform-intro">
-      <div class="container platform-intro-grid">
-        <div><p class="eyebrow eyebrow-dark">BHARATLAUNCH</p><h2>A clearer view of India's innovation economy.</h2></div>
-        <p>We follow the founders, capital, ideas, and regional movements changing how businesses are built in India. Our work is designed for people who want context, not noise.</p>
-      </div>
-    </section>
-
-    <section class="blog-section">
-      <div class="container">
-        <div class="section-header-flex">
-          <div>
-            <p class="eyebrow eyebrow-dark">FROM THE BHARATLAUNCH DESK</p>
-            <h2>Latest from BharatLaunch.</h2>
-            <p>Insights for India's next generation of founders.</p>
-          </div>
-          <a href="blogs.html" class="btn btn-secondary btn-sm">View All Articles →</a>
-        </div>
-        <div class="blog-grid" id="featured-blogs" aria-live="polite"></div>
       </div>
     </section>
 
   </main>
 
-  <!-- 8. Global Footer -->
+  <!-- 5. Minimal Global Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
+        
         <div class="footer-brand">
           <div class="brand-logo" style="color: #FFFFFF;">
-            <div class="brand-logo-icon">
+            <span class="brand-logo-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
               </svg>
-            </div>
-            <div>BharatLaunch</div>
+            </span>
+            <span>BharatLaunch</span>
           </div>
-          <p>The premier platform discovering, showcasing, and cataloging the next generation of Indian startups across all stages.</p>
+          <p>
+            India's dedicated platform discovering, showcasing, and cataloging the next generation of high-impact technology ventures.
+          </p>
         </div>
 
         <div class="footer-col">
-          <h4>Explore</h4>
+          <h4>Platform</h4>
           <ul>
-            <li><a href="blogs.html">Blog</a></li>
+            <li><a href="index.html#directory">Startup Directory</a></li>
+            <li><a href="blogs.html">Founder Notes</a></li>
             <li><a href="ecosystem.html">Ecosystem Map</a></li>
             <li><a href="funding.html">Funding Radar</a></li>
-            <li><a href="pr-news.html">PR News</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Ecosystem</h4>
+          <h4>Intelligence</h4>
           <ul>
-            <li><a href="about.html">Our mission</a></li>
-            <li><a href="blogs.html">Founder playbooks</a></li>
+            <li><a href="pr-news.html">PR & Media</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blogs.html">Market Insights</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>Owner Access</h4>
           <ul>
-            <li><a href="about.html">About BharatLaunch</a></li>
+            <li><a href="admin.html">Admin Portal</a></li>
           </ul>
         </div>
+
       </div>
 
       <div class="footer-bottom-bar">
@@ -344,168 +359,380 @@
   <script src="js/data/news.js"></script>
   <script src="js/data/ecosystem.js"></script>
   <script src="js/data.js"></script>
+
   <script>
-    function blogCardMarkup(blog) {
-      const image = blog.featuredImage ? `<img src="${blog.featuredImage}" alt="" loading="lazy">` : '<span class="blog-visual-mark">BL</span>';
-      return `<article class="blog-card"><a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${image}</a><div class="blog-card-body"><div class="blog-card-meta"><span>${blog.category}</span><time datetime="${blog.publicationDate}">${new Date(blog.publicationDate + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</time></div><h3><a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a></h3><p>${blog.excerpt}</p><a class="text-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">Read Article <span aria-hidden="true">→</span></a></div></article>`;
-    }
+    (function() {
+      // ----------------------------------------------------------------------
+      // Mobile Drawer Navigation Management
+      // ----------------------------------------------------------------------
+      const menuBtn = document.getElementById('mobile-menu-toggle');
+      const drawer = document.getElementById('mobile-drawer');
+      const backdrop = document.getElementById('mobile-drawer-backdrop');
+      const closeBtn = document.getElementById('mobile-drawer-close');
 
-    async function renderFeaturedBlogs() {
-      const container = document.getElementById('featured-blogs');
-      if (!container) return;
-      try {
-        const response = await fetch('/api/blogs');
-        const blogs = await response.json();
-        container.innerHTML = blogs.slice(0, 3).map(blogCardMarkup).join('');
-      } catch (error) {
-        container.innerHTML = '<p class="empty-state">Founder notes are loading soon.</p>';
+      function openDrawer() {
+        drawer.classList.add('active');
+        backdrop.classList.add('active');
+        drawer.setAttribute('aria-hidden', 'false');
+        backdrop.setAttribute('aria-hidden', 'false');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
       }
-    }
 
-    let activeSector = 'All';
-    let activeStage = 'All';
-    let searchQuery = '';
-    const showAllStartups = new URLSearchParams(window.location.search).get('view') === 'all';
+      function closeDrawer() {
+        drawer.classList.remove('active');
+        backdrop.classList.remove('active');
+        drawer.setAttribute('aria-hidden', 'true');
+        backdrop.setAttribute('aria-hidden', 'true');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
 
-    function startupLogoMarkup(startup, className) {
-      if (!startup.logo) return `<div class="${className}" aria-hidden="true"></div>`;
-      return `<div class="${className}"><img class="startup-logo-image" src="${startup.logo}" alt="${startup.name} brand mark" loading="lazy" decoding="async" onerror="this.hidden=true;"></div>`;
-    }
+      if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
-    function renderRecentLaunches() {
-      const container = document.getElementById('recent-launches-container');
-      if (!container) return;
-
-      const recentItems = window.BharatData.getRecentLaunches();
-      container.innerHTML = recentItems.map(s => `
-        <article class="launch-card">
-          <div>
-            <div class="launch-card-header">
-              ${startupLogoMarkup(s, 'launch-logo')}
-              <div>
-                <h3>${s.name}</h3>
-                <div class="launch-location">${s.city}, ${s.state || 'India'}</div>
-              </div>
-            </div>
-            <p>${s.tagline}</p>
-          </div>
-          <div class="launch-footer">
-            <span class="badge badge-outline">${s.sector}</span>
-            <a href="startup-detail.html?id=${s.id}" class="btn btn-secondary btn-sm">Learn More →</a>
-          </div>
-        </article>
-      `).join('');
-    }
-
-    function renderFeaturedStartups() {
-      const container = document.getElementById('startups-container');
-      if (!container) return;
-
-      const filtered = window.BharatData.filterStartups({
-        sector: activeSector,
-        stage: activeStage,
-        query: searchQuery
+      // Close drawer on link clicks
+      document.querySelectorAll('.mobile-drawer-link').forEach(link => {
+        link.addEventListener('click', closeDrawer);
       });
 
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 48px; background: #FFFFFF; border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
-            <h3 style="margin-bottom: 8px; color: var(--color-black);">No matching startups found</h3>
-            <p style="color: var(--color-text-muted); margin-bottom: 16px;">Try adjusting your sector filters or search query.</p>
-            <button class="btn btn-secondary btn-sm" onclick="window.filterBySector('All')">Reset Filters</button>
-          </div>
-        `;
-        return;
+      // ----------------------------------------------------------------------
+      // Mobile Filter Sheet Management
+      // ----------------------------------------------------------------------
+      const openFiltersBtn = document.getElementById('open-mobile-filters');
+      const filterModal = document.getElementById('mobile-filter-modal');
+      const closeFiltersBtn = document.getElementById('close-mobile-filters');
+      const applyFiltersBtn = document.getElementById('mobile-apply-btn');
+      const resetFiltersBtn = document.getElementById('mobile-reset-btn');
+
+      function openFilterModal() {
+        // Sync desktop selects to mobile selects
+        document.getElementById('mobile-stage-select').value = activeStage;
+        document.getElementById('mobile-year-select').value = activeYear;
+        document.getElementById('mobile-sort-select').value = activeSort;
+        
+        filterModal.classList.add('active');
+        filterModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
       }
 
-      const showLimitedSet = !showAllStartups && activeSector === 'All' && activeStage === 'All' && !searchQuery;
-      const visibleStartups = showLimitedSet ? filtered.slice(0, window.matchMedia('(max-width: 600px)').matches ? 3 : 6) : filtered;
-      document.getElementById('view-all-startups-wrap').hidden = showAllStartups || !showLimitedSet;
+      function closeFilterModal() {
+        filterModal.classList.remove('active');
+        filterModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
 
-      container.innerHTML = visibleStartups.map(s => {
+      if (openFiltersBtn) openFiltersBtn.addEventListener('click', openFilterModal);
+      if (closeFiltersBtn) closeFiltersBtn.addEventListener('click', closeFilterModal);
+      if (filterModal) {
+        filterModal.addEventListener('click', function(e) {
+          if (e.target === filterModal) closeFilterModal();
+        });
+      }
+
+      if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', function() {
+          activeStage = document.getElementById('mobile-stage-select').value;
+          activeYear = document.getElementById('mobile-year-select').value;
+          activeSort = document.getElementById('mobile-sort-select').value;
+          
+          // Sync to desktop selects
+          document.getElementById('filter-stage').value = activeStage;
+          document.getElementById('filter-year').value = activeYear;
+          document.getElementById('filter-sort').value = activeSort;
+
+          renderStartups();
+          closeFilterModal();
+        });
+      }
+
+      if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', function() {
+          activeSector = 'All';
+          activeStage = 'All';
+          activeYear = 'All';
+          activeSort = 'latest';
+          searchQuery = '';
+          
+          document.getElementById('directory-search').value = '';
+          document.getElementById('filter-stage').value = 'All';
+          document.getElementById('filter-year').value = 'All';
+          document.getElementById('filter-sort').value = 'latest';
+          document.getElementById('mobile-stage-select').value = 'All';
+          document.getElementById('mobile-year-select').value = 'All';
+          document.getElementById('mobile-sort-select').value = 'latest';
+
+          document.querySelectorAll('.filter-pill').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.sector === 'All');
+          });
+
+          renderStartups();
+          closeFilterModal();
+        });
+      }
+
+      // ----------------------------------------------------------------------
+      // Startup Directory Rendering & Filtering
+      // ----------------------------------------------------------------------
+      let activeSector = 'All';
+      let activeStage = 'All';
+      let activeYear = 'All';
+      let activeSort = 'latest';
+      let searchQuery = '';
+
+      function startupCardMarkup(startup) {
+        const logoContent = startup.logo 
+          ? `<img class="startup-logo-image" src="${startup.logo}" alt="${startup.name} logo" loading="lazy" decoding="async" onerror="this.outerHTML='<span aria-hidden=\\'true\\'>${startup.monogram || 'BL'}</span>'">`
+          : `<span aria-hidden="true">${startup.monogram || 'BL'}</span>`;
+
+        const location = startup.headquarters || (startup.city ? startup.city + (startup.state ? ', ' + startup.state : '') : 'India');
+        const founderName = (startup.founders && startup.founders.length > 0) ? startup.founders[0].name : 'Leadership Team';
+
         return `
           <article class="startup-card">
             <div>
               <div class="card-top">
                 <div class="card-brand">
-                  ${startupLogoMarkup(s, 'card-logo-box')}
+                  <div class="card-logo-box">${logoContent}</div>
                   <div class="card-name-group">
-                    <h3>${s.name}</h3>
-                    <div class="card-location">${s.city}, ${s.state || 'India'}</div>
+                    <h3>${startup.name}</h3>
+                    <div class="card-location">📍 ${location}</div>
                   </div>
                 </div>
-                <span class="badge badge-outline">${s.stage}</span>
+                <span class="badge badge-outline">${startup.stage}</span>
               </div>
 
-              <p class="card-description">${s.tagline}</p>
+              <p class="card-tagline">${startup.tagline}</p>
             </div>
 
             <div>
               <div class="card-meta-strip">
                 <div class="card-meta-col">
                   <span class="lbl">Funding</span>
-                  <span class="val">${s.funding}</span>
+                  <span class="val">${startup.funding}</span>
                 </div>
                 <div class="card-meta-col">
-                  <span class="lbl">Stage</span>
-                  <span class="val">${s.stage}</span>
+                  <span class="lbl">Sector</span>
+                  <span class="val">${startup.sector}</span>
                 </div>
                 <div class="card-meta-col">
-                  <span class="lbl">Team</span>
-                  <span class="val">${s.teamSize}</span>
+                  <span class="lbl">Est.</span>
+                  <span class="val">${startup.foundedYear}</span>
                 </div>
               </div>
 
               <div class="card-footer-action">
-                <span style="font-size: 0.8rem; color: var(--color-text-muted);">Est. ${s.foundedYear}</span>
-                <a href="startup-detail.html?id=${s.id}" class="btn btn-secondary btn-sm">View Profile →</a>
+                <span style="font-size: 0.8rem; color: var(--color-text-muted);">Founder: <strong style="color: var(--color-black);">${founderName}</strong></span>
+                <a href="startup-detail.html?id=${encodeURIComponent(startup.id)}" class="btn" aria-label="View profile of ${startup.name}">View Profile →</a>
               </div>
             </div>
           </article>
         `;
-      }).join('');
-    }
+      }
 
-    window.filterBySector = function(sector) {
-      activeSector = sector;
-      document.querySelectorAll('.category-pill').forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.trim().includes(sector) || (sector === 'All' && btn.textContent.includes('All')));
+      function renderStartups() {
+        const container = document.getElementById('directory-cards-container');
+        const countLabel = document.getElementById('directory-count');
+        if (!container || !window.BharatData) return;
+
+        const filtered = window.BharatData.filterStartups({
+          query: searchQuery,
+          sector: activeSector,
+          stage: activeStage,
+          year: activeYear
+        });
+
+        // Sorting
+        const sorted = [...filtered].sort((a, b) => {
+          if (activeSort === 'oldest') return (a.foundedYear || 0) - (b.foundedYear || 0);
+          if (activeSort === 'name') return (a.name || '').localeCompare(b.name || '');
+          return (b.foundedYear || 0) - (a.foundedYear || 0); // default 'latest'
+        });
+
+        countLabel.textContent = `${sorted.length} Startup${sorted.length === 1 ? '' : 's'} Found`;
+
+        if (sorted.length === 0) {
+          container.innerHTML = `
+            <div class="directory-empty-state">
+              <h3>No matching startups found</h3>
+              <p>Try adjusting your search keywords, sector filter, or founding stage.</p>
+              <button class="btn btn-secondary" id="empty-reset-btn" style="min-height: 40px;">Reset All Filters</button>
+            </div>
+          `;
+          const emptyResetBtn = document.getElementById('empty-reset-btn');
+          if (emptyResetBtn) {
+            emptyResetBtn.addEventListener('click', () => {
+              document.getElementById('filter-reset').click();
+            });
+          }
+          return;
+        }
+
+        container.innerHTML = sorted.map(startupCardMarkup).join('');
+      }
+
+      // Search input handler with debounce
+      const searchInput = document.getElementById('directory-search');
+      if (searchInput) {
+        let debounceTimer;
+        searchInput.addEventListener('input', function(e) {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(() => {
+            searchQuery = e.target.value.trim();
+            renderStartups();
+          }, 150);
+        });
+      }
+
+      // Sector pills handler
+      const pillsContainer = document.getElementById('sector-pills');
+      if (pillsContainer) {
+        pillsContainer.addEventListener('click', function(e) {
+          const pill = e.target.closest('.filter-pill');
+          if (!pill) return;
+          activeSector = pill.dataset.sector || 'All';
+          document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          renderStartups();
+        });
+      }
+
+      // Desktop filter dropdowns
+      const stageSelect = document.getElementById('filter-stage');
+      const yearSelect = document.getElementById('filter-year');
+      const sortSelect = document.getElementById('filter-sort');
+      const resetBtn = document.getElementById('filter-reset');
+
+      if (stageSelect) {
+        stageSelect.addEventListener('change', function(e) {
+          activeStage = e.target.value;
+          renderStartups();
+        });
+      }
+
+      if (yearSelect) {
+        yearSelect.addEventListener('change', function(e) {
+          activeYear = e.target.value;
+          renderStartups();
+        });
+      }
+
+      if (sortSelect) {
+        sortSelect.addEventListener('change', function(e) {
+          activeSort = e.target.value;
+          renderStartups();
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          activeSector = 'All';
+          activeStage = 'All';
+          activeYear = 'All';
+          activeSort = 'latest';
+          searchQuery = '';
+          
+          if (searchInput) searchInput.value = '';
+          if (stageSelect) stageSelect.value = 'All';
+          if (yearSelect) yearSelect.value = 'All';
+          if (sortSelect) sortSelect.value = 'latest';
+
+          document.querySelectorAll('.filter-pill').forEach(p => {
+            p.classList.toggle('active', p.dataset.sector === 'All');
+          });
+
+          renderStartups();
+        });
+      }
+
+      // ----------------------------------------------------------------------
+      // Latest Blogs Section Rendering
+      // ----------------------------------------------------------------------
+      const fallbackBlogs = [
+        {
+          id: "blog-ecosystem-2026",
+          title: "India's Startup Ecosystem: What Founders Should Know in 2026",
+          slug: "indias-startup-ecosystem-what-founders-should-know-in-2026",
+          featuredImage: "assets/blog-ecosystem.svg",
+          category: "Startup Ecosystem",
+          excerpt: "A deep dive into structural shifts, Tier-2/3 expansion, sustainable unit economics, and new market opportunities across Bharat.",
+          publicationDate: "2026-09-08"
+        },
+        {
+          id: "blog-prepare-funding",
+          title: "How Early-Stage Startups Can Prepare for Funding",
+          slug: "how-early-stage-startups-can-prepare-for-funding",
+          featuredImage: "assets/blog-scale.svg",
+          category: "Fundraising",
+          excerpt: "A practical guide to metrics, investor diligence, pitch narratives, and term-sheet negotiation for seed and Series A founders.",
+          publicationDate: "2026-09-02"
+        },
+        {
+          id: "blog-idea-to-market",
+          title: "Building a Startup in India: From Idea to Market",
+          slug: "building-a-startup-in-india-from-idea-to-market",
+          featuredImage: "assets/blog-founders.svg",
+          category: "Founder Playbook",
+          excerpt: "Step-by-step framework on identifying painful problems, building the first MVP, finding initial customer evangelists, and scaling distribution.",
+          publicationDate: "2026-08-25"
+        }
+      ];
+
+      function blogCardMarkup(blog) {
+        const visual = blog.featuredImage 
+          ? `<img src="${blog.featuredImage}" alt="" loading="lazy" onerror="this.outerHTML='<span class=\\'blog-visual-mark\\'>BL</span>'">`
+          : '<span class="blog-visual-mark">BL</span>';
+        
+        const dateObj = new Date(blog.publicationDate + 'T00:00:00');
+        const formattedDate = isNaN(dateObj) ? blog.publicationDate : dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+        return `
+          <article class="blog-card">
+            <a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}" aria-label="Read ${blog.title}">
+              ${visual}
+            </a>
+            <div class="blog-card-body">
+              <div>
+                <div class="blog-card-meta">
+                  <span>${blog.category || 'Founder Note'}</span>
+                  <time datetime="${blog.publicationDate}">${formattedDate}</time>
+                </div>
+                <h3>
+                  <a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a>
+                </h3>
+                <p class="blog-card-excerpt">${blog.excerpt}</p>
+              </div>
+              <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">
+                Read Article <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        `;
+      }
+
+      async function renderFeaturedBlogs() {
+        const container = document.getElementById('featured-blogs-container');
+        if (!container) return;
+
+        try {
+          const response = await fetch('/api/blogs');
+          if (!response.ok) throw new Error('API fetch failed');
+          const blogs = await response.json();
+          const items = Array.isArray(blogs) && blogs.length > 0 ? blogs.slice(0, 3) : fallbackBlogs;
+          container.innerHTML = items.map(blogCardMarkup).join('');
+        } catch (err) {
+          // Graceful fallback to default 3 demo blogs
+          container.innerHTML = fallbackBlogs.map(blogCardMarkup).join('');
+        }
+      }
+
+      // Initialize on load
+      document.addEventListener('DOMContentLoaded', () => {
+        renderStartups();
+        renderFeaturedBlogs();
       });
-      renderFeaturedStartups();
-    };
-
-    window.filterByStage = function(stage) {
-      activeStage = stage;
-      renderFeaturedStartups();
-    };
-
-    window.searchDirectory = function(q, industry) {
-      searchQuery = (q || '').trim();
-      if (industry && industry !== 'All') {
-        activeSector = industry;
-        document.querySelectorAll('.category-pill').forEach(btn => {
-          btn.classList.toggle('active', btn.textContent.trim().includes(industry));
-        });
-      }
-      renderFeaturedStartups();
-      document.getElementById('directory').scrollIntoView({ behavior: 'smooth' });
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const sectorFromUrl = new URLSearchParams(window.location.search).get('sector');
-      if (sectorFromUrl) {
-        activeSector = sectorFromUrl;
-        document.querySelectorAll('.category-pill').forEach(btn => {
-          btn.classList.toggle('active', btn.textContent.trim().includes(sectorFromUrl));
-        });
-      }
-      renderRecentLaunches();
-      renderFeaturedStartups();
-      renderFeaturedBlogs();
-      if (sectorFromUrl && window.location.hash === '#directory') {
-        document.getElementById('directory').scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+    })();
   </script>
 </body>
 </html>

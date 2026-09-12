@@ -1,5 +1,137 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Blog — BharatLaunch</title><meta name="description" content="Practical startup writing for Indian founders."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/blog.css"></head>
-<body><header class="site-header"><div class="container nav-container"><a href="index.html" class="brand-logo" aria-label="BharatLaunch Home"><span class="brand-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><span>BharatLaunch</span></a><nav class="nav-links" aria-label="Primary Navigation"><a href="index.html" class="nav-link">Home</a><a href="blogs.html" class="nav-link active">Blog</a><a href="ecosystem.html" class="nav-link">Ecosystem</a><a href="funding.html" class="nav-link">Funding Radar</a><a href="pr-news.html" class="nav-link">PR News</a><a href="about.html" class="nav-link">About</a></nav></div></header>
-<main><section class="page-hero"><div class="container"><p class="eyebrow">BLOG</p><h1>Insights for India's next generation of founders.</h1><p>Stories, frameworks, and grounded perspectives for founders shaping companies from India.</p></div></section><section class="blog-list-section"><div class="container"><div class="blog-list-grid" id="all-blogs"></div></div></section></main>
-<script>function card(blog){const visual=blog.featuredImage?`<img src="${blog.featuredImage}" alt="" loading="lazy">`:'<span class="blog-visual-mark">BL</span>';const date=new Date(blog.publicationDate+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});return `<article class="blog-card"><a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${visual}</a><div class="blog-card-body"><div class="blog-card-meta"><span>${blog.category}</span><time>${date}</time></div><h3><a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a></h3><p>${blog.excerpt}</p><a class="text-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">Read Article <span aria-hidden="true">→</span></a></div></article>`}fetch('/api/blogs').then(r=>r.json()).then(blogs=>{document.getElementById('all-blogs').innerHTML=blogs.map(card).join('')}).catch(()=>{document.getElementById('all-blogs').innerHTML='<p class="empty-state">Blog posts are loading soon.</p>'})</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Founder Notes & Ecosystem Insights — BharatLaunch</title>
+  <meta name="description" content="Practical frameworks, intelligence, and founder perspectives for Indian startups." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/blog.css" />
+</head>
+<body>
+  <!-- Top Header -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Home">
+        <span class="brand-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </span>
+        <span>BharatLaunch</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="blogs.html" class="nav-link active">Blog</a>
+        <a href="ecosystem.html" class="nav-link">Ecosystem</a>
+        <a href="funding.html" class="nav-link">Funding Radar</a>
+        <a href="pr-news.html" class="nav-link">PR News</a>
+        <a href="about.html" class="nav-link">About</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop"></div>
+  <aside class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-header">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </span>
+        <span>BharatLaunch</span>
+      </a>
+      <button class="mobile-drawer-close" id="mobile-drawer-close" aria-label="Close Navigation Menu">✕</button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      <a href="index.html" class="mobile-drawer-link">Home</a>
+      <a href="blogs.html" class="mobile-drawer-link active">Blog</a>
+      <a href="ecosystem.html" class="mobile-drawer-link">Ecosystem Map</a>
+      <a href="funding.html" class="mobile-drawer-link">Funding Radar</a>
+      <a href="pr-news.html" class="mobile-drawer-link">PR News</a>
+      <a href="about.html" class="mobile-drawer-link">About BharatLaunch</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">BHARATLAUNCH DESK</p>
+        <h1>Insights for India's next generation of founders.</h1>
+        <p>Grounded frameworks, market breakdowns, and field notes for founders shaping companies from Bharat.</p>
+      </div>
+    </section>
+
+    <section class="blog-list-section">
+      <div class="container">
+        <div class="blog-list-grid" id="all-blogs"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div>© 2026 BharatLaunch. Built for the Indian Startup Ecosystem.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-of-service.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-drawer');
+    const backdrop = document.getElementById('mobile-drawer-backdrop');
+    const closeBtn = document.getElementById('mobile-drawer-close');
+    if (menuBtn) menuBtn.onclick = () => { drawer.classList.add('active'); backdrop.classList.add('active'); };
+    if (closeBtn) closeBtn.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
+    if (backdrop) backdrop.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
+
+    function card(blog) {
+      const visual = blog.featuredImage ? `<img src="${blog.featuredImage}" alt="" loading="lazy">` : '<span class="blog-visual-mark">BL</span>';
+      const date = new Date(blog.publicationDate + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      return `
+        <article class="blog-card">
+          <a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${visual}</a>
+          <div class="blog-card-body">
+            <div>
+              <div class="blog-card-meta">
+                <span>${blog.category}</span>
+                <time>${date}</time>
+              </div>
+              <h3><a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a></h3>
+              <p class="blog-card-excerpt">${blog.excerpt}</p>
+            </div>
+            <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">Read Article →</a>
+          </div>
+        </article>
+      `;
+    }
+
+    fetch('/api/blogs')
+      .then(r => r.json())
+      .then(blogs => {
+        document.getElementById('all-blogs').innerHTML = blogs.map(card).join('');
+      })
+      .catch(() => {
+        document.getElementById('all-blogs').innerHTML = '<p class="empty-state">Blog posts are loading soon.</p>';
+      });
+  </script>
+</body>
+</html>
