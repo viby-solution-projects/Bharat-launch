@@ -4,12 +4,42 @@ const crypto = require('crypto');
 const ADMIN_PASSWORD = process.env.BHARATLAUNCH_ADMIN_PASSWORD || 'bharatlaunch2026';
 const AUTH_SECRET = process.env.BHARATLAUNCH_AUTH_SECRET || ADMIN_PASSWORD || 'bharatlaunch_secret_key_2026';
 
-// Supabase Server-side Environment Variables
-const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+// Dynamic Supabase Configuration Helper (Safely sanitizes URL and Key, handles quotes/whitespace)
+function getSupabaseConfig() {
+  const rawUrl = (process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '').trim().replace(/^["']|["']$/g, '');
+  const rawKey = (process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '').trim().replace(/^["']|["']$/g, '').replace(/[\r\n]/g, '');
+
+  let url = rawUrl;
+  if (url && !/^https?:\/\//i.test(url)) {
+    url = `https://${url}`;
+  }
+  // Strip trailing /rest/v1 or trailing slashes if user entered full endpoint
+  url = url.replace(/\/rest\/v1\/?$/i, '').replace(/\/+$/, '');
+
+  let hostname = 'unknown';
+  try {
+    if (url) hostname = new URL(url).hostname;
+  } catch (e) {
+    hostname = 'invalid-url';
+  }
+
+  const hasUrl = Boolean(rawUrl);
+  const hasKey = Boolean(rawKey);
+
+  return {
+    url,
+    key: rawKey,
+    hasUrl,
+    hasKey,
+    keyLength: rawKey.length,
+    keyPrefix: rawKey ? (rawKey.startsWith('sbp_') ? 'sbp_...' : (rawKey.startsWith('eyJ') ? 'jwt_token...' : `${rawKey.slice(0, 4)}...`)) : 'none',
+    hostname,
+    isConfigured: Boolean(hasUrl && hasKey)
+  };
+}
 
 function isSupabaseConfigured() {
-  return Boolean(SUPABASE_URL && SUPABASE_KEY);
+  return getSupabaseConfig().isConfigured;
 }
 
 // Convert Supabase snake_case columns to application camelCase
@@ -46,29 +76,53 @@ function toDbRecord(blog) {
   };
 }
 
-// Supabase REST API Client (Server-side native fetch)
+// Supabase REST API Client (Server-side native fetch with safe diagnostic telemetry)
 async function supabaseRequest(endpoint, options = {}) {
-  if (!isSupabaseConfigured()) {
-    throw new Error('Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SECRET_KEY in your environment.');
+  const config = getSupabaseConfig();
+
+  // Safe server-side diagnostic logging (NEVER logs secret key or sensitive values)
+  console.log(`[Supabase Audit] Op: ${options.method || 'GET'} /rest/v1/${endpoint.split('?')[0]} | Host: ${config.hostname} | HasUrl: ${config.hasUrl} | HasKey: ${config.hasKey} (type: ${config.keyPrefix}, len: ${config.keyLength})`);
+
+  if (!config.isConfigured) {
+    const missing = [];
+    if (!config.hasUrl) missing.push('SUPABASE_URL');
+    if (!config.hasKey) missing.push('SUPABASE_SECRET_KEY');
+    const msg = `Supabase is not configured. Missing: ${missing.join(', ')}`;
+    console.error(`[Supabase Error]: ${msg}`);
+    throw new Error(msg);
   }
 
-  const url = `${SUPABASE_URL.replace(/\/$/, '')}/rest/v1/${endpoint}`;
+  const targetUrl = `${config.url}/rest/v1/${endpoint}`;
   const headers = {
-    'apikey': SUPABASE_KEY,
-    'Authorization': `Bearer ${SUPABASE_KEY}`,
+    'apikey': config.key,
+    'Authorization': `Bearer ${config.key}`,
     'Content-Type': 'application/json',
     'Prefer': options.prefer || 'return=representation',
     ...(options.headers || {})
   };
 
-  const response = await fetch(url, {
-    method: options.method || 'GET',
-    headers,
-    body: options.body ? JSON.stringify(options.body) : undefined
-  });
+  let response;
+  try {
+    response = await fetch(targetUrl, {
+      method: options.method || 'GET',
+      headers,
+      body: options.body ? JSON.stringify(options.body) : undefined
+    });
+  } catch (networkErr) {
+    const causeCode = networkErr.cause && networkErr.cause.code ? networkErr.cause.code : '';
+    const causeMsg = networkErr.cause && networkErr.cause.message ? networkErr.cause.message : '';
+    const detailedCause = [causeCode, causeMsg].filter(Boolean).join(' - ') || (networkErr.cause ? String(networkErr.cause) : '');
+
+    console.error(`[Supabase Network Failure] Method: ${options.method || 'GET'} | Endpoint: /rest/v1/${endpoint.split('?')[0]} | Host: ${config.hostname} | Error: ${networkErr.name} - ${networkErr.message} ${detailedCause ? `| Cause: ${detailedCause}` : ''}`);
+
+    throw new Error(`Database connection failed to ${config.hostname}: ${networkErr.message}${detailedCause ? ` (${detailedCause})` : ''}`);
+  }
+
+  console.log(`[Supabase Response] Status: ${response.status} ${response.statusText} for ${options.method || 'GET'} /rest/v1/${endpoint.split('?')[0]}`);
 
   if (!response.ok) {
     const errorText = await response.text();
+    console.error(`[Supabase HTTP Error] Status: ${response.status} | Body: ${errorText}`);
     throw new Error(`Supabase request failed (${response.status}): ${errorText}`);
   }
 
@@ -241,5 +295,6 @@ module.exports = {
   createSession,
   destroySession,
   sendJson,
-  isSupabaseConfigured
+  isSupabaseConfigured,
+  getSupabaseConfig
 };
