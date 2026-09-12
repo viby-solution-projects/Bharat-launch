@@ -91,6 +91,9 @@
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   font-family: var(--font-family-sans);
   background-color: var(--color-background);
   color: var(--color-text-primary);
@@ -100,13 +103,22 @@ html {
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--color-background);
   color: var(--color-text-secondary);
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+img, svg, picture, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 a {
@@ -123,6 +135,8 @@ button {
 
 input, select, textarea {
   font-family: inherit;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Layout Utilities */
@@ -142,6 +156,13 @@ input, select, textarea {
   background-color: var(--color-bg-subtle);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: block;
 }
 
 /* Typography Base */
@@ -278,6 +299,29 @@ p {
   background: var(--color-indigo);
 }
 
+/* Responsive Typography & Layout Utilities */
+h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea, td, th {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .section-wrapper,
+  .section-wrapper-subtle {
+    padding: 44px 0;
+  }
+
+  .btn {
+    min-height: 44px;
+    padding: 10px 18px;
+  }
+}
+
 @media (max-width: 600px) {
   .container {
     padding-left: 16px;
@@ -286,7 +330,7 @@ p {
 
   .section-wrapper,
   .section-wrapper-subtle {
-    padding: 40px 0;
+    padding: 36px 0;
   }
 
   .site-header {
@@ -298,24 +342,17 @@ p {
   }
 
   .brand-logo {
-    font-size: 1.08rem;
-  }
-
-  .nav-actions {
-    gap: 0;
-  }
-
-  .nav-actions .btn-sm {
-    padding: 7px 9px;
-    font-size: 0.74rem;
+    font-size: 1.1rem;
   }
 
   .btn {
-    min-height: 40px;
+    min-height: 44px;
+    width: auto;
   }
 
   .btn-sm {
-    min-height: 34px;
+    min-height: 40px;
+    padding: 8px 12px;
   }
 
   .footer-bottom-bar {
@@ -327,5 +364,34 @@ p {
   .footer-bottom-bar > div:last-child {
     flex-wrap: wrap;
     gap: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .brand-logo {
+    font-size: 1.02rem;
+    gap: 6px;
+  }
+
+  .brand-logo-icon {
+    width: 28px;
+    height: 28px;
   }
 }

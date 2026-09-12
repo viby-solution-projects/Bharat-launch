@@ -19,6 +19,33 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   1B. UNIVERSAL RESPONSIVE TABLE WRAPPER
+   -------------------------------------------------------------------------- */
+.table-container,
+.table-wrapper,
+.catalyst-table-container,
+.deals-table-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: #FFFFFF;
+  margin-bottom: 24px;
+}
+
+.table-container table,
+.table-wrapper table,
+.catalyst-table-container table,
+.deals-table-container table {
+  min-width: 580px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* --------------------------------------------------------------------------
    2. HEADER & NAVIGATION
    -------------------------------------------------------------------------- */
 .site-header {
