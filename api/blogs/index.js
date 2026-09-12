@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
       return res.status(200).json(visible.map(b => publicBlog(b, Boolean(owner))));
     } catch (err) {
       console.error('Error fetching blogs:', err);
-      return res.status(500).json({ error: 'Failed to fetch blogs.' });
+      return res.status(500).json({ error: err.message || 'Failed to fetch blogs.' });
     }
   }
 
