@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BharatLaunch — India's Startup Ecosystem & Founder Insights</title>
-  <meta name="description" content="Insights, frameworks, and stories from the people building India's next generation of companies." />
+  <title>BharatLaunch — India's Technology & Startup Publication</title>
+  <meta name="description" content="Editorial journalism, founder playbooks, fundraising intelligence, and ecosystem shifts across India." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,10 +18,10 @@
 </head>
 <body>
 
-  <!-- 1. Top Header / Navigation Bar -->
+  <!-- 1. Publication Header & Navigation Bar -->
   <header class="site-header" role="banner">
     <div class="container nav-container">
-      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Home">
+      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Publication Home">
         <span class="brand-logo-icon" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -33,11 +33,12 @@
       <!-- Desktop Navigation -->
       <nav class="nav-links" aria-label="Primary Navigation">
         <a href="index.html" class="nav-link active">Home</a>
-        <a href="blogs.html" class="nav-link">Blog</a>
+        <a href="blogs.html" class="nav-link">All Stories</a>
         <a href="ecosystem.html" class="nav-link">Ecosystem</a>
         <a href="funding.html" class="nav-link">Funding Radar</a>
         <a href="pr-news.html" class="nav-link">PR News</a>
         <a href="about.html" class="nav-link">About</a>
+        <a href="admin.html" class="nav-link" style="color: var(--color-primary); font-weight: 700;">Admin</a>
       </nav>
 
       <!-- Mobile Menu Toggle Button -->
@@ -72,50 +73,55 @@
     </div>
     <nav class="mobile-drawer-nav">
       <a href="index.html" class="mobile-drawer-link active">Home</a>
-      <a href="blogs.html" class="mobile-drawer-link">Blog</a>
+      <a href="blogs.html" class="mobile-drawer-link">All Stories</a>
       <a href="ecosystem.html" class="mobile-drawer-link">Ecosystem Map</a>
       <a href="funding.html" class="mobile-drawer-link">Funding Radar</a>
       <a href="pr-news.html" class="mobile-drawer-link">PR News</a>
-      <a href="about.html" class="mobile-drawer-link">About BharatLaunch</a>
+      <a href="about.html" class="mobile-drawer-link">About</a>
+      <a href="admin.html" class="mobile-drawer-link" style="color: var(--color-primary); font-weight: 700;">Owner Portal</a>
     </nav>
   </aside>
 
-  <!-- Main Content -->
+  <!-- Main Publication Content -->
   <main id="main-content">
     
-    <!-- 2. Short, Simple Hero Intro Section -->
-    <section class="editorial-hero-section">
+    <!-- 2. Featured / Top Stories Section (Directly into news content) -->
+    <section class="pub-hero-section">
       <div class="container">
-        <div class="editorial-hero-content">
-          <span class="eyebrow">BHARATLAUNCH EDITORIAL</span>
-          <h1>Insights, frameworks, and perspectives on <span class="gold-highlight">India's startup ecosystem.</span></h1>
-          <p>
-            Actionable playbooks, fundraising intelligence, and grounded analysis for the next generation of founders building across Bharat.
-          </p>
-          <div class="editorial-hero-actions">
-            <a href="#latest-blogs" class="btn btn-primary">Read Latest Articles ↓</a>
-            <a href="blogs.html" class="btn btn-secondary">Explore All Playbooks →</a>
-          </div>
+        
+        <div class="pub-section-heading">
+          <h2>Top Stories</h2>
+          <a href="blogs.html">View All Stories →</a>
         </div>
+
+        <!-- Featured Editorial Grid: Lead Story + Secondary Stack -->
+        <div class="pub-top-stories-grid" id="top-stories-container">
+          <p class="pub-empty-state">Loading stories...</p>
+        </div>
+
       </div>
     </section>
 
-    <!-- 3. Latest Blogs Section (Primary Visual Focus) -->
-    <section class="blog-section" id="latest-blogs">
+    <!-- 3. Latest News & Analysis Stream -->
+    <section class="pub-stream-section">
       <div class="container">
         
-        <div class="blog-section-header">
-          <div>
-            <span class="eyebrow">FROM THE BHARATLAUNCH DESK</span>
-            <h2>Latest Insights & Playbooks</h2>
-            <p>Practical perspectives and frameworks written for high-growth founders.</p>
-          </div>
-          <a href="blogs.html" class="btn btn-secondary">View All Articles →</a>
+        <div class="pub-section-heading">
+          <h2>Latest News & Analysis</h2>
+          <a href="blogs.html">Browse Archive →</a>
         </div>
 
-        <!-- Dynamic Blog Cards Grid -->
-        <div class="blog-grid" id="homepage-blogs-container" aria-live="polite">
-          <p class="empty-state">Loading articles...</p>
+        <!-- Category Filter Tabs -->
+        <div class="pub-category-filter-bar" id="category-filter-bar" role="tablist" aria-label="Filter by topic">
+          <button class="pub-filter-btn active" data-category="ALL" role="tab" aria-selected="true">All Topics</button>
+          <button class="pub-filter-btn" data-category="Startup Ecosystem" role="tab" aria-selected="false">Startup Ecosystem</button>
+          <button class="pub-filter-btn" data-category="Fundraising" role="tab" aria-selected="false">Fundraising</button>
+          <button class="pub-filter-btn" data-category="Founder Playbook" role="tab" aria-selected="false">Founder Playbook</button>
+        </div>
+
+        <!-- Editorial Stream Grid -->
+        <div class="pub-stream-grid" id="latest-stream-container" aria-live="polite">
+          <p class="pub-empty-state">Loading stories...</p>
         </div>
 
       </div>
@@ -138,14 +144,14 @@
             <span>BharatLaunch</span>
           </div>
           <p>
-            Insights, ecosystem intelligence, and actionable perspectives for founders and builders shaping India's venture landscape.
+            Independent journalism, intelligence, and actionable perspectives covering India's venture economy and startup founders.
           </p>
         </div>
 
         <div class="footer-col">
-          <h4>Editorial</h4>
+          <h4>Publication</h4>
           <ul>
-            <li><a href="blogs.html">All Articles</a></li>
+            <li><a href="blogs.html">All Stories</a></li>
             <li><a href="blogs.html">Founder Playbooks</a></li>
             <li><a href="blogs.html">Fundraising Guides</a></li>
             <li><a href="blogs.html">Ecosystem Shifts</a></li>
@@ -153,7 +159,7 @@
         </div>
 
         <div class="footer-col">
-          <h4>Platform</h4>
+          <h4>Intelligence</h4>
           <ul>
             <li><a href="ecosystem.html">Ecosystem Map</a></li>
             <li><a href="funding.html">Funding Radar</a></li>
@@ -165,14 +171,14 @@
         <div class="footer-col">
           <h4>Access</h4>
           <ul>
-            <li><a href="admin.html">Owner Portal</a></li>
+            <li><a href="admin.html">Owner / Editor Portal</a></li>
           </ul>
         </div>
 
       </div>
 
       <div class="footer-bottom-bar">
-        <div>© 2026 BharatLaunch. Built for the Indian Startup Ecosystem.</div>
+        <div>© 2026 BharatLaunch. India's Technology & Startup Publication.</div>
         <div style="display: flex; gap: 20px;">
           <a href="privacy-policy.html">Privacy Policy</a>
           <a href="terms-of-service.html">Terms of Service</a>
@@ -185,7 +191,7 @@
   <script>
     (function() {
       // ----------------------------------------------------------------------
-      // Mobile Drawer Navigation Management
+      // Mobile Drawer Navigation
       // ----------------------------------------------------------------------
       const menuBtn = document.getElementById('mobile-menu-toggle');
       const drawer = document.getElementById('mobile-drawer');
@@ -219,87 +225,146 @@
       });
 
       // ----------------------------------------------------------------------
-      // Dynamic Blog Loading from /api/blogs
+      // Dynamic Publication Data Fetch & Render
       // ----------------------------------------------------------------------
-      const fallbackBlogs = [
-        {
-          id: "blog-ecosystem-2026",
-          title: "India's Startup Ecosystem: What Founders Should Know in 2026",
-          slug: "indias-startup-ecosystem-what-founders-should-know-in-2026",
-          featuredImage: "assets/blog-ecosystem.jpg",
-          category: "Startup Ecosystem",
-          excerpt: "A deep dive into structural shifts, Tier-2/3 expansion, sustainable unit economics, and new market opportunities across Bharat.",
-          publicationDate: "2026-09-08"
-        },
-        {
-          id: "blog-prepare-funding",
-          title: "How Early-Stage Startups Can Prepare for Funding",
-          slug: "how-early-stage-startups-can-prepare-for-funding",
-          featuredImage: "assets/blog-funding.jpg",
-          category: "Fundraising",
-          excerpt: "A practical guide to metrics, investor diligence, pitch narratives, and term-sheet negotiation for seed and Series A founders.",
-          publicationDate: "2026-09-02"
-        },
-        {
-          id: "blog-idea-to-market",
-          title: "Building a Startup in India: From Idea to Market",
-          slug: "building-a-startup-in-india-from-idea-to-market",
-          featuredImage: "assets/blog-ideatomarket.jpg",
-          category: "Founder Playbook",
-          excerpt: "Step-by-step framework on identifying painful problems, building the first MVP, finding initial customer evangelists, and scaling distribution.",
-          publicationDate: "2026-08-25"
+      let allPublishedBlogs = [];
+      let activeCategory = 'ALL';
+
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        const dateObj = new Date(dateStr + (dateStr.includes('T') ? '' : 'T00:00:00'));
+        return isNaN(dateObj) ? dateStr : dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      }
+
+      function renderTopStories(blogs) {
+        const topContainer = document.getElementById('top-stories-container');
+        if (!topContainer) return;
+
+        if (!blogs || blogs.length === 0) {
+          topContainer.innerHTML = '<p class="pub-empty-state">No stories published yet.</p>';
+          return;
         }
-      ];
 
-      function blogCardMarkup(blog) {
-        const coverSrc = blog.featuredImage || 'assets/blog-ecosystem.jpg';
-        const dateObj = new Date(blog.publicationDate + 'T00:00:00');
-        const formattedDate = isNaN(dateObj) ? blog.publicationDate : dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        const leadBlog = blogs[0];
+        const secondaryBlogs = blogs.slice(1, 4);
 
-        return `
-          <article class="blog-card">
-            <a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}" aria-label="Read ${blog.title}">
-              <img src="${coverSrc}" alt="${blog.title}" loading="lazy" onerror="this.src='assets/blog-ecosystem.jpg'">
+        const leadImage = leadBlog.featuredImage || 'assets/blog-ecosystem.jpg';
+        const leadMarkup = `
+          <article class="pub-lead-card">
+            <a class="pub-lead-image-wrap" href="blog-detail.html?slug=${encodeURIComponent(leadBlog.slug)}" aria-label="Read ${leadBlog.title}">
+              <img src="${leadImage}" alt="${leadBlog.title}" loading="eager" onerror="this.src='assets/blog-ecosystem.jpg'">
             </a>
-            <div class="blog-card-body">
-              <div>
-                <span class="blog-card-category">${blog.category || 'Founder Playbook'}</span>
-                <h3 class="blog-card-title">
-                  <a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a>
-                </h3>
-                <p class="blog-card-excerpt">${blog.excerpt}</p>
-              </div>
-              <div class="blog-card-footer">
-                <time class="blog-card-date" datetime="${blog.publicationDate}">${formattedDate}</time>
-                <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">
-                  Read Article <span aria-hidden="true">→</span>
-                </a>
+            <div class="pub-lead-body">
+              <span class="pub-category-tag">${leadBlog.category || 'Featured'}</span>
+              <h1 class="pub-lead-title">
+                <a href="blog-detail.html?slug=${encodeURIComponent(leadBlog.slug)}">${leadBlog.title}</a>
+              </h1>
+              <p class="pub-lead-excerpt">${leadBlog.excerpt || ''}</p>
+              <div class="pub-meta">
+                <span class="pub-author">${leadBlog.author || 'BharatLaunch'}</span>
+                <span>•</span>
+                <time datetime="${leadBlog.publicationDate}">${formatDate(leadBlog.publicationDate)}</time>
               </div>
             </div>
           </article>
         `;
+
+        const secondaryMarkup = secondaryBlogs.length > 0 ? `
+          <div class="pub-secondary-stack">
+            ${secondaryBlogs.map(b => {
+              const img = b.featuredImage || 'assets/blog-ecosystem.jpg';
+              return `
+                <article class="pub-secondary-card">
+                  <div class="pub-secondary-info">
+                    <div>
+                      <span class="pub-category-tag">${b.category || 'Analysis'}</span>
+                      <h3 class="pub-secondary-title">
+                        <a href="blog-detail.html?slug=${encodeURIComponent(b.slug)}">${b.title}</a>
+                      </h3>
+                    </div>
+                    <div class="pub-meta">
+                      <time datetime="${b.publicationDate}">${formatDate(b.publicationDate)}</time>
+                    </div>
+                  </div>
+                  <a class="pub-secondary-image-wrap" href="blog-detail.html?slug=${encodeURIComponent(b.slug)}" aria-label="Read ${b.title}">
+                    <img src="${img}" alt="${b.title}" loading="lazy" onerror="this.src='assets/blog-ecosystem.jpg'">
+                  </a>
+                </article>
+              `;
+            }).join('')}
+          </div>
+        ` : '';
+
+        topContainer.innerHTML = leadMarkup + secondaryMarkup;
       }
 
-      async function renderHomepageBlogs() {
-        const container = document.getElementById('homepage-blogs-container');
-        if (!container) return;
+      function renderStreamGrid(blogs) {
+        const streamContainer = document.getElementById('latest-stream-container');
+        if (!streamContainer) return;
 
-        try {
-          let response = await fetch('/api/blogs');
-          if (!response.ok) {
-            response = await fetch('data/blogs.json');
-          }
-          if (!response.ok) throw new Error('API fetch failed');
-          const blogs = await response.json();
-          const published = Array.isArray(blogs) ? blogs.filter(b => b.published !== false) : [];
-          const items = published.length > 0 ? published.slice(0, 3) : fallbackBlogs;
-          container.innerHTML = items.map(blogCardMarkup).join('');
-        } catch (err) {
-          container.innerHTML = fallbackBlogs.map(blogCardMarkup).join('');
+        const filtered = activeCategory === 'ALL'
+          ? blogs
+          : blogs.filter(b => (b.category || '').toLowerCase() === activeCategory.toLowerCase());
+
+        if (filtered.length === 0) {
+          streamContainer.innerHTML = '<p class="pub-empty-state">No stories published yet in this topic.</p>';
+          return;
         }
+
+        streamContainer.innerHTML = filtered.map(b => {
+          const img = b.featuredImage || 'assets/blog-ecosystem.jpg';
+          return `
+            <article class="pub-stream-card">
+              <a class="pub-stream-image-wrap" href="blog-detail.html?slug=${encodeURIComponent(b.slug)}" aria-label="Read ${b.title}">
+                <img src="${img}" alt="${b.title}" loading="lazy" onerror="this.src='assets/blog-ecosystem.jpg'">
+              </a>
+              <div class="pub-stream-body">
+                <span class="pub-category-tag">${b.category || 'Playbook'}</span>
+                <h3 class="pub-stream-title">
+                  <a href="blog-detail.html?slug=${encodeURIComponent(b.slug)}">${b.title}</a>
+                </h3>
+                <p class="pub-stream-excerpt">${b.excerpt || ''}</p>
+                <div class="pub-stream-footer">
+                  <time datetime="${b.publicationDate}">${formatDate(b.publicationDate)}</time>
+                  <a class="pub-read-more" href="blog-detail.html?slug=${encodeURIComponent(b.slug)}">
+                    Read Article <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
       }
 
-      document.addEventListener('DOMContentLoaded', renderHomepageBlogs);
+      // Filter Buttons Event Listeners
+      document.querySelectorAll('.pub-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.pub-filter-btn').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          activeCategory = btn.getAttribute('data-category');
+          renderStreamGrid(allPublishedBlogs);
+        });
+      });
+
+      async function loadPublicationContent() {
+        try {
+          const res = await fetch('/api/blogs');
+          if (!res.ok) throw new Error('API fetch failed');
+          const data = await res.json();
+          allPublishedBlogs = Array.isArray(data) ? data.filter(b => b.published !== false) : [];
+        } catch (e) {
+          allPublishedBlogs = [];
+        }
+
+        renderTopStories(allPublishedBlogs);
+        renderStreamGrid(allPublishedBlogs);
+      }
+
+      document.addEventListener('DOMContentLoaded', loadPublicationContent);
     })();
   </script>
 </body>

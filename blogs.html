@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Founder Notes & Ecosystem Insights — BharatLaunch</title>
-  <meta name="description" content="Practical frameworks, intelligence, and founder perspectives for Indian startups." />
+  <title>All Stories & Intelligence — BharatLaunch</title>
+  <meta name="description" content="Editorial journalism, founder playbooks, fundraising intelligence, and ecosystem shifts across India." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,7 +16,7 @@
   <!-- Top Header -->
   <header class="site-header" role="banner">
     <div class="container nav-container">
-      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Home">
+      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Publication Home">
         <span class="brand-logo-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -26,11 +26,12 @@
       </a>
       <nav class="nav-links" aria-label="Primary Navigation">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="blogs.html" class="nav-link active">Blog</a>
+        <a href="blogs.html" class="nav-link active">All Stories</a>
         <a href="ecosystem.html" class="nav-link">Ecosystem</a>
         <a href="funding.html" class="nav-link">Funding Radar</a>
         <a href="pr-news.html" class="nav-link">PR News</a>
         <a href="about.html" class="nav-link">About</a>
+        <a href="admin.html" class="nav-link" style="color: var(--color-primary); font-weight: 700;">Admin</a>
       </nav>
       <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -58,26 +59,32 @@
     </div>
     <nav class="mobile-drawer-nav">
       <a href="index.html" class="mobile-drawer-link">Home</a>
-      <a href="blogs.html" class="mobile-drawer-link active">Blog</a>
+      <a href="blogs.html" class="mobile-drawer-link active">All Stories</a>
       <a href="ecosystem.html" class="mobile-drawer-link">Ecosystem Map</a>
       <a href="funding.html" class="mobile-drawer-link">Funding Radar</a>
       <a href="pr-news.html" class="mobile-drawer-link">PR News</a>
-      <a href="about.html" class="mobile-drawer-link">About BharatLaunch</a>
+      <a href="about.html" class="mobile-drawer-link">About</a>
+      <a href="admin.html" class="mobile-drawer-link" style="color: var(--color-primary); font-weight: 700;">Owner Portal</a>
     </nav>
   </aside>
 
   <main>
-    <section class="page-hero">
+    <section class="pub-stream-section" style="padding-top: 40px;">
       <div class="container">
-        <span class="eyebrow">BHARATLAUNCH DESK</span>
-        <h1>Insights for India's next generation of founders.</h1>
-        <p>Grounded frameworks, market breakdowns, and field notes for founders shaping companies from Bharat.</p>
-      </div>
-    </section>
+        <div class="pub-section-heading">
+          <h2>All Published Stories</h2>
+        </div>
 
-    <section class="blog-list-section">
-      <div class="container">
-        <div class="blog-grid" id="all-blogs"></div>
+        <div class="pub-category-filter-bar" id="category-filter-bar">
+          <button class="pub-filter-btn active" data-category="ALL">All Topics</button>
+          <button class="pub-filter-btn" data-category="Startup Ecosystem">Startup Ecosystem</button>
+          <button class="pub-filter-btn" data-category="Fundraising">Fundraising</button>
+          <button class="pub-filter-btn" data-category="Founder Playbook">Founder Playbook</button>
+        </div>
+
+        <div class="pub-stream-grid" id="all-blogs" aria-live="polite">
+          <p class="pub-empty-state">Loading stories...</p>
+        </div>
       </div>
     </section>
   </main>
@@ -103,41 +110,69 @@
     if (closeBtn) closeBtn.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
     if (backdrop) backdrop.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
 
-    function card(blog) {
-      const coverSrc = blog.featuredImage || 'assets/blog-ecosystem.jpg';
-      const dateObj = new Date(blog.publicationDate + 'T00:00:00');
-      const formattedDate = isNaN(dateObj) ? blog.publicationDate : dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-      return `
-        <article class="blog-card">
-          <a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}" aria-label="Read ${blog.title}">
-            <img src="${coverSrc}" alt="${blog.title}" loading="lazy" onerror="this.src='assets/blog-ecosystem.jpg'">
-          </a>
-          <div class="blog-card-body">
-            <div>
-              <span class="blog-card-category">${blog.category || 'Founder Playbook'}</span>
-              <h3 class="blog-card-title">
-                <a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a>
-              </h3>
-              <p class="blog-card-excerpt">${blog.excerpt}</p>
-            </div>
-            <div class="blog-card-footer">
-              <time class="blog-card-date" datetime="${blog.publicationDate}">${formattedDate}</time>
-              <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">Read Article →</a>
-            </div>
-          </div>
-        </article>
-      `;
+    let allBlogs = [];
+    let activeCategory = 'ALL';
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const dateObj = new Date(dateStr + (dateStr.includes('T') ? '' : 'T00:00:00'));
+      return isNaN(dateObj) ? dateStr : dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
     }
 
+    function renderCards(blogs) {
+      const container = document.getElementById('all-blogs');
+      const filtered = activeCategory === 'ALL'
+        ? blogs
+        : blogs.filter(b => (b.category || '').toLowerCase() === activeCategory.toLowerCase());
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="pub-empty-state">No stories published yet.</p>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(blog => {
+        const coverSrc = blog.featuredImage || 'assets/blog-ecosystem.jpg';
+        return `
+          <article class="pub-stream-card">
+            <a class="pub-stream-image-wrap" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}" aria-label="Read ${blog.title}">
+              <img src="${coverSrc}" alt="${blog.title}" loading="lazy" onerror="this.src='assets/blog-ecosystem.jpg'">
+            </a>
+            <div class="pub-stream-body">
+              <span class="pub-category-tag">${blog.category || 'Founder Playbook'}</span>
+              <h3 class="pub-stream-title">
+                <a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a>
+              </h3>
+              <p class="pub-stream-excerpt">${blog.excerpt || ''}</p>
+              <div class="pub-stream-footer">
+                <time datetime="${blog.publicationDate}">${formatDate(blog.publicationDate)}</time>
+                <a class="pub-read-more" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">Read Article →</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    document.querySelectorAll('.pub-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pub-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.getAttribute('data-category');
+        renderCards(allBlogs);
+      });
+    });
+
     fetch('/api/blogs')
-      .then(r => r.ok ? r : fetch('data/blogs.json'))
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error('API fetch failed');
+        return r.json();
+      })
       .then(blogs => {
-        const published = Array.isArray(blogs) ? blogs.filter(b => b.published !== false) : [];
-        document.getElementById('all-blogs').innerHTML = published.map(card).join('');
+        allBlogs = Array.isArray(blogs) ? blogs.filter(b => b.published !== false) : [];
+        renderCards(allBlogs);
       })
       .catch(() => {
-        document.getElementById('all-blogs').innerHTML = '<p class="empty-state">Blog posts are loading soon.</p>';
+        renderCards([]);
       });
   </script>
 </body>
