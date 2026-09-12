@@ -3,8 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BharatLaunch — India's Technology & Startup Publication</title>
-  <meta name="description" content="Editorial journalism, founder playbooks, fundraising intelligence, and ecosystem shifts across India." />
+  <title>BharatLaunch — Indian Startup, Technology & Founder Insights</title>
+  <meta name="description" content="A publication covering Indian startups, technology, fundraising, founders and the ideas shaping India's business ecosystem." />
+  <link rel="canonical" href="https://bharat-launch.vercel.app/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bharat-launch.vercel.app/" />
+  <meta property="og:title" content="BharatLaunch — Indian Startup, Technology & Founder Insights" />
+  <meta property="og:description" content="A publication covering Indian startups, technology, fundraising, founders and the ideas shaping India's business ecosystem." />
+  <meta property="og:image" content="https://bharat-launch.vercel.app/assets/blog-ecosystem.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://bharat-launch.vercel.app/" />
+  <meta name="twitter:title" content="BharatLaunch — Indian Startup, Technology & Founder Insights" />
+  <meta name="twitter:description" content="A publication covering Indian startups, technology, fundraising, founders and the ideas shaping India's business ecosystem." />
+  <meta name="twitter:image" content="https://bharat-launch.vercel.app/assets/blog-ecosystem.jpg" />
+
+  <!-- Structured Data: WebSite & Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://bharat-launch.vercel.app/#website",
+        "url": "https://bharat-launch.vercel.app/",
+        "name": "BharatLaunch",
+        "description": "A publication covering Indian startups, technology, fundraising, founders and the ideas shaping India's business ecosystem.",
+        "inLanguage": "en-IN"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://bharat-launch.vercel.app/#organization",
+        "name": "BharatLaunch",
+        "url": "https://bharat-launch.vercel.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bharat-launch.vercel.app/assets/blog-ecosystem.jpg"
+        }
+      }
+    ]
+  }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,6 +127,13 @@
   <!-- Main Publication Content -->
   <main id="main-content">
     
+    <!-- Publication Masthead & Single H1 -->
+    <section class="pub-masthead-bar">
+      <div class="container">
+        <h1 class="pub-main-h1">Indian Startup, Technology & Founder Insights</h1>
+      </div>
+    </section>
+
     <!-- 2. Featured / Top Stories Section (Directly into news content) -->
     <section class="pub-hero-section">
       <div class="container">
@@ -256,9 +305,9 @@
             </a>
             <div class="pub-lead-body">
               <span class="pub-category-tag">${leadBlog.category || 'Featured'}</span>
-              <h1 class="pub-lead-title">
+              <h2 class="pub-lead-title">
                 <a href="blog-detail.html?slug=${encodeURIComponent(leadBlog.slug)}">${leadBlog.title}</a>
-              </h1>
+              </h2>
               <p class="pub-lead-excerpt">${leadBlog.excerpt || ''}</p>
               <div class="pub-meta">
                 <span class="pub-author">${leadBlog.author || 'BharatLaunch'}</span>

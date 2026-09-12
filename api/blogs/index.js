@@ -55,7 +55,7 @@ module.exports = async function handler(req, res) {
       return res.status(201).json(publicBlog(nextBlog, true));
     } catch (err) {
       console.error('Error creating blog:', err);
-      return res.status(500).json({ error: 'Failed to create blog.' });
+      return res.status(500).json({ error: err.message || 'Failed to create blog.' });
     }
   }
 

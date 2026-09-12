@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /blogs.html
+Allow: /blog-detail.html
+Allow: /ecosystem.html
+Allow: /funding.html
+Allow: /pr-news.html
+Allow: /about.html
+Disallow: /admin.html
+Disallow: /api/
+
+Sitemap: https://bharat-launch.vercel.app/sitemap.xml

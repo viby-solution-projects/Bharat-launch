@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Founder Notes — BharatLaunch</title>
-  <meta name="description" content="BharatLaunch founder playbooks and ecosystem insights." />
+  <title>Article — BharatLaunch</title>
+  <meta name="description" content="Editorial journalism, founder playbooks, and startup intelligence across India." />
+  <link rel="canonical" id="canonical-tag" href="https://bharat-launch.vercel.app/blog-detail.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" id="og-type" content="article" />
+  <meta property="og:title" id="og-title" content="BharatLaunch Article" />
+  <meta property="og:description" id="og-description" content="Editorial journalism, founder playbooks, and startup intelligence across India." />
+  <meta property="og:image" id="og-image" content="https://bharat-launch.vercel.app/assets/blog-ecosystem.jpg" />
+  <meta property="og:url" id="og-url" content="https://bharat-launch.vercel.app/blog-detail.html" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" id="twitter-title" content="BharatLaunch Article" />
+  <meta name="twitter:description" id="twitter-description" content="Editorial journalism, founder playbooks, and startup intelligence across India." />
+  <meta name="twitter:image" id="twitter-image" content="https://bharat-launch.vercel.app/assets/blog-ecosystem.jpg" />
+
+  <!-- Dynamic JSON-LD Container -->
+  <script type="application/ld+json" id="article-json-ld"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -26,11 +44,12 @@
       </a>
       <nav class="nav-links" aria-label="Primary Navigation">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="blogs.html" class="nav-link active">Blog</a>
+        <a href="blogs.html" class="nav-link active">All Stories</a>
         <a href="ecosystem.html" class="nav-link">Ecosystem</a>
         <a href="funding.html" class="nav-link">Funding Radar</a>
         <a href="pr-news.html" class="nav-link">PR News</a>
         <a href="about.html" class="nav-link">About</a>
+        <a href="admin.html" class="nav-link" style="color: var(--color-primary); font-weight: 700;">Admin</a>
       </nav>
       <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -58,11 +77,12 @@
     </div>
     <nav class="mobile-drawer-nav">
       <a href="index.html" class="mobile-drawer-link">Home</a>
-      <a href="blogs.html" class="mobile-drawer-link active">Blog</a>
+      <a href="blogs.html" class="mobile-drawer-link active">All Stories</a>
       <a href="ecosystem.html" class="mobile-drawer-link">Ecosystem Map</a>
       <a href="funding.html" class="mobile-drawer-link">Funding Radar</a>
       <a href="pr-news.html" class="mobile-drawer-link">PR News</a>
       <a href="about.html" class="mobile-drawer-link">About BharatLaunch</a>
+      <a href="admin.html" class="mobile-drawer-link" style="color: var(--color-primary); font-weight: 700;">Owner Portal</a>
     </nav>
   </aside>
 
@@ -98,15 +118,37 @@
 
     const slug = new URLSearchParams(location.search).get('slug');
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function formatInlineMarkdown(text) {
+      if (!text) return '';
+      return text
+        // Markdown Links: [text](url)
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="article-link">$1</a>')
+        // Bold: **text**
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        // Italic: *text* or _text_
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+    }
+
     function renderContent(content) {
+      if (!content) return '';
       return content.split(/\n\n+/).map(block => {
-        if (block.startsWith('## ')) return `<h2>${block.slice(3)}</h2>`;
-        if (block.startsWith('### ')) return `<h3>${block.slice(4)}</h3>`;
-        if (block.startsWith('- ')) {
-          const items = block.split('\n').map(line => line.replace(/^-\s+/, ''));
-          return `<ul>${items.map(item => `<li>${item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</li>`).join('')}</ul>`;
+        const trimmed = block.trim();
+        if (trimmed === '---') return '<hr class="article-divider" />';
+        if (trimmed.startsWith('## ')) return `<h2>${formatInlineMarkdown(trimmed.slice(3))}</h2>`;
+        if (trimmed.startsWith('### ')) return `<h3>${formatInlineMarkdown(trimmed.slice(4))}</h3>`;
+        if (trimmed.startsWith('> ')) {
+          return `<blockquote><p>${formatInlineMarkdown(trimmed.replace(/^>\s*/gm, ''))}</p></blockquote>`;
         }
-        return `<p>${block.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
+        if (trimmed.startsWith('- ')) {
+          const items = trimmed.split('\n').map(line => line.replace(/^-\s+/, ''));
+          return `<ul>${items.map(item => `<li>${formatInlineMarkdown(item)}</li>`).join('')}</ul>`;
+        }
+        return `<p>${formatInlineMarkdown(trimmed.replace(/\n/g, '<br>'))}</p>`;
       }).join('');
     }
 
@@ -115,70 +157,135 @@
       return `
         <article class="related-card">
           <div class="blog-card-meta">
-            <span>${blog.category}</span>
-            <time>${date}</time>
+            <span>${escapeHtml(blog.category)}</span>
+            <time datetime="${blog.publicationDate}">${date}</time>
           </div>
-          <h3><a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a></h3>
+          <h3><a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${escapeHtml(blog.title)}</a></h3>
           <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">Read Article →</a>
         </article>
       `;
     }
 
+    function updatePageMetadata(blog) {
+      const canonicalUrl = `https://bharat-launch.vercel.app/blog-detail.html?slug=${encodeURIComponent(blog.slug)}`;
+      const absoluteImage = blog.featuredImage ? (blog.featuredImage.startsWith('http') ? blog.featuredImage : `https://bharat-launch.vercel.app/${blog.featuredImage.replace(/^\/+/, '')}`) : 'https://bharat-launch.vercel.app/assets/blog-ecosystem.jpg';
+
+      // Title & Description
+      document.title = `${blog.title} — BharatLaunch`;
+      const descTag = document.querySelector('meta[name="description"]');
+      if (descTag) descTag.setAttribute('content', blog.excerpt);
+
+      // Canonical
+      const canonicalTag = document.getElementById('canonical-tag');
+      if (canonicalTag) canonicalTag.setAttribute('href', canonicalUrl);
+
+      // Open Graph
+      const ogTitle = document.getElementById('og-title');
+      if (ogTitle) ogTitle.setAttribute('content', `${blog.title} — BharatLaunch`);
+      const ogDesc = document.getElementById('og-description');
+      if (ogDesc) ogDesc.setAttribute('content', blog.excerpt);
+      const ogUrl = document.getElementById('og-url');
+      if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+      const ogImg = document.getElementById('og-image');
+      if (ogImg) ogImg.setAttribute('content', absoluteImage);
+
+      // Twitter Card
+      const twTitle = document.getElementById('twitter-title');
+      if (twTitle) twTitle.setAttribute('content', `${blog.title} — BharatLaunch`);
+      const twDesc = document.getElementById('twitter-description');
+      if (twDesc) twDesc.setAttribute('content', blog.excerpt);
+      const twImg = document.getElementById('twitter-image');
+      if (twImg) twImg.setAttribute('content', absoluteImage);
+
+      // Structured Data (JSON-LD BlogPosting / Article)
+      const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonicalUrl
+        },
+        "headline": blog.title,
+        "description": blog.excerpt,
+        "image": [absoluteImage],
+        "datePublished": blog.publicationDate,
+        "dateModified": blog.updatedAt ? blog.updatedAt.slice(0, 10) : blog.publicationDate,
+        "author": {
+          "@type": "Organization",
+          "name": blog.author || "BharatLaunch Editorial",
+          "url": "https://bharat-launch.vercel.app/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BharatLaunch",
+          "url": "https://bharat-launch.vercel.app/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://bharat-launch.vercel.app/assets/blog-ecosystem.jpg"
+          }
+        },
+        "articleSection": blog.category
+      };
+
+      const jsonLdElement = document.getElementById('article-json-ld');
+      if (jsonLdElement) {
+        jsonLdElement.textContent = JSON.stringify(schemaData, null, 2);
+      }
+    }
+
     async function loadArticle() {
       try {
+        if (!slug) throw new Error('No article specified.');
+
         let blog = null;
         let all = [];
-        try {
-          const response = await fetch('/api/blogs/' + encodeURIComponent(slug || ''));
-          if (response.ok) {
-            blog = await response.json();
-            const allRes = await fetch('/api/blogs');
-            if (allRes.ok) all = await allRes.json();
-          }
-        } catch (e) {}
 
-        if (!blog) {
-          const res = await fetch('data/blogs.json');
-          if (res.ok) {
-            all = await res.json();
-            blog = all.find(b => b.slug === slug && b.published !== false);
-          }
-        }
+        const response = await fetch('/api/blogs/' + encodeURIComponent(slug));
+        if (!response.ok) throw new Error('Article not found.');
+        blog = await response.json();
 
-        if (!blog) throw new Error('not found');
+        const allRes = await fetch('/api/blogs');
+        if (allRes.ok) all = await allRes.json();
+
+        // Update Dynamic SEO Meta & Structured Data
+        updatePageMetadata(blog);
+
         const related = all.filter(item => item.slug !== blog.slug).slice(0, 2);
         const date = new Date(blog.publicationDate + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
         const readingTime = Math.max(1, Math.ceil(blog.content.split(/\s+/).length / 200));
-        const visual = blog.featuredImage ? `<img src="${blog.featuredImage}" alt="" onerror="this.parentElement.innerHTML='<span class=\\'article-mark\\'>BL</span>'">` : '<span class="article-mark">BL</span>';
+        const visual = blog.featuredImage
+          ? `<img src="${escapeHtml(blog.featuredImage)}" alt="${escapeHtml(blog.title)}" onerror="this.parentElement.innerHTML='<span class=\\'article-mark\\'>BL</span>'">`
+          : '<span class="article-mark">BL</span>';
 
-        document.title = `${blog.title} — BharatLaunch`;
         document.getElementById('article').innerHTML = `
           <a class="back-link" href="blogs.html">← All Articles</a>
           <header class="article-header">
-            <p class="eyebrow">${blog.category}</p>
-            <h1>${blog.title}</h1>
-            <p class="article-intro">${blog.excerpt}</p>
+            <p class="eyebrow">${escapeHtml(blog.category)}</p>
+            <h1>${escapeHtml(blog.title)}</h1>
+            <p class="article-intro">${escapeHtml(blog.excerpt)}</p>
             <div class="article-meta">
               <time datetime="${blog.publicationDate}">${date}</time>
               <span>•</span>
               <span class="article-reading-time">${readingTime} min read</span>
               <span>•</span>
-              <span>BharatLaunch Editorial</span>
+              <span>${escapeHtml(blog.author || 'BharatLaunch Editorial')}</span>
             </div>
           </header>
           <div class="article-image">${visual}</div>
           <div class="article-content">${renderContent(blog.content)}</div>
+          ${related.length > 0 ? `
           <section class="related-section">
             <p class="eyebrow">KEEP READING</p>
             <h2>More from the desk</h2>
             <div class="related-grid">${related.map(relatedCard).join('')}</div>
-          </section>
+          </section>` : ''}
         `;
       } catch (error) {
+        document.title = `Article Not Found — BharatLaunch`;
         document.getElementById('article').innerHTML = `
           <a class="back-link" href="blogs.html">← All Articles</a>
           <h1>Article not found</h1>
-          <p>The article may have been unpublished or moved.</p>
+          <p>The requested article is not available or may have been moved.</p>
         `;
       }
     }

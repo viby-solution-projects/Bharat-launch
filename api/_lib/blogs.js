@@ -6,7 +6,7 @@ const AUTH_SECRET = process.env.BHARATLAUNCH_AUTH_SECRET || ADMIN_PASSWORD || 'b
 
 // Supabase Server-side Environment Variables
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 function isSupabaseConfigured() {
   return Boolean(SUPABASE_URL && SUPABASE_KEY);
@@ -49,7 +49,7 @@ function toDbRecord(blog) {
 // Supabase REST API Client (Server-side native fetch)
 async function supabaseRequest(endpoint, options = {}) {
   if (!isSupabaseConfigured()) {
-    throw new Error('Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in your environment.');
+    throw new Error('Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SECRET_KEY in your environment.');
   }
 
   const url = `${SUPABASE_URL.replace(/\/$/, '')}/rest/v1/${endpoint}`;
@@ -118,7 +118,7 @@ async function readBlogBySlug(slug, isOwner = false) {
 
 async function createBlog(blogData) {
   if (!isSupabaseConfigured()) {
-    throw new Error('Cannot create blog: Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.');
+    throw new Error('Cannot create blog: Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SECRET_KEY.');
   }
 
   const record = toDbRecord(blogData);
@@ -136,7 +136,7 @@ async function createBlog(blogData) {
 
 async function updateBlog(slug, blogData) {
   if (!isSupabaseConfigured()) {
-    throw new Error('Cannot update blog: Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.');
+    throw new Error('Cannot update blog: Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SECRET_KEY.');
   }
 
   const record = toDbRecord(blogData);
@@ -154,7 +154,7 @@ async function updateBlog(slug, blogData) {
 
 async function deleteBlog(slug) {
   if (!isSupabaseConfigured()) {
-    throw new Error('Cannot delete blog: Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.');
+    throw new Error('Cannot delete blog: Supabase is not configured. Please set SUPABASE_URL and SUPABASE_SECRET_KEY.');
   }
 
   await supabaseRequest(`blogs?slug=eq.${encodeURIComponent(slug)}`, {
