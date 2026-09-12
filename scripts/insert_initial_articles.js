@@ -62,7 +62,25 @@ If you are ready to construct your initial experiment, read our comprehensive gu
 
 ---
 
-## Step 5: Common Traps Indian Founders Must Avoid
+## Step 5: The 7-Day Fast-Track Validation Sprint
+
+To execute this validation systematically without losing momentum, founders can follow this structured weekly sprint:
+
+| Day | Focus Area | Core Action Item | Tangible Milestone |
+|---|---|---|---|
+| **Day 1** | Problem Definition | Draft hypothesis statement & target user persona | 1-Page Problem Spec |
+| **Day 2** | Prospect Mapping | Identify 40 targeted prospects on LinkedIn, WhatsApp & directories | Qualified Outreach List |
+| **Day 3–4** | Discovery Interviews | Conduct 15 structured past-behavior discovery calls | Documented Friction Journal |
+| **Day 5** | Offer Structuring | Package value proposition, pricing tiers & deliverables | 1-Page Pilot Proposal |
+| **Day 6** | Prepayment Pitch | Pitch 10 qualified prospects for pilot prepayments or signed LOIs | Minimum 2 Signed Commitments |
+| **Day 7** | Go / Pivot Review | Audit conversion data against validated learning targets | Evidence-Based Go/No-Go Decision |
+
+> [!TIP]
+> In the Indian market, cultural politeness often produces false positives. Never ask *"Would you buy this?"* Instead ask *"How did you solve this last Tuesday, and how many rupees or hours did it cost you?"*
+
+---
+
+## Step 6: Common Traps Indian Founders Must Avoid
 
 1. **Confusing Traffic with Demand:** Thousands of landing page clicks from generic ad campaigns do not equate to qualified buying intent.
 2. **Falling in Love with Technology over Outcomes:** Customers buy solutions to their headaches; they do not care whether your backend uses advanced neural networks or simple database queries.

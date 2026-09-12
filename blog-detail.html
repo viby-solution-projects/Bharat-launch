@@ -31,6 +31,12 @@
   <link rel="stylesheet" href="css/blog.css" />
 </head>
 <body>
+  <!-- Reading Progress Bar -->
+  <div id="reading-progress-bar" class="reading-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Reading progress"></div>
+
+  <!-- Toast Notification -->
+  <div id="article-toast" class="article-toast" role="status" aria-live="polite">Article link copied to clipboard!</div>
+
   <!-- Top Header -->
   <header class="site-header" role="banner">
     <div class="container nav-container">
@@ -86,12 +92,15 @@
     </nav>
   </aside>
 
-  <main class="article-shell">
+  <!-- Article Reading Shell -->
+  <main class="article-shell" id="main-content">
     <div class="container">
-      <article class="article" id="article">
-        <a class="back-link" href="blogs.html">← All Articles</a>
-        <p class="empty-state">Loading article...</p>
-      </article>
+      <div class="article-layout">
+        <article class="article" id="article">
+          <a class="article-back-nav" href="blogs.html">← Back to All Stories</a>
+          <p class="pub-empty-state">Loading article...</p>
+        </article>
+      </div>
     </div>
   </main>
 
@@ -118,37 +127,221 @@
 
     const slug = new URLSearchParams(location.search).get('slug');
 
+    // Setup Reading Progress Indicator
+    window.addEventListener('scroll', () => {
+      const progressBar = document.getElementById('reading-progress-bar');
+      if (!progressBar) return;
+      const articleElem = document.getElementById('article');
+      if (!articleElem) return;
+
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight <= 0) {
+        progressBar.style.width = '0%';
+        return;
+      }
+      const scrollProgress = Math.min(100, Math.max(0, (window.scrollY / totalHeight) * 100));
+      progressBar.style.width = `${scrollProgress}%`;
+      progressBar.setAttribute('aria-valuenow', Math.round(scrollProgress));
+    });
+
+    function showToast(message) {
+      const toast = document.getElementById('article-toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('active');
+      setTimeout(() => toast.classList.remove('active'), 2500);
+    }
+
+    function copyArticleLink() {
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => showToast('Article link copied to clipboard!'))
+        .catch(() => showToast('Link ready to copy from address bar.'));
+    }
+
     function escapeHtml(str) {
       if (!str) return '';
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function sanitizeUrl(url) {
+      if (!url) return '#';
+      const clean = url.trim();
+      if (/^(https?:\/\/|\/|\.\/|\.\.\/|#|blog-detail\.html)/i.test(clean)) {
+        return clean.replace(/"/g, '&quot;');
+      }
+      return '#';
     }
 
     function formatInlineMarkdown(text) {
       if (!text) return '';
       return text
         // Markdown Links: [text](url)
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="article-link">$1</a>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, href) => {
+          const safeHref = sanitizeUrl(href);
+          const isExternal = /^https?:\/\//i.test(safeHref) && !safeHref.includes(location.hostname);
+          const targetRel = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+          return `<a href="${safeHref}" class="article-link"${targetRel}>${label}</a>`;
+        })
         // Bold: **text**
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         // Italic: *text* or _text_
         .replace(/\*(.*?)\*/g, '<em>$1</em>');
     }
 
-    function renderContent(content) {
-      if (!content) return '';
-      return content.split(/\n\n+/).map(block => {
-        const trimmed = block.trim();
-        if (trimmed === '---') return '<hr class="article-divider" />';
-        if (trimmed.startsWith('## ')) return `<h2>${formatInlineMarkdown(trimmed.slice(3))}</h2>`;
-        if (trimmed.startsWith('### ')) return `<h3>${formatInlineMarkdown(trimmed.slice(4))}</h3>`;
-        if (trimmed.startsWith('> ')) {
-          return `<blockquote><p>${formatInlineMarkdown(trimmed.replace(/^>\s*/gm, ''))}</p></blockquote>`;
+    function renderContent(rawContent) {
+      if (!rawContent) return '';
+
+      const blocks = rawContent.split(/\n\n+/);
+      return blocks.map(block => {
+        const rawTrimmed = block.trim();
+        if (!rawTrimmed) return '';
+
+        // 1. Horizontal Divider
+        if (/^(\-{3,}|\*{3,})$/.test(rawTrimmed)) {
+          return '<div class="article-divider-wrap"><span class="article-divider-ornament">✦ ✦ ✦</span></div>';
         }
-        if (trimmed.startsWith('- ')) {
-          const items = trimmed.split('\n').map(line => line.replace(/^-\s+/, ''));
-          return `<ul>${items.map(item => `<li>${formatInlineMarkdown(item)}</li>`).join('')}</ul>`;
+
+        // 2. Step Headings: "## Step 1: Title", "## Phase 2: Title", "## Pillar 1: Title"
+        const stepHeadingMatch = rawTrimmed.match(/^##\s+(Step|Phase|Pillar)\s+(\d+)[:.]\s*(.*)$/i);
+        if (stepHeadingMatch) {
+          const type = stepHeadingMatch[1].toUpperCase();
+          const num = stepHeadingMatch[2].padStart(2, '0');
+          const title = formatInlineMarkdown(escapeHtml(stepHeadingMatch[3]));
+          return `
+            <div class="article-step-heading">
+              <div class="article-step-badge">${type} ${num}</div>
+              <h2 class="article-step-title">${title}</h2>
+            </div>
+          `;
         }
-        return `<p>${formatInlineMarkdown(trimmed.replace(/\n/g, '<br>'))}</p>`;
+
+        // Numbered Section Headings: "## 1. Title"
+        const numberedHeadingMatch = rawTrimmed.match(/^##\s+(\d+)[:.]\s*(.*)$/);
+        if (numberedHeadingMatch) {
+          const num = numberedHeadingMatch[1].padStart(2, '0');
+          const title = formatInlineMarkdown(escapeHtml(numberedHeadingMatch[2]));
+          return `
+            <div class="article-step-heading">
+              <div class="article-step-badge">SECTION ${num}</div>
+              <h2 class="article-step-title">${title}</h2>
+            </div>
+          `;
+        }
+
+        // Conclusion / Takeaway Section
+        const conclusionMatch = rawTrimmed.match(/^##\s+(Conclusion|Summary|Key Takeaways?)[:.]?\s*(.*)$/i);
+        if (conclusionMatch) {
+          const sectionName = conclusionMatch[1];
+          const title = conclusionMatch[2] ? `: ${formatInlineMarkdown(escapeHtml(conclusionMatch[2]))}` : '';
+          return `
+            <div class="article-takeaway-heading">
+              <div class="article-step-badge">FINAL TAKEAWAY</div>
+              <h2 class="article-step-title">${escapeHtml(sectionName)}${title}</h2>
+            </div>
+          `;
+        }
+
+        // Standard H2
+        if (rawTrimmed.startsWith('## ')) {
+          return `<h2 class="article-h2">${formatInlineMarkdown(escapeHtml(rawTrimmed.slice(3)))}</h2>`;
+        }
+
+        // Standard H3
+        if (rawTrimmed.startsWith('### ')) {
+          return `<h3 class="article-h3">${formatInlineMarkdown(escapeHtml(rawTrimmed.slice(4)))}</h3>`;
+        }
+
+        // 3. Callout / Alert / Pullquote
+        if (rawTrimmed.startsWith('> ')) {
+          const quoteBody = rawTrimmed.replace(/^>\s*/gm, '');
+          const calloutMatch = quoteBody.match(/^\[!(NOTE|TIP|IMPORTANT|WARNING|KEY TAKEAWAY)\]\s*([\s\S]*)$/i);
+          if (calloutMatch) {
+            const type = calloutMatch[1].toUpperCase();
+            const text = formatInlineMarkdown(escapeHtml(calloutMatch[2].trim()));
+            return `
+              <div class="article-callout article-callout-tip">
+                <div class="article-callout-header">
+                  <span aria-hidden="true">💡</span>
+                  <span>${type}</span>
+                </div>
+                <p>${text}</p>
+              </div>
+            `;
+          }
+          return `
+            <blockquote class="article-pullquote">
+              <p>${formatInlineMarkdown(escapeHtml(quoteBody))}</p>
+            </blockquote>
+          `;
+        }
+
+        // 4. Checklist: - [ ] or - [x]
+        if (/^-\s+\[([ xX])\]/.test(rawTrimmed)) {
+          const items = rawTrimmed.split('\n').map(line => {
+            const checkMatch = line.match(/^-\s+\[([ xX])\]\s*(.*)$/);
+            if (!checkMatch) return '';
+            const isChecked = checkMatch[1].toLowerCase() === 'x';
+            const label = formatInlineMarkdown(escapeHtml(checkMatch[2]));
+            return `
+              <li class="article-checklist-item ${isChecked ? 'checked' : ''}">
+                <span class="checklist-box" aria-hidden="true">${isChecked ? '✓' : ''}</span>
+                <span>${label}</span>
+              </li>
+            `;
+          }).filter(Boolean);
+          return `<ul class="article-checklist">${items.join('')}</ul>`;
+        }
+
+        // 5. Unordered Bullet List: - item
+        if (rawTrimmed.startsWith('- ')) {
+          const items = rawTrimmed.split('\n').map(line => {
+            const cleanLine = line.replace(/^-\s+/, '');
+            return `<li>${formatInlineMarkdown(escapeHtml(cleanLine))}</li>`;
+          });
+          return `<ul class="article-bullet-list">${items.join('')}</ul>`;
+        }
+
+        // 6. Ordered List: 1. item
+        if (/^\d+\.\s+/.test(rawTrimmed)) {
+          const items = rawTrimmed.split('\n').map(line => {
+            const cleanLine = line.replace(/^\d+\.\s+/, '');
+            return `<li>${formatInlineMarkdown(escapeHtml(cleanLine))}</li>`;
+          });
+          return `<ol class="article-ordered-list">${items.join('')}</ol>`;
+        }
+
+        // 7. Markdown Table (Timelines, Comparisons, Plans)
+        if (rawTrimmed.includes('|') && rawTrimmed.split('\n').length >= 2) {
+          const lines = rawTrimmed.split('\n').filter(l => l.trim().startsWith('|'));
+          if (lines.length >= 2) {
+            const headerCells = lines[0].split('|').slice(1, -1).map(c => c.trim());
+            const bodyLines = lines.slice(2);
+            const tbodyRows = bodyLines.map(rowLine => {
+              const cells = rowLine.split('|').slice(1, -1).map(c => c.trim());
+              return `<tr>${cells.map(c => `<td>${formatInlineMarkdown(escapeHtml(c))}</td>`).join('')}</tr>`;
+            });
+            return `
+              <div class="article-table-wrap">
+                <table class="article-table">
+                  <thead>
+                    <tr>${headerCells.map(h => `<th>${formatInlineMarkdown(escapeHtml(h))}</th>`).join('')}</tr>
+                  </thead>
+                  <tbody>
+                    ${tbodyRows.join('')}
+                  </tbody>
+                </table>
+              </div>
+            `;
+          }
+        }
+
+        // 8. Standard Paragraph
+        const escapedParagraph = escapeHtml(rawTrimmed);
+        return `<p>${formatInlineMarkdown(escapedParagraph.replace(/\n/g, '<br />'))}</p>`;
       }).join('');
     }
 
@@ -252,40 +445,71 @@
 
         const related = all.filter(item => item.slug !== blog.slug).slice(0, 2);
         const date = new Date(blog.publicationDate + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-        const readingTime = Math.max(1, Math.ceil(blog.content.split(/\s+/).length / 200));
+        const wordCount = (blog.content || '').split(/\s+/).length;
+        const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+        const authorInitial = (blog.author || 'BL').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+
         const visual = blog.featuredImage
-          ? `<img src="${escapeHtml(blog.featuredImage)}" alt="${escapeHtml(blog.title)}" onerror="this.parentElement.innerHTML='<span class=\\'article-mark\\'>BL</span>'">`
-          : '<span class="article-mark">BL</span>';
+          ? `<div class="article-hero-frame"><img src="${escapeHtml(blog.featuredImage)}" alt="${escapeHtml(blog.title)}" onerror="this.parentElement.style.display='none'"></div>`
+          : '';
 
         document.getElementById('article').innerHTML = `
-          <a class="back-link" href="blogs.html">← All Articles</a>
+          <a class="article-back-nav" href="blogs.html">← Back to All Stories</a>
+          
           <header class="article-header">
-            <p class="eyebrow">${escapeHtml(blog.category)}</p>
-            <h1>${escapeHtml(blog.title)}</h1>
-            <p class="article-intro">${escapeHtml(blog.excerpt)}</p>
-            <div class="article-meta">
-              <time datetime="${blog.publicationDate}">${date}</time>
-              <span>•</span>
-              <span class="article-reading-time">${readingTime} min read</span>
-              <span>•</span>
-              <span>${escapeHtml(blog.author || 'BharatLaunch Editorial')}</span>
+            <div class="article-eyebrow-wrap">
+              <span class="article-category-badge">${escapeHtml(blog.category || 'Founder Playbook')}</span>
+            </div>
+            
+            <h1 class="article-main-title">${escapeHtml(blog.title)}</h1>
+            
+            ${blog.excerpt ? `<div class="article-dek">${escapeHtml(blog.excerpt)}</div>` : ''}
+
+            <div class="article-byline-bar">
+              <div class="article-author-card">
+                <div class="article-author-avatar" aria-hidden="true">${authorInitial}</div>
+                <div class="article-author-text">
+                  <span class="article-author-name">${escapeHtml(blog.author || 'BharatLaunch Editorial')}</span>
+                  <div class="article-meta-row">
+                    <time datetime="${blog.publicationDate}">${date}</time>
+                    <span>•</span>
+                    <span>${readingTime} min read</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="article-share-actions">
+                <button class="article-copy-btn" onclick="copyArticleLink()" aria-label="Share or copy article link">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span>Share Story</span>
+                </button>
+              </div>
             </div>
           </header>
-          <div class="article-image">${visual}</div>
-          <div class="article-content">${renderContent(blog.content)}</div>
+
+          ${visual}
+
+          <div class="article-reading-body">
+            ${renderContent(blog.content)}
+          </div>
+
           ${related.length > 0 ? `
           <section class="related-section">
             <p class="eyebrow">KEEP READING</p>
-            <h2>More from the desk</h2>
+            <h2>More from the editorial desk</h2>
             <div class="related-grid">${related.map(relatedCard).join('')}</div>
           </section>` : ''}
         `;
       } catch (error) {
         document.title = `Article Not Found — BharatLaunch`;
         document.getElementById('article').innerHTML = `
-          <a class="back-link" href="blogs.html">← All Articles</a>
-          <h1>Article not found</h1>
-          <p>The requested article is not available or may have been moved.</p>
+          <a class="article-back-nav" href="blogs.html">← Back to All Stories</a>
+          <h1 class="article-main-title">Article not found</h1>
+          <p class="pub-empty-state">The requested article is not available or may have been moved.</p>
         `;
       }
     }
