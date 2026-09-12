@@ -182,28 +182,29 @@
   <main id="main-content">
     
     <!-- Hero Header -->
-    <section class="news-hero">
+    <section class="category-page-hero">
       <div class="container">
-        <h1>PR News & Ecosystem Dispatches</h1>
-        <p>
+        <span class="category-hero-eyebrow">ECOSYSTEM DISPATCHES</span>
+        <h1 class="category-hero-title">PR News & Ecosystem Dispatches</h1>
+        <p class="category-hero-subtitle">
           Curated, source-backed reporting on institutional venture rounds, deeptech milestones, and strategic market shifts across India.
         </p>
       </div>
     </section>
 
     <!-- News Grid Section -->
-    <section class="section-wrapper public-data-hold" style="background: var(--color-bg-subtle);">
+    <section class="section-wrapper public-data-hold" style="padding: 36px 0 60px; background: var(--color-bg-subtle);">
       <div class="container">
         
         <!-- Category Filter Pills -->
-        <div class="filter-bar-box">
-          <div class="filter-categories-pills" id="news-category-filters">
-            <button class="category-pill active" onclick="window.filterNews('All')">All News</button>
-            <button class="category-pill" onclick="window.filterNews('Funding')">Funding Deals</button>
-            <button class="category-pill" onclick="window.filterNews('Product Launch')">Product Launches</button>
-            <button class="category-pill" onclick="window.filterNews('DeepTech')">DeepTech</button>
-            <button class="category-pill" onclick="window.filterNews('IPO')">IPO & Markets</button>
-            <button class="category-pill" onclick="window.filterNews('Financials')">Financials</button>
+        <div class="category-filter-bar">
+          <div class="category-filter-pills" id="news-category-filters">
+            <button class="category-filter-pill active" onclick="window.filterNews('All')">All News</button>
+            <button class="category-filter-pill" onclick="window.filterNews('Funding')">Funding Deals</button>
+            <button class="category-filter-pill" onclick="window.filterNews('Product Launch')">Product Launches</button>
+            <button class="category-filter-pill" onclick="window.filterNews('DeepTech')">DeepTech</button>
+            <button class="category-filter-pill" onclick="window.filterNews('IPO')">IPO & Markets</button>
+            <button class="category-filter-pill" onclick="window.filterNews('Financials')">Financials</button>
           </div>
         </div>
 
@@ -312,7 +313,7 @@
 
     window.filterNews = function(cat) {
       activeNewsCategory = cat;
-      document.querySelectorAll('#news-category-filters .category-pill').forEach(btn => {
+      document.querySelectorAll('#news-category-filters .category-filter-pill').forEach(btn => {
         btn.classList.toggle('active', btn.textContent.trim().includes(cat) || (cat === 'All' && btn.textContent.includes('All')));
       });
       renderNewsArticles();

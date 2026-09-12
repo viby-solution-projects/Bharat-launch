@@ -144,15 +144,15 @@ input, select, textarea {
   width: 100%;
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 clamp(16px, 4vw, 28px);
 }
 
 .section-wrapper {
-  padding: 56px 0;
+  padding: clamp(40px, 6vw, 64px) 0;
 }
 
 .section-wrapper-subtle {
-  padding: 56px 0;
+  padding: clamp(40px, 6vw, 64px) 0;
   background-color: var(--color-bg-subtle);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
@@ -171,12 +171,24 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-black);
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.25;
+  line-height: 1.22;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+}
+
+h2 {
+  font-size: clamp(1.45rem, 3.2vw, 2.1rem);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
 }
 
 p {
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* Minimal Editorial Buttons */
@@ -186,23 +198,28 @@ p {
   justify-content: center;
   gap: 8px;
   font-size: 0.88rem;
-  font-weight: 600;
-  padding: 9px 18px;
+  font-weight: 700;
+  padding: 10px 20px;
+  min-height: 44px;
   border-radius: var(--radius-md);
   transition: all var(--transition-normal);
   white-space: nowrap;
   text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 .btn-primary {
   background: var(--color-primary);
-  color: #FFFFFF;
+  color: #1F1F1F;
   border: 1px solid var(--color-primary);
+  box-shadow: 0 1px 3px rgba(212, 175, 55, 0.2);
 }
 
 .btn-primary:hover {
   background: var(--color-primary-hover);
   border-color: var(--color-primary-hover);
+  color: #1F1F1F;
 }
 
 .btn-dark {
@@ -214,23 +231,24 @@ p {
 .btn-dark:hover {
   background: var(--color-black);
   border-color: var(--color-black);
+  color: #FFFFFF;
 }
 
 .btn-secondary {
   background: #FFFFFF;
-  color: var(--color-indigo);
-  border: 1px solid var(--color-indigo);
+  color: var(--color-black);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {
   background: var(--color-primary-light);
   border-color: var(--color-primary);
-  color: var(--color-indigo);
+  color: var(--color-black);
 }
 
 .directory-section .section-header-flex > .btn-secondary {
   background: var(--color-primary);
-  color: #FFFFFF;
+  color: #1F1F1F;
   border-color: var(--color-primary);
 }
 
@@ -240,8 +258,9 @@ p {
 }
 
 .btn-sm {
-  padding: 6px 14px;
+  padding: 7px 14px;
   font-size: 0.82rem;
+  min-height: 38px;
   border-radius: var(--radius-sm);
 }
 

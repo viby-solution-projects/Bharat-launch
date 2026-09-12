@@ -168,33 +168,34 @@
   <main id="main-content">
     
     <!-- Funding Hero Header -->
-    <section class="funding-hero">
+    <section class="category-page-hero">
       <div class="container">
-        <h1>Venture Capital & Funding Radar</h1>
-        <p>
+        <span class="category-hero-eyebrow">VENTURE CAPITAL RADAR</span>
+        <h1 class="category-hero-title">Venture Capital & Funding Radar</h1>
+        <p class="category-hero-subtitle">
           Verified tracking of institutional investment rounds, growth equity checks, and valuation benchmarks across India's venture landscape.
         </p>
       </div>
     </section>
 
     <!-- Deals Tracker Section -->
-    <section class="public-data-hold" style="padding: 40px 0; background: var(--color-bg-subtle);">
+    <section class="public-data-hold" style="padding: 36px 0 60px; background: var(--color-bg-subtle);">
       <div class="container">
         
         <!-- Controls & Filters -->
-        <div class="filter-bar-box">
-          <div class="filter-categories-pills" id="funding-sector-filters">
-            <button class="category-pill active" onclick="window.filterDeals('All')">All Deals</button>
-            <button class="category-pill" onclick="window.filterDeals('Quick Commerce')">Quick Commerce</button>
-            <button class="category-pill" onclick="window.filterDeals('EdTech')">EdTech</button>
-            <button class="category-pill" onclick="window.filterDeals('CleanTech & EV')">CleanTech</button>
-            <button class="category-pill" onclick="window.filterDeals('AI & GenAI')">AI & GenAI</button>
-            <button class="category-pill" onclick="window.filterDeals('DeepTech & SpaceTech')">SpaceTech</button>
-            <button class="category-pill" onclick="window.filterDeals('FinTech')">FinTech</button>
+        <div class="category-filter-bar">
+          <div class="category-filter-pills" id="funding-sector-filters">
+            <button class="category-filter-pill active" onclick="window.filterDeals('All')">All Deals</button>
+            <button class="category-filter-pill" onclick="window.filterDeals('Quick Commerce')">Quick Commerce</button>
+            <button class="category-filter-pill" onclick="window.filterDeals('EdTech')">EdTech</button>
+            <button class="category-filter-pill" onclick="window.filterDeals('CleanTech & EV')">CleanTech</button>
+            <button class="category-filter-pill" onclick="window.filterDeals('AI & GenAI')">AI & GenAI</button>
+            <button class="category-filter-pill" onclick="window.filterDeals('DeepTech & SpaceTech')">SpaceTech</button>
+            <button class="category-filter-pill" onclick="window.filterDeals('FinTech')">FinTech</button>
           </div>
 
-          <div style="display: flex; gap: 10px;">
-            <input type="text" id="deal-search-input" placeholder="Search company or investor..." style="padding: 7px 12px; font-size: 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); width: 220px; outline: none;" oninput="window.searchDeals(this.value)" />
+          <div class="filter-search-wrap">
+            <input type="text" id="deal-search-input" class="form-input" placeholder="Search company or investor..." style="min-width: 220px; max-width: 100%;" oninput="window.searchDeals(this.value)" />
           </div>
         </div>
 
@@ -339,7 +340,7 @@
 
     window.filterDeals = function(sector) {
       activeFilter = sector;
-      document.querySelectorAll('#funding-sector-filters .category-pill').forEach(btn => {
+      document.querySelectorAll('#funding-sector-filters .category-filter-pill').forEach(btn => {
         btn.classList.toggle('active', btn.textContent.trim().includes(sector) || (sector === 'All' && btn.textContent.includes('All')));
       });
       renderDeals();
