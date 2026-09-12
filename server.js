@@ -5,7 +5,7 @@ const crypto = require('crypto');
 
 const PORT = 3000;
 const BLOGS_FILE = path.join(__dirname, 'data', 'blogs.json');
-const ADMIN_PASSWORD = process.env.BHARATLAUNCH_ADMIN_PASSWORD;
+const ADMIN_PASSWORD = process.env.BHARATLAUNCH_ADMIN_PASSWORD || 'bharatlaunch2026';
 const sessions = new Map();
 const MIME_TYPES = {
   '.html': 'text/html; charset=UTF-8',

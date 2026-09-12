@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BharatLaunch — India's Startup Ecosystem & Directory</title>
-  <meta name="description" content="Discover verified Indian startups, funding intelligence, and playbooks shaping India's next generation of companies." />
+  <title>BharatLaunch — India's Startup Ecosystem & Founder Insights</title>
+  <meta name="description" content="Insights, frameworks, and stories from the people building India's next generation of companies." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,6 +14,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/blog.css" />
 </head>
 <body>
 
@@ -82,213 +83,39 @@
   <!-- Main Content -->
   <main id="main-content">
     
-    <!-- 2. Short Hero / Intro Section -->
-    <section class="hero-section">
-      <div class="container hero-grid">
-        
-        <div class="hero-text">
-          <span class="eyebrow">BHARATLAUNCH PLATFORM</span>
-          <h1>Discover the <span class="gold-highlight">ideas</span> shaping India's startup ecosystem.</h1>
-          <p>
-            Explore verified profiles of high-growth Indian startups, track emerging ecosystem intelligence, and read actionable playbooks from visionary founders.
-          </p>
-          <div class="hero-actions">
-            <a href="#directory" class="btn btn-primary">Explore Directory ↓</a>
-            <a href="blogs.html" class="btn btn-secondary">Read Insights →</a>
-          </div>
-        </div>
-
-        <div class="hero-visual-card">
-          <div class="hero-visual-badge">
-            <span class="dot"></span>
-            <span>Verified Indian Ventures</span>
-          </div>
-          <h3>Curated Intelligence on Bharat's High-Growth Startups</h3>
-          <p>
-            From GenAI and SpaceTech to FinTech and Clean Mobility, discover the teams building scalable infrastructure across India.
-          </p>
-          <div class="hero-visual-tags">
-            <span class="hero-visual-tag">🚀 SpaceTech</span>
-            <span class="hero-visual-tag">🤖 AI & Indic LLMs</span>
-            <span class="hero-visual-tag">⚡ Clean Mobility</span>
-            <span class="hero-visual-tag">💳 B2B FinTech</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 3. Startup Directory Section -->
-    <section class="directory-section" id="directory">
+    <!-- 2. Short, Simple Hero Intro Section -->
+    <section class="editorial-hero-section">
       <div class="container">
-        
-        <div class="directory-heading-row">
-          <p class="eyebrow">BHARATLAUNCH DIRECTORY</p>
-          <h2>Indian Startups, <span class="gold-highlight">Real Impact.</span></h2>
-          <p>Search, filter, and discover verified startups driving innovation across India's economic corridors.</p>
-        </div>
-
-        <!-- Filter Controls Box -->
-        <div class="directory-controls">
-          
-          <div class="directory-search-row">
-            <div class="directory-search-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input 
-                id="directory-search" 
-                class="directory-search-input" 
-                type="search" 
-                placeholder="Search by startup name, founder, sector, or city..." 
-                aria-label="Search Startups"
-              />
-            </div>
-            
-            <button class="mobile-filter-toggle" id="open-mobile-filters" aria-label="Open filter options">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-              </svg>
-              <span>Filters</span>
-            </button>
-          </div>
-
-          <!-- Sector Filter Pills (Horizontally scrollable on mobile) -->
-          <div class="filter-pills-wrap" id="sector-pills" role="toolbar" aria-label="Sector Filter">
-            <button class="filter-pill active" data-sector="All">All Sectors</button>
-            <button class="filter-pill" data-sector="AI & GenAI">AI & GenAI</button>
-            <button class="filter-pill" data-sector="DeepTech & SpaceTech">DeepTech & SpaceTech</button>
-            <button class="filter-pill" data-sector="FinTech">FinTech</button>
-            <button class="filter-pill" data-sector="CleanTech & EV">CleanTech & EV</button>
-            <button class="filter-pill" data-sector="EnterpriseTech">EnterpriseTech</button>
-            <button class="filter-pill" data-sector="Quick Commerce">Quick Commerce</button>
-            <button class="filter-pill" data-sector="D2C">D2C</button>
-          </div>
-
-          <!-- Desktop Dropdowns Row -->
-          <div class="directory-dropdowns-row">
-            <div class="dropdown-group">
-              <label for="filter-stage" style="font-size: 0.82rem; font-weight: 700; color: var(--color-black);">Stage:</label>
-              <select id="filter-stage" class="filter-select" aria-label="Filter by Stage">
-                <option value="All">All Stages</option>
-                <option value="Seed">Seed</option>
-                <option value="Series A">Series A</option>
-                <option value="Series B">Series B</option>
-                <option value="Series C">Series C</option>
-                <option value="Unicorn">Unicorn</option>
-              </select>
-
-              <label for="filter-year" style="font-size: 0.82rem; font-weight: 700; color: var(--color-black); margin-left: 8px;">Founded:</label>
-              <select id="filter-year" class="filter-select" aria-label="Filter by Year">
-                <option value="All">All Years</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-              </select>
-            </div>
-
-            <div class="dropdown-group">
-              <label for="filter-sort" style="font-size: 0.82rem; font-weight: 700; color: var(--color-black);">Sort:</label>
-              <select id="filter-sort" class="filter-select" aria-label="Sort Startups">
-                <option value="latest">Latest Founded</option>
-                <option value="oldest">Oldest Founded</option>
-                <option value="name">Alphabetical (A-Z)</option>
-              </select>
-              <button class="directory-reset-btn" id="filter-reset" type="button">Reset Filters</button>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Mobile Filter Sheet Modal -->
-        <div class="mobile-filter-modal" id="mobile-filter-modal" aria-hidden="true">
-          <div class="mobile-filter-content">
-            <div class="mobile-filter-header">
-              <h3>Filter Startups</h3>
-              <button class="mobile-filter-close" id="close-mobile-filters" aria-label="Close filters">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </div>
-            
-            <div class="mobile-filter-body">
-              <label class="mobile-filter-label">
-                Funding Stage
-                <select id="mobile-stage-select">
-                  <option value="All">All Stages</option>
-                  <option value="Seed">Seed</option>
-                  <option value="Series A">Series A</option>
-                  <option value="Series B">Series B</option>
-                  <option value="Series C">Series C</option>
-                  <option value="Unicorn">Unicorn</option>
-                </select>
-              </label>
-
-              <label class="mobile-filter-label">
-                Founded Year
-                <select id="mobile-year-select">
-                  <option value="All">All Years</option>
-                  <option value="2023">2023</option>
-                  <option value="2022">2022</option>
-                  <option value="2021">2021</option>
-                  <option value="2020">2020</option>
-                  <option value="2019">2019</option>
-                  <option value="2018">2018</option>
-                </select>
-              </label>
-
-              <label class="mobile-filter-label">
-                Sort Order
-                <select id="mobile-sort-select">
-                  <option value="latest">Latest Founded</option>
-                  <option value="oldest">Oldest Founded</option>
-                  <option value="name">Alphabetical (A-Z)</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="mobile-filter-actions">
-              <button class="btn btn-secondary" id="mobile-reset-btn" type="button">Reset</button>
-              <button class="btn btn-primary" id="mobile-apply-btn" type="button">Apply Filters</button>
-            </div>
+        <div class="editorial-hero-content">
+          <span class="eyebrow">BHARATLAUNCH EDITORIAL</span>
+          <h1>Insights, frameworks, and perspectives on <span class="gold-highlight">India's startup ecosystem.</span></h1>
+          <p>
+            Actionable playbooks, fundraising intelligence, and grounded analysis for the next generation of founders building across Bharat.
+          </p>
+          <div class="editorial-hero-actions">
+            <a href="#latest-blogs" class="btn btn-primary">Read Latest Articles ↓</a>
+            <a href="blogs.html" class="btn btn-secondary">Explore All Playbooks →</a>
           </div>
         </div>
-
-        <!-- Results Count Bar -->
-        <div class="directory-status-bar">
-          <span class="directory-count-text" id="directory-count">Loading startups...</span>
-        </div>
-
-        <!-- Startup Cards Grid -->
-        <div class="directory-cards-grid" id="directory-cards-container" aria-live="polite">
-          <!-- Rendered dynamically -->
-        </div>
-
       </div>
     </section>
 
-    <!-- 4. Latest Blogs Section -->
-    <section class="blog-section" id="blogs">
+    <!-- 3. Latest Blogs Section (Primary Visual Focus) -->
+    <section class="blog-section" id="latest-blogs">
       <div class="container">
         
         <div class="blog-section-header">
           <div>
-            <p class="eyebrow">FROM THE BHARATLAUNCH DESK</p>
+            <span class="eyebrow">FROM THE BHARATLAUNCH DESK</span>
             <h2>Latest Insights & Playbooks</h2>
-            <p>Practical perspectives, ecosystem analysis, and frameworks for Indian founders.</p>
+            <p>Practical perspectives and frameworks written for high-growth founders.</p>
           </div>
           <a href="blogs.html" class="btn btn-secondary">View All Articles →</a>
         </div>
 
-        <!-- Blog Cards Grid -->
-        <div class="blog-grid" id="featured-blogs-container" aria-live="polite">
-          <!-- Rendered dynamically from /api/blogs -->
+        <!-- Dynamic Blog Cards Grid -->
+        <div class="blog-grid" id="homepage-blogs-container" aria-live="polite">
+          <p class="empty-state">Loading articles...</p>
         </div>
 
       </div>
@@ -296,7 +123,7 @@
 
   </main>
 
-  <!-- 5. Minimal Global Footer -->
+  <!-- 4. Minimal Global Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
@@ -311,33 +138,34 @@
             <span>BharatLaunch</span>
           </div>
           <p>
-            India's dedicated platform discovering, showcasing, and cataloging the next generation of high-impact technology ventures.
+            Insights, ecosystem intelligence, and actionable perspectives for founders and builders shaping India's venture landscape.
           </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Editorial</h4>
+          <ul>
+            <li><a href="blogs.html">All Articles</a></li>
+            <li><a href="blogs.html">Founder Playbooks</a></li>
+            <li><a href="blogs.html">Fundraising Guides</a></li>
+            <li><a href="blogs.html">Ecosystem Shifts</a></li>
+          </ul>
         </div>
 
         <div class="footer-col">
           <h4>Platform</h4>
           <ul>
-            <li><a href="index.html#directory">Startup Directory</a></li>
-            <li><a href="blogs.html">Founder Notes</a></li>
             <li><a href="ecosystem.html">Ecosystem Map</a></li>
             <li><a href="funding.html">Funding Radar</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Intelligence</h4>
-          <ul>
             <li><a href="pr-news.html">PR & Media</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="blogs.html">Market Insights</a></li>
+            <li><a href="about.html">About BharatLaunch</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Owner Access</h4>
+          <h4>Access</h4>
           <ul>
-            <li><a href="admin.html">Admin Portal</a></li>
+            <li><a href="admin.html">Owner Portal</a></li>
           </ul>
         </div>
 
@@ -354,12 +182,6 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/data/startups.js"></script>
-  <script src="js/data/funding.js"></script>
-  <script src="js/data/news.js"></script>
-  <script src="js/data/ecosystem.js"></script>
-  <script src="js/data.js"></script>
-
   <script>
     (function() {
       // ----------------------------------------------------------------------
@@ -392,269 +214,19 @@
       if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
       if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
-      // Close drawer on link clicks
       document.querySelectorAll('.mobile-drawer-link').forEach(link => {
         link.addEventListener('click', closeDrawer);
       });
 
       // ----------------------------------------------------------------------
-      // Mobile Filter Sheet Management
-      // ----------------------------------------------------------------------
-      const openFiltersBtn = document.getElementById('open-mobile-filters');
-      const filterModal = document.getElementById('mobile-filter-modal');
-      const closeFiltersBtn = document.getElementById('close-mobile-filters');
-      const applyFiltersBtn = document.getElementById('mobile-apply-btn');
-      const resetFiltersBtn = document.getElementById('mobile-reset-btn');
-
-      function openFilterModal() {
-        // Sync desktop selects to mobile selects
-        document.getElementById('mobile-stage-select').value = activeStage;
-        document.getElementById('mobile-year-select').value = activeYear;
-        document.getElementById('mobile-sort-select').value = activeSort;
-        
-        filterModal.classList.add('active');
-        filterModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeFilterModal() {
-        filterModal.classList.remove('active');
-        filterModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      }
-
-      if (openFiltersBtn) openFiltersBtn.addEventListener('click', openFilterModal);
-      if (closeFiltersBtn) closeFiltersBtn.addEventListener('click', closeFilterModal);
-      if (filterModal) {
-        filterModal.addEventListener('click', function(e) {
-          if (e.target === filterModal) closeFilterModal();
-        });
-      }
-
-      if (applyFiltersBtn) {
-        applyFiltersBtn.addEventListener('click', function() {
-          activeStage = document.getElementById('mobile-stage-select').value;
-          activeYear = document.getElementById('mobile-year-select').value;
-          activeSort = document.getElementById('mobile-sort-select').value;
-          
-          // Sync to desktop selects
-          document.getElementById('filter-stage').value = activeStage;
-          document.getElementById('filter-year').value = activeYear;
-          document.getElementById('filter-sort').value = activeSort;
-
-          renderStartups();
-          closeFilterModal();
-        });
-      }
-
-      if (resetFiltersBtn) {
-        resetFiltersBtn.addEventListener('click', function() {
-          activeSector = 'All';
-          activeStage = 'All';
-          activeYear = 'All';
-          activeSort = 'latest';
-          searchQuery = '';
-          
-          document.getElementById('directory-search').value = '';
-          document.getElementById('filter-stage').value = 'All';
-          document.getElementById('filter-year').value = 'All';
-          document.getElementById('filter-sort').value = 'latest';
-          document.getElementById('mobile-stage-select').value = 'All';
-          document.getElementById('mobile-year-select').value = 'All';
-          document.getElementById('mobile-sort-select').value = 'latest';
-
-          document.querySelectorAll('.filter-pill').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.sector === 'All');
-          });
-
-          renderStartups();
-          closeFilterModal();
-        });
-      }
-
-      // ----------------------------------------------------------------------
-      // Startup Directory Rendering & Filtering
-      // ----------------------------------------------------------------------
-      let activeSector = 'All';
-      let activeStage = 'All';
-      let activeYear = 'All';
-      let activeSort = 'latest';
-      let searchQuery = '';
-
-      function startupCardMarkup(startup) {
-        const logoContent = startup.logo 
-          ? `<img class="startup-logo-image" src="${startup.logo}" alt="${startup.name} logo" loading="lazy" decoding="async" onerror="this.outerHTML='<span aria-hidden=\\'true\\'>${startup.monogram || 'BL'}</span>'">`
-          : `<span aria-hidden="true">${startup.monogram || 'BL'}</span>`;
-
-        const location = startup.headquarters || (startup.city ? startup.city + (startup.state ? ', ' + startup.state : '') : 'India');
-        const founderName = (startup.founders && startup.founders.length > 0) ? startup.founders[0].name : 'Leadership Team';
-
-        return `
-          <article class="startup-card">
-            <div>
-              <div class="card-top">
-                <div class="card-brand">
-                  <div class="card-logo-box">${logoContent}</div>
-                  <div class="card-name-group">
-                    <h3>${startup.name}</h3>
-                    <div class="card-location">📍 ${location}</div>
-                  </div>
-                </div>
-                <span class="badge badge-outline">${startup.stage}</span>
-              </div>
-
-              <p class="card-tagline">${startup.tagline}</p>
-            </div>
-
-            <div>
-              <div class="card-meta-strip">
-                <div class="card-meta-col">
-                  <span class="lbl">Funding</span>
-                  <span class="val">${startup.funding}</span>
-                </div>
-                <div class="card-meta-col">
-                  <span class="lbl">Sector</span>
-                  <span class="val">${startup.sector}</span>
-                </div>
-                <div class="card-meta-col">
-                  <span class="lbl">Est.</span>
-                  <span class="val">${startup.foundedYear}</span>
-                </div>
-              </div>
-
-              <div class="card-footer-action">
-                <span style="font-size: 0.8rem; color: var(--color-text-muted);">Founder: <strong style="color: var(--color-black);">${founderName}</strong></span>
-                <a href="startup-detail.html?id=${encodeURIComponent(startup.id)}" class="btn" aria-label="View profile of ${startup.name}">View Profile →</a>
-              </div>
-            </div>
-          </article>
-        `;
-      }
-
-      function renderStartups() {
-        const container = document.getElementById('directory-cards-container');
-        const countLabel = document.getElementById('directory-count');
-        if (!container || !window.BharatData) return;
-
-        const filtered = window.BharatData.filterStartups({
-          query: searchQuery,
-          sector: activeSector,
-          stage: activeStage,
-          year: activeYear
-        });
-
-        // Sorting
-        const sorted = [...filtered].sort((a, b) => {
-          if (activeSort === 'oldest') return (a.foundedYear || 0) - (b.foundedYear || 0);
-          if (activeSort === 'name') return (a.name || '').localeCompare(b.name || '');
-          return (b.foundedYear || 0) - (a.foundedYear || 0); // default 'latest'
-        });
-
-        countLabel.textContent = `${sorted.length} Startup${sorted.length === 1 ? '' : 's'} Found`;
-
-        if (sorted.length === 0) {
-          container.innerHTML = `
-            <div class="directory-empty-state">
-              <h3>No matching startups found</h3>
-              <p>Try adjusting your search keywords, sector filter, or founding stage.</p>
-              <button class="btn btn-secondary" id="empty-reset-btn" style="min-height: 40px;">Reset All Filters</button>
-            </div>
-          `;
-          const emptyResetBtn = document.getElementById('empty-reset-btn');
-          if (emptyResetBtn) {
-            emptyResetBtn.addEventListener('click', () => {
-              document.getElementById('filter-reset').click();
-            });
-          }
-          return;
-        }
-
-        container.innerHTML = sorted.map(startupCardMarkup).join('');
-      }
-
-      // Search input handler with debounce
-      const searchInput = document.getElementById('directory-search');
-      if (searchInput) {
-        let debounceTimer;
-        searchInput.addEventListener('input', function(e) {
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(() => {
-            searchQuery = e.target.value.trim();
-            renderStartups();
-          }, 150);
-        });
-      }
-
-      // Sector pills handler
-      const pillsContainer = document.getElementById('sector-pills');
-      if (pillsContainer) {
-        pillsContainer.addEventListener('click', function(e) {
-          const pill = e.target.closest('.filter-pill');
-          if (!pill) return;
-          activeSector = pill.dataset.sector || 'All';
-          document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          renderStartups();
-        });
-      }
-
-      // Desktop filter dropdowns
-      const stageSelect = document.getElementById('filter-stage');
-      const yearSelect = document.getElementById('filter-year');
-      const sortSelect = document.getElementById('filter-sort');
-      const resetBtn = document.getElementById('filter-reset');
-
-      if (stageSelect) {
-        stageSelect.addEventListener('change', function(e) {
-          activeStage = e.target.value;
-          renderStartups();
-        });
-      }
-
-      if (yearSelect) {
-        yearSelect.addEventListener('change', function(e) {
-          activeYear = e.target.value;
-          renderStartups();
-        });
-      }
-
-      if (sortSelect) {
-        sortSelect.addEventListener('change', function(e) {
-          activeSort = e.target.value;
-          renderStartups();
-        });
-      }
-
-      if (resetBtn) {
-        resetBtn.addEventListener('click', function() {
-          activeSector = 'All';
-          activeStage = 'All';
-          activeYear = 'All';
-          activeSort = 'latest';
-          searchQuery = '';
-          
-          if (searchInput) searchInput.value = '';
-          if (stageSelect) stageSelect.value = 'All';
-          if (yearSelect) yearSelect.value = 'All';
-          if (sortSelect) sortSelect.value = 'latest';
-
-          document.querySelectorAll('.filter-pill').forEach(p => {
-            p.classList.toggle('active', p.dataset.sector === 'All');
-          });
-
-          renderStartups();
-        });
-      }
-
-      // ----------------------------------------------------------------------
-      // Latest Blogs Section Rendering
+      // Dynamic Blog Loading from /api/blogs
       // ----------------------------------------------------------------------
       const fallbackBlogs = [
         {
           id: "blog-ecosystem-2026",
           title: "India's Startup Ecosystem: What Founders Should Know in 2026",
           slug: "indias-startup-ecosystem-what-founders-should-know-in-2026",
-          featuredImage: "assets/blog-ecosystem.svg",
+          featuredImage: "assets/blog-ecosystem.jpg",
           category: "Startup Ecosystem",
           excerpt: "A deep dive into structural shifts, Tier-2/3 expansion, sustainable unit economics, and new market opportunities across Bharat.",
           publicationDate: "2026-09-08"
@@ -663,7 +235,7 @@
           id: "blog-prepare-funding",
           title: "How Early-Stage Startups Can Prepare for Funding",
           slug: "how-early-stage-startups-can-prepare-for-funding",
-          featuredImage: "assets/blog-scale.svg",
+          featuredImage: "assets/blog-funding.jpg",
           category: "Fundraising",
           excerpt: "A practical guide to metrics, investor diligence, pitch narratives, and term-sheet negotiation for seed and Series A founders.",
           publicationDate: "2026-09-02"
@@ -672,7 +244,7 @@
           id: "blog-idea-to-market",
           title: "Building a Startup in India: From Idea to Market",
           slug: "building-a-startup-in-india-from-idea-to-market",
-          featuredImage: "assets/blog-founders.svg",
+          featuredImage: "assets/blog-ideatomarket.jpg",
           category: "Founder Playbook",
           excerpt: "Step-by-step framework on identifying painful problems, building the first MVP, finding initial customer evangelists, and scaling distribution.",
           publicationDate: "2026-08-25"
@@ -680,58 +252,54 @@
       ];
 
       function blogCardMarkup(blog) {
-        const visual = blog.featuredImage 
-          ? `<img src="${blog.featuredImage}" alt="" loading="lazy" onerror="this.outerHTML='<span class=\\'blog-visual-mark\\'>BL</span>'">`
-          : '<span class="blog-visual-mark">BL</span>';
-        
+        const coverSrc = blog.featuredImage || 'assets/blog-ecosystem.jpg';
         const dateObj = new Date(blog.publicationDate + 'T00:00:00');
         const formattedDate = isNaN(dateObj) ? blog.publicationDate : dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 
         return `
           <article class="blog-card">
             <a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}" aria-label="Read ${blog.title}">
-              ${visual}
+              <img src="${coverSrc}" alt="${blog.title}" loading="lazy" onerror="this.src='assets/blog-ecosystem.jpg'">
             </a>
             <div class="blog-card-body">
               <div>
-                <div class="blog-card-meta">
-                  <span>${blog.category || 'Founder Note'}</span>
-                  <time datetime="${blog.publicationDate}">${formattedDate}</time>
-                </div>
-                <h3>
+                <span class="blog-card-category">${blog.category || 'Founder Playbook'}</span>
+                <h3 class="blog-card-title">
                   <a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a>
                 </h3>
                 <p class="blog-card-excerpt">${blog.excerpt}</p>
               </div>
-              <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">
-                Read Article <span aria-hidden="true">→</span>
-              </a>
+              <div class="blog-card-footer">
+                <time class="blog-card-date" datetime="${blog.publicationDate}">${formattedDate}</time>
+                <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">
+                  Read Article <span aria-hidden="true">→</span>
+                </a>
+              </div>
             </div>
           </article>
         `;
       }
 
-      async function renderFeaturedBlogs() {
-        const container = document.getElementById('featured-blogs-container');
+      async function renderHomepageBlogs() {
+        const container = document.getElementById('homepage-blogs-container');
         if (!container) return;
 
         try {
-          const response = await fetch('/api/blogs');
+          let response = await fetch('/api/blogs');
+          if (!response.ok) {
+            response = await fetch('data/blogs.json');
+          }
           if (!response.ok) throw new Error('API fetch failed');
           const blogs = await response.json();
-          const items = Array.isArray(blogs) && blogs.length > 0 ? blogs.slice(0, 3) : fallbackBlogs;
+          const published = Array.isArray(blogs) ? blogs.filter(b => b.published !== false) : [];
+          const items = published.length > 0 ? published.slice(0, 3) : fallbackBlogs;
           container.innerHTML = items.map(blogCardMarkup).join('');
         } catch (err) {
-          // Graceful fallback to default 3 demo blogs
           container.innerHTML = fallbackBlogs.map(blogCardMarkup).join('');
         }
       }
 
-      // Initialize on load
-      document.addEventListener('DOMContentLoaded', () => {
-        renderStartups();
-        renderFeaturedBlogs();
-      });
+      document.addEventListener('DOMContentLoaded', renderHomepageBlogs);
     })();
   </script>
 </body>

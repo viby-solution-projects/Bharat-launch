@@ -126,10 +126,26 @@
 
     async function loadArticle() {
       try {
-        const response = await fetch('/api/blogs/' + encodeURIComponent(slug || ''));
-        if (!response.ok) throw new Error('not found');
-        const blog = await response.json();
-        const all = await (await fetch('/api/blogs')).json();
+        let blog = null;
+        let all = [];
+        try {
+          const response = await fetch('/api/blogs/' + encodeURIComponent(slug || ''));
+          if (response.ok) {
+            blog = await response.json();
+            const allRes = await fetch('/api/blogs');
+            if (allRes.ok) all = await allRes.json();
+          }
+        } catch (e) {}
+
+        if (!blog) {
+          const res = await fetch('data/blogs.json');
+          if (res.ok) {
+            all = await res.json();
+            blog = all.find(b => b.slug === slug && b.published !== false);
+          }
+        }
+
+        if (!blog) throw new Error('not found');
         const related = all.filter(item => item.slug !== blog.slug).slice(0, 2);
         const date = new Date(blog.publicationDate + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
         const readingTime = Math.max(1, Math.ceil(blog.content.split(/\s+/).length / 200));

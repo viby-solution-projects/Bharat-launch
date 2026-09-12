@@ -3,7 +3,7 @@
     "id": "blog-ecosystem-2026",
     "title": "India's Startup Ecosystem: What Founders Should Know in 2026",
     "slug": "indias-startup-ecosystem-what-founders-should-know-in-2026",
-    "featuredImage": "assets/blog-ecosystem.svg",
+    "featuredImage": "assets/blog-ecosystem.jpg",
     "category": "Startup Ecosystem",
     "excerpt": "A deep dive into structural shifts, Tier-2/3 expansion, sustainable unit economics, and new market opportunities across Bharat.",
     "content": "## A New Chapter in India's Innovation Economy\n\nIndia's startup landscape has evolved beyond raw user acquisition and hyper-growth cycles. In 2026, the ecosystem is driven by resilient business models, deep technological capabilities, and founders building solutions tailored for India's unique socio-economic fabric.\n\nFrom Tier-2 and Tier-3 manufacturing corridors to metropolitan deeptech labs, capital is rewarding execution discipline, clear unit economics, and long-term customer value.\n\n## Key Structural Shifts Shaping 2026\n\n### 1. Sovereign AI and Indic Language Technologies\nIndian enterprises and consumers require models built for linguistic diversity and cultural context. Startups building localized LLMs, voice interfaces, and domain-specific AI workflows are unlocking unprecedented enterprise adoption.\n\n### 2. Distributed Innovation Beyond Tier-1 Metros\nCities like Jaipur, Indore, Coimbatore, and Surat are emerging as powerhouse clusters. Founders from these regions benefit from lower burn rates, high operational focus, and intimate knowledge of vernacular consumer needs.\n\n### 3. SpaceTech and DeepTech Commercialization\nWith active policy support from IN-SPACe and ISRO, private aerospace, geospatial intelligence, and satellite communications companies are securing global commercial contracts.\n\n## Actionable Takeaways for Founders\n\n- **Focus on gross margin durability:** Build pricing power through workflow integration rather than discount-driven volume.\n- **Design for regional accessibility:** Multi-lingual support and low-bandwidth resilience are core product features, not afterthoughts.\n- **Leverage digital public infrastructure:** UPI, ONDC, and India Stack provide unmatched leverage for scalable distribution.",
@@ -15,10 +15,10 @@
     "id": "blog-prepare-funding",
     "title": "How Early-Stage Startups Can Prepare for Funding",
     "slug": "how-early-stage-startups-can-prepare-for-funding",
-    "featuredImage": "assets/blog-scale.svg",
+    "featuredImage": "assets/blog-funding.jpg",
     "category": "Fundraising",
     "excerpt": "A practical guide to metrics, investor diligence, pitch narratives, and term-sheet negotiation for seed and Series A founders.",
-    "content": "## Preparing Before You Pitch\n\nFundraising is an amplification mechanism, not a validation milestone. Before opening a funding round, founders must build clarity around their fundamental unit economics, market size, and customer retention dynamics.\n\nInstitutional investors in today's environment look for strong evidence of product-market fit and capital efficiency rather than vague top-line vanity metrics.\n\n## Core Pillars of Investor Readiness\n\n### 1. Clean Financial & Operational Data Rooms\nEnsure your cap table, corporate registrations, customer contracts, and IP assignments are documented and accessible. Early-stage diligence friction often kills deal momentum.\n\n### 2. High-Signal Metrics That Matter\n- **Cohort Retention:** Prove that your customers stick around and increase their usage or spend over time.\n- **Customer Acquisition Cost (CAC) vs. Lifetime Value (LTV):** Demonstrate a repeatable distribution channel with healthy payback periods (ideally < 12 months for B2B).\n- **Burn Multiple:** Measure how much net burn is required to generate each net new dollar of ARR.\n\n### 3. Crafting a Compelling narrative\nExplain why this problem matters now, why your team has unfair insight to solve it, and how $1M-$5M in fresh capital fundamentally unlocks the next 18 months of distribution inflection.",
+    "content": "## Preparing Before You Pitch\n\nFundraising is an amplification mechanism, not a validation milestone. Before opening a funding round, founders must build clarity around their fundamental unit economics, market size, and customer retention dynamics.\n\nInstitutional investors in today's environment look for strong evidence of product-market fit and capital efficiency rather than vague top-line vanity metrics.\n\n## Core Pillars of Investor Readiness\n\n### 1. Clean Financial & Operational Data Rooms\nEnsure your cap table, corporate registrations, customer contracts, and IP assignments are documented and accessible. Early-stage diligence friction often kills deal momentum.\n\n### 2. High-Signal Metrics That Matter\n- **Cohort Retention:** Prove that your customers stick around and increase their usage or spend over time.\n- **Customer Acquisition Cost (CAC) vs. Lifetime Value (LTV):** Demonstrate a repeatable distribution channel with healthy payback periods (ideally < 12 months for B2B).\n- **Burn Multiple:** Measure how much net burn is required to generate each net new dollar of ARR.\n\n### 3. Crafting a Compelling Narrative\nExplain why this problem matters now, why your team has unfair insight to solve it, and how $1M-$5M in fresh capital fundamentally unlocks the next 18 months of distribution inflection.",
     "publicationDate": "2026-09-02",
     "published": true,
     "createdAt": "2026-09-02T09:00:00.000Z"
@@ -27,24 +27,12 @@
     "id": "blog-idea-to-market",
     "title": "Building a Startup in India: From Idea to Market",
     "slug": "building-a-startup-in-india-from-idea-to-market",
-    "featuredImage": "assets/blog-founders.svg",
+    "featuredImage": "assets/blog-ideatomarket.jpg",
     "category": "Founder Playbook",
     "excerpt": "Step-by-step framework on identifying painful problems, building the first MVP, finding initial customer evangelists, and scaling distribution.",
     "content": "## Starting with High-Consequence Problems\n\nA great startup begins with a problem people are already paying time, stress, or money to solve with makeshift workarounds. Before writing a single line of production code, founders should run structured customer discovery interviews.\n\n## The Discovery to Launch Framework\n\n### Step 1: Customer Discovery Without Solution Bias\nAsk open-ended questions about how users currently complete the workflow, what breaks, and who signs off on the budget. If users are not actively looking for a better way, education costs will consume your runway.\n\n### Step 2: The Minimal Viable Workflow\nBuild the smallest functional prototype that delivers the primary value proposition. Often, a combination of simple forms, no-code integrations, or manual concierge execution is sufficient to validate willingness to pay.\n\n### Step 3: Finding Your First 10 Evangelists\nAvoid broad ad spending. Get your first cohort through direct outreach, founder-led sales, community engagement, and hyper-targeted pilots. Measure referral rates and unsolicited organic recommendations.\n\n### Step 4: Iterative Feedback Loops\nSet up weekly sprint cycles focused on customer onboarding friction points. Fast iteration on user feedback builds customer loyalty faster than any marketing campaign.",
     "publicationDate": "2026-08-25",
     "published": true,
     "createdAt": "2026-08-25T09:00:00.000Z"
-  },
-  {
-    "id": "blog-beyond-big-cities",
-    "title": "Why Indian Startups Are Building for a Global Market",
-    "slug": "why-indian-startups-are-building-for-a-global-market",
-    "featuredImage": "assets/blog-global.svg",
-    "category": "Global Market",
-    "excerpt": "Indian founders are increasingly building products that can compete beyond domestic borders in SaaS, AI, and developer tooling.",
-    "content": "## Indian Products Earning Global Trust\n\nIndian software founders are shifting rapidly from cost-arbitrage positioning to product and category leadership. Global software rewards product craftsmanship, security compliance, reliability, and measurable ROI.\n\nWith world-class engineering talent, strong remote go-to-market motions, and competitive operational structures, Indian cross-border SaaS and developer tool companies are scaling across North America, Europe, and Southeast Asia.",
-    "publicationDate": "2026-08-18",
-    "published": true,
-    "createdAt": "2026-08-18T09:00:00.000Z"
   }
 ]

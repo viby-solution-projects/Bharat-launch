@@ -69,7 +69,7 @@
   <main>
     <section class="page-hero">
       <div class="container">
-        <p class="eyebrow">BHARATLAUNCH DESK</p>
+        <span class="eyebrow">BHARATLAUNCH DESK</span>
         <h1>Insights for India's next generation of founders.</h1>
         <p>Grounded frameworks, market breakdowns, and field notes for founders shaping companies from Bharat.</p>
       </div>
@@ -77,7 +77,7 @@
 
     <section class="blog-list-section">
       <div class="container">
-        <div class="blog-list-grid" id="all-blogs"></div>
+        <div class="blog-grid" id="all-blogs"></div>
       </div>
     </section>
   </main>
@@ -104,30 +104,37 @@
     if (backdrop) backdrop.onclick = () => { drawer.classList.remove('active'); backdrop.classList.remove('active'); };
 
     function card(blog) {
-      const visual = blog.featuredImage ? `<img src="${blog.featuredImage}" alt="" loading="lazy">` : '<span class="blog-visual-mark">BL</span>';
-      const date = new Date(blog.publicationDate + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      const coverSrc = blog.featuredImage || 'assets/blog-ecosystem.jpg';
+      const dateObj = new Date(blog.publicationDate + 'T00:00:00');
+      const formattedDate = isNaN(dateObj) ? blog.publicationDate : dateObj.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
       return `
         <article class="blog-card">
-          <a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${visual}</a>
+          <a class="blog-card-image" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}" aria-label="Read ${blog.title}">
+            <img src="${coverSrc}" alt="${blog.title}" loading="lazy" onerror="this.src='assets/blog-ecosystem.jpg'">
+          </a>
           <div class="blog-card-body">
             <div>
-              <div class="blog-card-meta">
-                <span>${blog.category}</span>
-                <time>${date}</time>
-              </div>
-              <h3><a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a></h3>
+              <span class="blog-card-category">${blog.category || 'Founder Playbook'}</span>
+              <h3 class="blog-card-title">
+                <a href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">${blog.title}</a>
+              </h3>
               <p class="blog-card-excerpt">${blog.excerpt}</p>
             </div>
-            <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">Read Article →</a>
+            <div class="blog-card-footer">
+              <time class="blog-card-date" datetime="${blog.publicationDate}">${formattedDate}</time>
+              <a class="blog-read-link" href="blog-detail.html?slug=${encodeURIComponent(blog.slug)}">Read Article →</a>
+            </div>
           </div>
         </article>
       `;
     }
 
     fetch('/api/blogs')
+      .then(r => r.ok ? r : fetch('data/blogs.json'))
       .then(r => r.json())
       .then(blogs => {
-        document.getElementById('all-blogs').innerHTML = blogs.map(card).join('');
+        const published = Array.isArray(blogs) ? blogs.filter(b => b.published !== false) : [];
+        document.getElementById('all-blogs').innerHTML = published.map(card).join('');
       })
       .catch(() => {
         document.getElementById('all-blogs').innerHTML = '<p class="empty-state">Blog posts are loading soon.</p>';
