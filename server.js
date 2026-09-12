@@ -101,22 +101,26 @@ async function handleApi(req, res, reqUrl) {
     if (!nextSlug || !body.title || !body.excerpt || !body.content) {
       return sendJson(res, 400, { error: 'Title, slug, excerpt, and content are required.' });
     }
-    const existing = await readBlogs(true);
-    if (existing.some(item => item.slug === nextSlug)) {
-      return sendJson(res, 409, { error: 'That slug is already in use.' });
+    try {
+      const existing = await readBlogs(true);
+      if (existing.some(item => item.slug === nextSlug)) {
+        return sendJson(res, 409, { error: 'That slug is already in use.' });
+      }
+      const created = await createBlog({
+        title: String(body.title).trim(),
+        slug: nextSlug,
+        featuredImage: String(body.featuredImage || '').trim(),
+        category: String(body.category || 'Founder Playbook').trim(),
+        excerpt: String(body.excerpt).trim(),
+        content: String(body.content).trim(),
+        author: String(body.author || 'BharatLaunch Editorial').trim(),
+        publicationDate: body.publicationDate || new Date().toISOString().slice(0, 10),
+        published: Boolean(body.published)
+      });
+      return sendJson(res, 201, publicBlog(created, true));
+    } catch (err) {
+      return sendJson(res, 500, { error: err.message || 'Failed to create blog.' });
     }
-    const created = await createBlog({
-      title: String(body.title).trim(),
-      slug: nextSlug,
-      featuredImage: String(body.featuredImage || '').trim(),
-      category: String(body.category || 'Founder Playbook').trim(),
-      excerpt: String(body.excerpt).trim(),
-      content: String(body.content).trim(),
-      author: String(body.author || 'BharatLaunch Editorial').trim(),
-      publicationDate: body.publicationDate || new Date().toISOString().slice(0, 10),
-      published: Boolean(body.published)
-    });
-    return sendJson(res, 201, publicBlog(created, true));
   }
 
   if (req.method === 'PUT' && slug) {

@@ -4,257 +4,465 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Owner Blog Manager — BharatLaunch</title>
+  <meta name="description" content="BharatLaunch editorial story manager and publication CMS.">
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/blog.css">
 </head>
-<body>
-  <!-- Header -->
-  <header class="site-header">
+<body class="cms-page">
+
+  <!-- 1. Header Bar -->
+  <header class="site-header" role="banner">
     <div class="container nav-container">
-      <a href="index.html" class="brand-logo" aria-label="BharatLaunch Home">
-        <span class="brand-logo-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-          </svg>
-        </span>
-        <span>BharatLaunch</span>
-      </a>
-      <div class="nav-actions" style="display: flex; gap: 10px; align-items: center;">
-        <a href="index.html" class="btn btn-secondary btn-sm">View Publication</a>
-        <button id="logout" class="btn btn-primary btn-sm" hidden>Log out</button>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="index.html" class="brand-logo" aria-label="BharatLaunch Publication Home">
+          <span class="brand-logo-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </span>
+          <span>BharatLaunch</span>
+        </a>
+        <span class="cms-header-badge">Owner / Editor</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="index.html" class="btn btn-secondary btn-sm" target="_blank" rel="noopener">View Publication ↗</a>
+        <button id="logout-btn" class="btn btn-primary btn-sm" style="display: none;">Log out</button>
       </div>
     </div>
   </header>
 
-  <main class="admin-section">
-    <div class="container">
-      
-      <!-- Login Panel -->
-      <div id="login-panel" class="admin-panel" style="max-width: 440px; margin: 40px auto;">
-        <p class="eyebrow eyebrow-dark">OWNER AREA</p>
-        <h1>Editor Portal</h1>
-        <p style="margin: 10px 0 22px;">Sign in with the website owner password to manage drafts and published stories.</p>
-        <form id="login-form" class="admin-form">
-          <label>Password
-            <input id="password" type="password" autocomplete="current-password" required placeholder="Enter password...">
-          </label>
-          <button class="btn btn-primary" type="submit">Sign in to Desk</button>
-          <div id="login-message"></div>
-        </form>
+  <!-- 2. Main CMS Content -->
+  <main class="cms-container">
+
+    <!-- 2A. Owner Login Panel (Shown when unauthenticated) -->
+    <div id="login-section" class="cms-card" style="max-width: 440px; margin: 48px auto;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span class="cms-header-badge" style="margin-bottom: 12px;">EDITORIAL DESK ACCESS</span>
+        <h1 style="font-size: 1.6rem; margin: 8px 0 6px; font-weight: 800; color: var(--color-black);">Owner Sign In</h1>
+        <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0;">Enter your owner password to manage drafts and live stories.</p>
       </div>
 
-      <!-- Manager View -->
-      <div id="manager" hidden>
-        <div class="admin-toolbar">
-          <div>
-            <p class="eyebrow eyebrow-dark">EDITORIAL DESK</p>
-            <h1>Story Management</h1>
-          </div>
-          <button id="new-blog" class="btn btn-primary">+ New Story</button>
+      <form id="login-form" class="cms-field" style="gap: 16px;">
+        <div class="cms-field">
+          <label class="cms-label" for="password">Owner Password</label>
+          <input id="password" class="cms-input" type="password" autocomplete="current-password" required placeholder="Enter owner password...">
+        </div>
+        <button class="cms-btn-primary" type="submit" style="width: 100%;">Sign In to Dashboard</button>
+        <div id="login-feedback"></div>
+      </form>
+    </div>
+
+    <!-- 2B. Owner Dashboard (Shown when authenticated) -->
+    <div id="dashboard-section" style="display: none;">
+
+      <!-- Toolbar -->
+      <div class="cms-toolbar">
+        <div>
+          <span class="cms-header-badge">EDITORIAL DESK</span>
+          <h1 class="cms-toolbar-title">Stories Management</h1>
+          <p class="cms-toolbar-sub">Manage, draft, publish, and edit articles for BharatLaunch.</p>
+        </div>
+        <button id="btn-new-story" class="cms-btn-primary" type="button">+ New Story</button>
+      </div>
+
+      <!-- Story Editor Card -->
+      <section class="cms-card" id="editor-card">
+        <div class="cms-card-header">
+          <h2 id="editor-title">New Story</h2>
+          <span class="hint" id="editor-mode-hint">Drafting a new article</span>
         </div>
 
-        <div class="admin-grid">
-          <!-- Editor Form -->
-          <section class="admin-panel">
-            <h2 id="form-title">New Story</h2>
-            <form id="blog-form" class="admin-form">
-              <input id="blog-slug-original" type="hidden">
-              <label>Title
-                <input id="blog-title" required placeholder="Enter story headline...">
+        <form id="story-form" novalidate>
+          <input id="story-original-slug" type="hidden" value="">
+
+          <div class="cms-form-grid">
+
+            <!-- Title (Full Width) -->
+            <div class="cms-field cms-field-full">
+              <label class="cms-label" for="story-title">Title <span style="color: #D4AF37;">*</span></label>
+              <input id="story-title" class="cms-input" type="text" required placeholder="Enter story title">
+            </div>
+
+            <!-- Slug (Full Width) -->
+            <div class="cms-field cms-field-full">
+              <label class="cms-label" for="story-slug">
+                <span>Slug <span style="color: #D4AF37;">*</span></span>
+                <span class="hint">e.g. startup-funding-playbook</span>
               </label>
-              <label>Slug
-                <input id="blog-slug" required placeholder="story-url-slug">
+              <input id="story-slug" class="cms-input" type="text" required placeholder="your-story-slug">
+            </div>
+
+            <!-- Category (Col 1) -->
+            <div class="cms-field cms-field-half">
+              <label class="cms-label" for="story-category">Category <span style="color: #D4AF37;">*</span></label>
+              <select id="story-category" class="cms-select" required>
+                <option value="" disabled selected>Select category</option>
+                <option value="Founder Playbook">Founder Playbook</option>
+                <option value="Startup Ecosystem">Startup Ecosystem</option>
+                <option value="Fundraising">Fundraising</option>
+                <option value="Market Intelligence">Market Intelligence</option>
+                <option value="PR & Media">PR & Media</option>
+              </select>
+            </div>
+
+            <!-- Author (Col 2) -->
+            <div class="cms-field cms-field-half">
+              <label class="cms-label" for="story-author">Author</label>
+              <input id="story-author" class="cms-input" type="text" placeholder="Author name">
+            </div>
+
+            <!-- Featured Image URL (Full Width) -->
+            <div class="cms-field cms-field-full">
+              <label class="cms-label" for="story-image">
+                <span>Featured Image URL</span>
+                <span class="hint">https://... or assets/blog-*.jpg</span>
               </label>
-              <label>Featured Image URL
-                <input id="blog-image" type="text" placeholder="assets/blog-ecosystem.jpg or https://...">
-              </label>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                <label>Category
-                  <input id="blog-category" value="Founder Playbook" required>
-                </label>
-                <label>Author
-                  <input id="blog-author" value="BharatLaunch Editorial" required>
-                </label>
+              <input id="story-image" class="cms-input" type="text" placeholder="https://...">
+              <div id="image-preview-wrap" class="cms-image-preview-box">
+                <img id="image-preview-img" src="" alt="Cover preview">
               </div>
-              <label>Excerpt / Deck
-                <textarea id="blog-excerpt" rows="3" required placeholder="Short summary for card preview..."></textarea>
-              </label>
-              <label>Full Article Markdown Content
-                <textarea id="blog-content" rows="10" required placeholder="Write markdown content with ## headings, paragraphs, bullet points..."></textarea>
-              </label>
-              <label>Publication Date
-                <input id="blog-date" type="date" required>
-              </label>
-              <label class="checkbox">
-                <input id="blog-published" type="checkbox" checked> Publish immediately to live site
-              </label>
-              <button class="btn btn-primary" type="submit">Save Story</button>
-              <div id="form-message"></div>
-            </form>
-          </section>
+            </div>
 
-          <!-- Stories List -->
-          <section class="admin-panel">
-            <h2>All Stories (<span id="story-count">0</span>)</h2>
-            <div id="blog-list" style="margin-top: 14px;"></div>
-          </section>
+            <!-- Excerpt (Full Width) -->
+            <div class="cms-field cms-field-full">
+              <label class="cms-label" for="story-excerpt">Excerpt <span style="color: #D4AF37;">*</span></label>
+              <textarea id="story-excerpt" class="cms-textarea" rows="3" required placeholder="Short summary..."></textarea>
+            </div>
+
+            <!-- Article Content (Full Width Editor) -->
+            <div class="cms-field cms-field-full">
+              <label class="cms-label" for="story-content">
+                <span>Article Content <span style="color: #D4AF37;">*</span></span>
+                <span class="hint">Markdown (supports ## Headings, ### Subheadings, - Lists, **Bold**)</span>
+              </label>
+              <textarea id="story-content" class="cms-textarea cms-textarea-editor" rows="14" required placeholder="Write your article..."></textarea>
+            </div>
+
+            <!-- Publication Date (Col 1) -->
+            <div class="cms-field cms-field-half">
+              <label class="cms-label" for="story-date">Publication Date <span style="color: #D4AF37;">*</span></label>
+              <input id="story-date" class="cms-input" type="date" required>
+            </div>
+
+            <!-- Publication Status (Col 2) -->
+            <div class="cms-field cms-field-half">
+              <label class="cms-label" for="story-status">Status</label>
+              <select id="story-status" class="cms-select">
+                <option value="true">● Published</option>
+                <option value="false">○ Draft</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Form Actions Row -->
+          <div class="cms-actions-row">
+            <button id="btn-cancel-story" class="cms-btn-secondary" type="button">Cancel</button>
+            <button id="btn-save-story" class="cms-btn-primary" type="submit">Save Story</button>
+          </div>
+
+          <div id="editor-feedback"></div>
+        </form>
+      </section>
+
+      <!-- Stories List Card -->
+      <section class="cms-card">
+        <div class="cms-card-header">
+          <h2>All Stories (<span id="story-count">0</span>)</h2>
         </div>
-      </div>
+
+        <div id="stories-list-container" aria-live="polite">
+          <p class="pub-empty-state">Loading stories...</p>
+        </div>
+      </section>
 
     </div>
+
   </main>
 
+  <!-- Client JavaScript -->
   <script>
-    const $ = id => document.getElementById(id);
-    let blogs = [];
+    (function() {
+      const $ = id => document.getElementById(id);
+      let stories = [];
 
-    function message(id, text, error = false) {
-      $(id).innerHTML = text ? `<div class="notice${error ? ' error' : ''}">${text}</div>` : '';
-    }
-
-    async function api(url, options = {}) {
-      const response = await fetch(url, {
-        headers: { 'Content-Type': 'application/json' },
-        ...options
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Request failed.');
-      return data;
-    }
-
-    function resetForm() {
-      $('blog-form').reset();
-      $('blog-slug-original').value = '';
-      $('blog-date').value = new Date().toISOString().slice(0, 10);
-      $('blog-category').value = 'Founder Playbook';
-      $('blog-author').value = 'BharatLaunch Editorial';
-      $('blog-published').checked = true;
-      $('form-title').textContent = 'New Story';
-      message('form-message', '');
-    }
-
-    function fillForm(blog) {
-      $('blog-slug-original').value = blog.slug;
-      $('blog-title').value = blog.title;
-      $('blog-slug').value = blog.slug;
-      $('blog-image').value = blog.featuredImage || '';
-      $('blog-category').value = blog.category;
-      $('blog-author').value = blog.author || 'BharatLaunch Editorial';
-      $('blog-excerpt').value = blog.excerpt;
-      $('blog-content').value = blog.content;
-      $('blog-date').value = blog.publicationDate;
-      $('blog-published').checked = blog.published !== false;
-      $('form-title').textContent = 'Edit Story: ' + blog.title;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function renderList() {
-      $('story-count').textContent = blogs.length;
-      if (blogs.length === 0) {
-        $('blog-list').innerHTML = '<p class="pub-empty-state">No stories in database.</p>';
-        return;
+      function showFeedback(elementId, text, isError = false) {
+        const el = $(elementId);
+        if (!el) return;
+        el.innerHTML = text ? `<div class="cms-notice${isError ? ' error' : ''}">${text}</div>` : '';
       }
 
-      $('blog-list').innerHTML = blogs.map(blog => `
-        <div class="admin-blog-row">
-          <div>
-            <h3>${blog.title}</h3>
-            <p>${blog.category} · ${blog.publicationDate} · ${blog.author || 'Editorial'}</p>
-          </div>
-          <div class="admin-row-actions">
-            <span class="status-dot${blog.published === false ? ' draft' : ''}">${blog.published === false ? 'Draft' : 'Published'}</span>
-            <button class="btn btn-secondary btn-sm" data-edit="${blog.slug}">Edit</button>
-            <button class="btn btn-secondary btn-sm" data-delete="${blog.slug}">Delete</button>
-          </div>
-        </div>
-      `).join('');
-
-      document.querySelectorAll('[data-edit]').forEach(button => {
-        button.onclick = () => fillForm(blogs.find(b => b.slug === button.dataset.edit));
-      });
-
-      document.querySelectorAll('[data-delete]').forEach(button => {
-        button.onclick = async () => {
-          if (!confirm('Are you sure you want to permanently delete this story?')) return;
-          try {
-            await api('/api/blogs/' + encodeURIComponent(button.dataset.delete), { method: 'DELETE' });
-            await loadBlogs();
-            resetForm();
-            message('form-message', 'Story deleted successfully.');
-          } catch (error) {
-            message('form-message', error.message, true);
-          }
-        };
-      });
-    }
-
-    async function loadBlogs() {
-      blogs = await api('/api/blogs');
-      renderList();
-    }
-
-    async function showManager() {
-      $('login-panel').hidden = true;
-      $('manager').hidden = false;
-      $('logout').hidden = false;
-      resetForm();
-      await loadBlogs();
-    }
-
-    $('login-form').onsubmit = async event => {
-      event.preventDefault();
-      try {
-        await api('/api/auth/login', {
-          method: 'POST',
-          body: JSON.stringify({ password: $('password').value })
+      async function api(url, options = {}) {
+        const response = await fetch(url, {
+          headers: { 'Content-Type': 'application/json' },
+          ...options
         });
-        await showManager();
-      } catch (error) {
-        message('login-message', error.message, true);
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.error || 'Unable to complete request. Please try again.');
+        }
+        return data;
       }
-    };
 
-    $('blog-form').onsubmit = async event => {
-      event.preventDefault();
-      const slug = $('blog-slug-original').value;
-      const body = {
-        title: $('blog-title').value,
-        slug: $('blog-slug').value,
-        featuredImage: $('blog-image').value,
-        category: $('blog-category').value,
-        author: $('blog-author').value,
-        excerpt: $('blog-excerpt').value,
-        content: $('blog-content').value,
-        publicationDate: $('blog-date').value,
-        published: $('blog-published').checked
+      function slugify(text) {
+        return String(text || '')
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+      }
+
+      // Live Image Preview Handler
+      function updateImagePreview() {
+        const url = $('story-image').value.trim();
+        const box = $('image-preview-wrap');
+        const img = $('image-preview-img');
+        if (url) {
+          img.src = url;
+          img.onload = () => { box.style.display = 'block'; };
+          img.onerror = () => { box.style.display = 'none'; };
+        } else {
+          box.style.display = 'none';
+        }
+      }
+
+      $('story-image').addEventListener('input', updateImagePreview);
+
+      // Auto-generate slug from title if slug field has not been manually edited
+      let isSlugManuallyEdited = false;
+      $('story-slug').addEventListener('input', () => { isSlugManuallyEdited = true; });
+      $('story-title').addEventListener('input', () => {
+        if (!isSlugManuallyEdited && !$('story-original-slug').value) {
+          $('story-slug').value = slugify($('story-title').value);
+        }
+      });
+
+      // Reset form to completely blank state (zero fake demo values)
+      function resetEditorForm() {
+        $('story-form').reset();
+        $('story-original-slug').value = '';
+        $('story-title').value = '';
+        $('story-slug').value = '';
+        $('story-category').selectedIndex = 0;
+        $('story-author').value = '';
+        $('story-image').value = '';
+        $('story-excerpt').value = '';
+        $('story-content').value = '';
+        $('story-date').value = new Date().toISOString().slice(0, 10);
+        $('story-status').value = 'true';
+        $('editor-title').textContent = 'New Story';
+        $('editor-mode-hint').textContent = 'Drafting a new article';
+        isSlugManuallyEdited = false;
+        updateImagePreview();
+        showFeedback('editor-feedback', '');
+      }
+
+      function fillEditorForm(story) {
+        $('story-original-slug').value = story.slug;
+        $('story-title').value = story.title || '';
+        $('story-slug').value = story.slug || '';
+        $('story-category').value = story.category || 'Founder Playbook';
+        $('story-author').value = story.author || '';
+        $('story-image').value = story.featuredImage || '';
+        $('story-excerpt').value = story.excerpt || '';
+        $('story-content').value = story.content || '';
+        $('story-date').value = story.publicationDate || new Date().toISOString().slice(0, 10);
+        $('story-status').value = story.published !== false ? 'true' : 'false';
+        $('editor-title').textContent = 'Edit Story: ' + (story.title || story.slug);
+        $('editor-mode-hint').textContent = 'Editing existing article';
+        isSlugManuallyEdited = true;
+        updateImagePreview();
+        $('editor-card').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr + (dateStr.includes('T') ? '' : 'T00:00:00'));
+        return isNaN(d) ? dateStr : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      }
+
+      function renderStoriesList() {
+        const container = $('stories-list-container');
+        $('story-count').textContent = stories.length;
+
+        if (stories.length === 0) {
+          container.innerHTML = `
+            <div class="cms-empty-card">
+              <h3>No stories yet.</h3>
+              <p>Create your first story to publish it on BharatLaunch.</p>
+              <button class="cms-btn-primary" type="button" onclick="document.getElementById('editor-card').scrollIntoView({behavior:'smooth'})">+ New Story</button>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = stories.map(story => {
+          const isPublished = story.published !== false;
+          return `
+            <div class="cms-story-row">
+              <div class="cms-story-info">
+                <h3 class="cms-story-title">${story.title || 'Untitled Story'}</h3>
+                <div class="cms-story-meta">
+                  <span class="cms-status-pill ${isPublished ? 'published' : 'draft'}">
+                    ${isPublished ? '● Published' : '○ Draft'}
+                  </span>
+                  <span>•</span>
+                  <span>${story.category || 'Founder Playbook'}</span>
+                  <span>•</span>
+                  <time datetime="${story.publicationDate}">${formatDate(story.publicationDate)}</time>
+                  ${story.author ? `<span>•</span><span>${story.author}</span>` : ''}
+                </div>
+              </div>
+              <div class="cms-story-actions">
+                <button class="cms-btn-action" data-edit="${encodeURIComponent(story.slug)}" type="button">Edit</button>
+                <button class="cms-btn-action cms-btn-delete" data-delete="${encodeURIComponent(story.slug)}" type="button">Delete</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Attach action event listeners
+        container.querySelectorAll('[data-edit]').forEach(btn => {
+          btn.onclick = () => {
+            const slug = decodeURIComponent(btn.dataset.edit);
+            const found = stories.find(s => s.slug === slug);
+            if (found) fillEditorForm(found);
+          };
+        });
+
+        container.querySelectorAll('[data-delete]').forEach(btn => {
+          btn.onclick = async () => {
+            const slug = decodeURIComponent(btn.dataset.delete);
+            if (!confirm('Are you sure you want to permanently delete this story?')) return;
+            try {
+              await api('/api/blogs/' + encodeURIComponent(slug), { method: 'DELETE' });
+              await loadStories();
+              resetEditorForm();
+              showFeedback('editor-feedback', 'Story deleted successfully.');
+            } catch (err) {
+              showFeedback('editor-feedback', err.message, true);
+            }
+          };
+        });
+      }
+
+      async function loadStories() {
+        try {
+          stories = await api('/api/blogs');
+          if (!Array.isArray(stories)) stories = [];
+          renderStoriesList();
+        } catch (err) {
+          $('stories-list-container').innerHTML = `<p class="pub-empty-state" style="color:#A32020;">Unable to load stories. ${err.message}</p>`;
+        }
+      }
+
+      function showDashboard() {
+        $('login-section').style.display = 'none';
+        $('dashboard-section').style.display = 'block';
+        $('logout-btn').style.display = 'inline-flex';
+        resetEditorForm();
+        loadStories();
+      }
+
+      // Login form handler
+      $('login-form').onsubmit = async event => {
+        event.preventDefault();
+        showFeedback('login-feedback', '');
+        try {
+          await api('/api/auth/login', {
+            method: 'POST',
+            body: JSON.stringify({ password: $('password').value })
+          });
+          showDashboard();
+        } catch (err) {
+          showFeedback('login-feedback', err.message || 'Invalid owner password.', true);
+        }
       };
 
-      try {
-        await api('/api/blogs' + (slug ? '/' + encodeURIComponent(slug) : ''), {
-          method: slug ? 'PUT' : 'POST',
-          body: JSON.stringify(body)
-        });
-        await loadBlogs();
-        resetForm();
-        message('form-message', 'Story saved successfully.');
-      } catch (error) {
-        message('form-message', error.message, true);
-      }
-    };
+      // Story form submit handler
+      $('story-form').onsubmit = async event => {
+        event.preventDefault();
+        showFeedback('editor-feedback', '');
 
-    $('new-blog').onclick = resetForm;
-    $('logout').onclick = async () => {
-      await api('/api/auth/logout', { method: 'POST' });
-      location.reload();
-    };
+        const title = $('story-title').value.trim();
+        const slug = slugify($('story-slug').value.trim() || title);
+        const category = $('story-category').value;
+        const author = $('story-author').value.trim();
+        const featuredImage = $('story-image').value.trim();
+        const excerpt = $('story-excerpt').value.trim();
+        const content = $('story-content').value.trim();
+        const publicationDate = $('story-date').value;
+        const published = $('story-status').value === 'true';
 
-    api('/api/auth/session').then(session => {
-      if (session && session.authenticated) showManager();
-    });
+        if (!title || !slug || !excerpt || !content) {
+          showFeedback('editor-feedback', 'Title, slug, excerpt, and article content are required.', true);
+          return;
+        }
+
+        const originalSlug = $('story-original-slug').value;
+        const isEditing = Boolean(originalSlug);
+
+        const body = {
+          title,
+          slug,
+          category: category || 'Founder Playbook',
+          author: author || 'BharatLaunch Editorial',
+          featuredImage,
+          excerpt,
+          content,
+          publicationDate,
+          published
+        };
+
+        try {
+          $('btn-save-story').disabled = true;
+          $('btn-save-story').textContent = 'Saving...';
+
+          await api('/api/blogs' + (isEditing ? '/' + encodeURIComponent(originalSlug) : ''), {
+            method: isEditing ? 'PUT' : 'POST',
+            body: JSON.stringify(body)
+          });
+
+          await loadStories();
+          resetEditorForm();
+          showFeedback('editor-feedback', 'Story saved successfully.');
+        } catch (err) {
+          showFeedback('editor-feedback', err.message || 'Unable to save story.', true);
+        } finally {
+          $('btn-save-story').disabled = false;
+          $('btn-save-story').textContent = 'Save Story';
+        }
+      };
+
+      $('btn-new-story').onclick = () => {
+        resetEditorForm();
+        $('editor-card').scrollIntoView({ behavior: 'smooth' });
+        $('story-title').focus();
+      };
+
+      $('btn-cancel-story').onclick = resetEditorForm;
+
+      $('logout-btn').onclick = async () => {
+        await api('/api/auth/logout', { method: 'POST' }).catch(() => {});
+        location.reload();
+      };
+
+      // Check current session on load
+      api('/api/auth/session')
+        .then(res => {
+          if (res && res.authenticated) {
+            showDashboard();
+          }
+        })
+        .catch(() => {});
+    })();
   </script>
 </body>
 </html>
