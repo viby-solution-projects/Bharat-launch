@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "node -e \"console.log('Build complete: BharatLaunch static and serverless assets validated.')\"",
     "test": "node scratch/test_publication_flow.js"
   },
   "keywords": [
