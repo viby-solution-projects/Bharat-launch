@@ -64,6 +64,14 @@
             <span class="admin-user-role">Owner / Editor</span>
           </div>
         </div>
+        <button id="sidebar-logout-btn" class="btn btn-secondary btn-sm admin-sidebar-logout" style="display: none; width: 100%; margin-top: 12px; justify-content: center;" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Log out</span>
+        </button>
       </div>
     </aside>
 
@@ -75,7 +83,7 @@
         <div class="admin-header-inner">
           <div class="admin-header-left">
             <button type="button" class="admin-mobile-toggle" id="admin-sidebar-toggle" aria-label="Open Admin Menu" aria-expanded="false" aria-controls="admin-sidebar">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -93,7 +101,7 @@
               <span>View Site</span>
               <span class="admin-btn-icon">↗</span>
             </a>
-            <button id="logout-btn" class="btn btn-primary btn-sm" style="display: none;">Log out</button>
+            <button id="logout-btn" class="btn btn-primary btn-sm admin-header-logout-btn" style="display: none;" type="button">Log out</button>
           </div>
         </div>
       </header>
@@ -135,33 +143,52 @@
 
             <!-- Overview Metrics Grid -->
             <div class="cms-metrics-grid" id="cms-metrics-grid">
-              <div class="cms-metric-card">
-                <div class="cms-metric-info">
+              <div class="cms-metric-card metric-accent-gold">
+                <div class="cms-metric-top">
                   <span class="cms-metric-label">Total Stories</span>
+                  <div class="cms-metric-icon-wrap" aria-hidden="true">
+                    <span class="cms-metric-icon">📰</span>
+                  </div>
+                </div>
+                <div class="cms-metric-body">
                   <span class="cms-metric-value" id="metric-total-stories">0</span>
                 </div>
-                <div class="cms-metric-icon">📰</div>
               </div>
-              <div class="cms-metric-card">
-                <div class="cms-metric-info">
+
+              <div class="cms-metric-card metric-accent-green">
+                <div class="cms-metric-top">
                   <span class="cms-metric-label">Live Published</span>
-                  <span class="cms-metric-value text-gold" id="metric-published-stories">0</span>
+                  <div class="cms-metric-icon-wrap" aria-hidden="true">
+                    <span class="cms-metric-icon live-dot-icon">●</span>
+                  </div>
                 </div>
-                <div class="cms-metric-icon">●</div>
+                <div class="cms-metric-body">
+                  <span class="cms-metric-value text-green" id="metric-published-stories">0</span>
+                </div>
               </div>
-              <div class="cms-metric-card">
-                <div class="cms-metric-info">
+
+              <div class="cms-metric-card metric-accent-amber">
+                <div class="cms-metric-top">
                   <span class="cms-metric-label">Draft Articles</span>
+                  <div class="cms-metric-icon-wrap" aria-hidden="true">
+                    <span class="cms-metric-icon">📝</span>
+                  </div>
+                </div>
+                <div class="cms-metric-body">
                   <span class="cms-metric-value" id="metric-draft-stories">0</span>
                 </div>
-                <div class="cms-metric-icon">📝</div>
               </div>
-              <div class="cms-metric-card">
-                <div class="cms-metric-info">
+
+              <div class="cms-metric-card metric-accent-teal">
+                <div class="cms-metric-top">
                   <span class="cms-metric-label">Categories Covered</span>
+                  <div class="cms-metric-icon-wrap" aria-hidden="true">
+                    <span class="cms-metric-icon">🏷️</span>
+                  </div>
+                </div>
+                <div class="cms-metric-body">
                   <span class="cms-metric-value" id="metric-categories-count">0</span>
                 </div>
-                <div class="cms-metric-icon">🏷️</div>
               </div>
             </div>
 
@@ -732,6 +759,8 @@
         $('login-section').style.display = 'none';
         $('dashboard-section').style.display = 'block';
         $('logout-btn').style.display = 'inline-flex';
+        const sidebarLogout = $('sidebar-logout-btn');
+        if (sidebarLogout) sidebarLogout.style.display = 'inline-flex';
         resetEditorForm();
         loadStories();
       }
@@ -916,10 +945,14 @@
         if (e.key === 'Escape' && previewModal.classList.contains('active')) closePreview();
       });
 
-      $('logout-btn').onclick = async () => {
+      async function handleLogout() {
         await api('/api/auth/logout', { method: 'POST' }).catch(() => {});
         location.reload();
-      };
+      }
+
+      $('logout-btn').onclick = handleLogout;
+      const sidebarLogoutBtn = $('sidebar-logout-btn');
+      if (sidebarLogoutBtn) sidebarLogoutBtn.onclick = handleLogout;
 
       // Check current session on load
       api('/api/auth/session')
