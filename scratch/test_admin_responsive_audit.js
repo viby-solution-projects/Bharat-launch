@@ -17,6 +17,11 @@ const blogCss = fs.readFileSync(blogCssPath, 'utf8');
 
 // 1. Structure Audit
 const requiredElements = [
+  'id="admin-app"',
+  'id="admin-sidebar"',
+  'id="admin-sidebar-backdrop"',
+  'id="admin-sidebar-toggle"',
+  'id="admin-sidebar-close"',
   'id="login-section"',
   'id="login-form"',
   'id="password"',
@@ -69,8 +74,12 @@ console.log('PASS: escapeHtml security and article parser script integration ver
 
 // 3. CSS Classes & Responsive Rules
 const requiredCssClasses = [
-  '.cms-page',
-  '.cms-container',
+  '.admin-app-layout',
+  '.admin-sidebar',
+  '.admin-top-header',
+  '.admin-header-inner',
+  '.admin-page-body',
+  '.admin-content-container',
   '.cms-toolbar',
   '.cms-metrics-grid',
   '.cms-metric-card',

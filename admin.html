@@ -17,10 +17,15 @@
 </head>
 <body class="cms-page">
 
-  <!-- 1. Header Bar -->
-  <header class="site-header" role="banner">
-    <div class="container nav-container admin-nav-container">
-      <div class="admin-brand-group">
+  <!-- Admin Application Root Grid Layout -->
+  <div class="admin-app-layout" id="admin-app">
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="admin-sidebar-backdrop" id="admin-sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- 1. Unified Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin Navigation">
+      <div class="admin-sidebar-header">
         <a href="index.html" class="brand-logo" aria-label="BharatLaunch Publication Home">
           <span class="brand-logo-icon" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -29,253 +34,312 @@
           </span>
           <span>BharatLaunch</span>
         </a>
-        <span class="cms-header-badge admin-badge-hideable">Owner / Editor</span>
+        <button type="button" class="admin-sidebar-close" id="admin-sidebar-close" aria-label="Close sidebar">✕</button>
       </div>
 
-      <div class="admin-header-actions">
-        <a href="index.html" class="btn btn-secondary btn-sm" target="_blank" rel="noopener">View Site ↗</a>
-        <button id="logout-btn" class="btn btn-primary btn-sm" style="display: none;">Log out</button>
-      </div>
-    </div>
-  </header>
-
-  <!-- 2. Main CMS Content -->
-  <main class="cms-container" id="main-content">
-
-    <!-- 2A. Owner Login Panel (Shown when unauthenticated) -->
-    <div id="login-section" class="cms-card cms-login-card">
-      <div style="text-align: center; margin-bottom: 24px;">
-        <span class="cms-header-badge" style="margin-bottom: 12px;">EDITORIAL DESK ACCESS</span>
-        <h1 style="font-size: 1.6rem; margin: 8px 0 6px; font-weight: 800; color: var(--color-black);">Owner Sign In</h1>
-        <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0;">Enter your owner password to manage drafts and live stories.</p>
+      <div class="admin-sidebar-badge-wrap">
+        <span class="cms-header-badge">EDITORIAL DESK</span>
       </div>
 
-      <form id="login-form" class="cms-field" style="gap: 16px;">
-        <div class="cms-field">
-          <label class="cms-label" for="password">Owner Password</label>
-          <input id="password" class="cms-input" type="password" autocomplete="current-password" required placeholder="Enter owner password...">
-        </div>
-        <button class="cms-btn-primary" type="submit" style="width: 100%;">Sign In to Dashboard</button>
-        <div id="login-feedback"></div>
-      </form>
-    </div>
+      <nav class="admin-sidebar-nav" aria-label="Admin Sections">
+        <a href="#dashboard-section" class="admin-nav-item active" id="nav-item-stories">
+          <span class="admin-nav-icon">📰</span>
+          <span>Stories Manager</span>
+        </a>
+        <a href="#editor-card" class="admin-nav-item" id="nav-item-editor">
+          <span class="admin-nav-icon">✍️</span>
+          <span>Write New Story</span>
+        </a>
+        <a href="index.html" class="admin-nav-item" target="_blank" rel="noopener">
+          <span class="admin-nav-icon">🌐</span>
+          <span>View Live Site ↗</span>
+        </a>
+      </nav>
 
-    <!-- 2B. Owner Dashboard (Shown when authenticated) -->
-    <div id="dashboard-section" style="display: none;">
-
-      <!-- Toolbar -->
-      <div class="cms-toolbar">
-        <div class="cms-toolbar-text">
-          <span class="cms-header-badge">EDITORIAL DESK</span>
-          <h1 class="cms-toolbar-title">Stories Management</h1>
-          <p class="cms-toolbar-sub">Manage, draft, publish, and edit articles for BharatLaunch.</p>
-        </div>
-        <button id="btn-new-story" class="cms-btn-primary" type="button">+ New Story</button>
-      </div>
-
-      <!-- Overview Metrics Grid -->
-      <div class="cms-metrics-grid" id="cms-metrics-grid">
-        <div class="cms-metric-card">
-          <div class="cms-metric-info">
-            <span class="cms-metric-label">Total Stories</span>
-            <span class="cms-metric-value" id="metric-total-stories">0</span>
+      <div class="admin-sidebar-footer">
+        <div class="admin-user-card">
+          <div class="admin-user-avatar" aria-hidden="true">ED</div>
+          <div class="admin-user-info">
+            <span class="admin-user-name">Editorial Desk</span>
+            <span class="admin-user-role">Owner / Editor</span>
           </div>
-          <div class="cms-metric-icon">📰</div>
-        </div>
-        <div class="cms-metric-card">
-          <div class="cms-metric-info">
-            <span class="cms-metric-label">Live Published</span>
-            <span class="cms-metric-value text-gold" id="metric-published-stories">0</span>
-          </div>
-          <div class="cms-metric-icon">●</div>
-        </div>
-        <div class="cms-metric-card">
-          <div class="cms-metric-info">
-            <span class="cms-metric-label">Draft Articles</span>
-            <span class="cms-metric-value" id="metric-draft-stories">0</span>
-          </div>
-          <div class="cms-metric-icon">📝</div>
-        </div>
-        <div class="cms-metric-card">
-          <div class="cms-metric-info">
-            <span class="cms-metric-label">Categories Covered</span>
-            <span class="cms-metric-value" id="metric-categories-count">0</span>
-          </div>
-          <div class="cms-metric-icon">🏷️</div>
         </div>
       </div>
+    </aside>
 
-      <!-- Story Editor Card -->
-      <section class="cms-card" id="editor-card" aria-labelledby="editor-title">
-        <div class="cms-card-header">
-          <div>
-            <h2 id="editor-title">New Story</h2>
-            <span class="hint" id="editor-mode-hint">Drafting a new article</span>
-          </div>
-        </div>
+    <!-- 2. Main Content Column -->
+    <div class="admin-main-wrapper">
 
-        <form id="story-form" novalidate>
-          <input id="story-original-slug" type="hidden" value="">
-
-          <div class="cms-form-grid">
-
-            <!-- Title (Full Width) -->
-            <div class="cms-field cms-field-full">
-              <label class="cms-label" for="story-title">Title <span style="color: #D4AF37;">*</span></label>
-              <input id="story-title" class="cms-input" type="text" required placeholder="Enter story title">
-            </div>
-
-            <!-- Slug (Full Width) -->
-            <div class="cms-field cms-field-full">
-              <label class="cms-label" for="story-slug">
-                <span>Slug <span style="color: #D4AF37;">*</span></span>
-                <span class="hint">e.g. startup-funding-playbook</span>
-              </label>
-              <input id="story-slug" class="cms-input" type="text" required placeholder="your-story-slug">
-            </div>
-
-            <!-- Category (Col 1) -->
-            <div class="cms-field cms-field-half">
-              <label class="cms-label" for="story-category">Category <span style="color: #D4AF37;">*</span></label>
-              <select id="story-category" class="cms-select" required>
-                <option value="" disabled selected>Select category</option>
-                <option value="Founder Playbook">Founder Playbook</option>
-                <option value="Startup Ecosystem">Startup Ecosystem</option>
-                <option value="Fundraising">Fundraising</option>
-                <option value="Market Intelligence">Market Intelligence</option>
-                <option value="PR & Media">PR & Media</option>
-              </select>
-            </div>
-
-            <!-- Author (Col 2) -->
-            <div class="cms-field cms-field-half">
-              <label class="cms-label" for="story-author">Author</label>
-              <input id="story-author" class="cms-input" type="text" placeholder="Author name">
-            </div>
-
-            <!-- Featured Image URL (Full Width) -->
-            <div class="cms-field cms-field-full">
-              <label class="cms-label" for="story-image">
-                <span>Featured Image URL</span>
-                <span class="hint">https://... or assets/blog-*.jpg</span>
-              </label>
-              <input id="story-image" class="cms-input" type="text" placeholder="https://...">
-              <div id="image-preview-wrap" class="cms-image-preview-box">
-                <img id="image-preview-img" src="" alt="Cover preview">
-              </div>
-            </div>
-
-            <!-- Excerpt (Full Width) -->
-            <div class="cms-field cms-field-full">
-              <label class="cms-label" for="story-excerpt">Excerpt <span style="color: #D4AF37;">*</span></label>
-              <textarea id="story-excerpt" class="cms-textarea" rows="3" required placeholder="Short summary..."></textarea>
-            </div>
-
-            <!-- Article Content (Full Width Editor) -->
-            <div class="cms-field cms-field-full">
-              <div class="cms-label-row">
-                <label class="cms-label" for="story-content">
-                  <span>Article Content <span style="color: #D4AF37;">*</span></span>
-                  <span class="hint">Rich Markdown formatting</span>
-                </label>
-              </div>
-
-              <!-- Quick Markdown Toolbar -->
-              <div class="cms-md-toolbar" role="toolbar" aria-label="Markdown formatting tools">
-                <button type="button" class="cms-md-btn" data-md="h2" title="Insert Heading 2">H2</button>
-                <button type="button" class="cms-md-btn" data-md="h3" title="Insert Heading 3">H3</button>
-                <button type="button" class="cms-md-btn" data-md="bold" title="Insert Bold text"><strong>B</strong></button>
-                <button type="button" class="cms-md-btn" data-md="italic" title="Insert Italic text"><em>I</em></button>
-                <button type="button" class="cms-md-btn" data-md="list" title="Insert Bullet List">• List</button>
-                <button type="button" class="cms-md-btn" data-md="numlist" title="Insert Numbered List">1. List</button>
-                <button type="button" class="cms-md-btn" data-md="callout" title="Insert Tip Callout Box">💡 Tip Box</button>
-                <button type="button" class="cms-md-btn" data-md="table" title="Insert Comparison Table">📊 Table</button>
-                <button type="button" class="cms-md-btn" data-md="link" title="Insert Markdown Link">🔗 Link</button>
-              </div>
-
-              <textarea id="story-content" class="cms-textarea cms-textarea-editor" rows="14" required placeholder="Write your article in Markdown..."></textarea>
-            </div>
-
-            <!-- Publication Date (Col 1) -->
-            <div class="cms-field cms-field-half">
-              <label class="cms-label" for="story-date">Publication Date <span style="color: #D4AF37;">*</span></label>
-              <input id="story-date" class="cms-input" type="date" required>
-            </div>
-
-            <!-- Publication Status (Col 2) -->
-            <div class="cms-field cms-field-half">
-              <label class="cms-label" for="story-status">Status</label>
-              <select id="story-status" class="cms-select">
-                <option value="true">● Published</option>
-                <option value="false">○ Draft</option>
-              </select>
-            </div>
-
-          </div>
-
-          <!-- Form Actions Row -->
-          <div class="cms-actions-row">
-            <button id="btn-cancel-story" class="cms-btn-secondary" type="button">Cancel</button>
-            <button id="btn-preview-story" class="cms-btn-secondary" type="button" style="display: inline-flex; align-items: center; gap: 6px;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
+      <!-- Top Header Bar -->
+      <header class="admin-top-header" role="banner">
+        <div class="admin-header-inner">
+          <div class="admin-header-left">
+            <button type="button" class="admin-mobile-toggle" id="admin-sidebar-toggle" aria-label="Open Admin Menu" aria-expanded="false" aria-controls="admin-sidebar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
               </svg>
-              <span>Preview Article</span>
             </button>
-            <button id="btn-save-story" class="cms-btn-primary" type="submit">Save Story</button>
+            <div class="admin-breadcrumb">
+              <span class="admin-breadcrumb-root">Admin</span>
+              <span class="admin-breadcrumb-sep">/</span>
+              <span class="admin-breadcrumb-current" id="admin-current-page">Stories Management</span>
+            </div>
           </div>
 
-          <div id="editor-feedback"></div>
-        </form>
-      </section>
-
-      <!-- Stories List Card -->
-      <section class="cms-card" aria-labelledby="stories-list-heading">
-        <div class="cms-card-header cms-card-header-flex">
-          <div>
-            <h2 id="stories-list-heading">All Stories (<span id="story-count">0</span>)</h2>
-            <span class="hint">Filter and manage all live and draft publications</span>
+          <div class="admin-header-right">
+            <a href="index.html" class="btn btn-secondary btn-sm admin-btn-view-site" target="_blank" rel="noopener">
+              <span>View Site</span>
+              <span class="admin-btn-icon">↗</span>
+            </a>
+            <button id="logout-btn" class="btn btn-primary btn-sm" style="display: none;">Log out</button>
           </div>
         </div>
+      </header>
 
-        <!-- Filter & Search Toolbar -->
-        <div class="cms-filter-toolbar">
-          <div class="cms-search-wrap">
-            <svg class="cms-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input id="story-search" class="cms-search-input" type="text" placeholder="Search stories by title, author, or slug...">
-          </div>
+      <!-- Main Page Content Body -->
+      <main class="admin-page-body" id="main-content">
+        <div class="admin-content-container">
 
-          <div class="cms-filter-group">
-            <div class="cms-filter-pills" role="tablist" aria-label="Filter stories by status">
-              <button type="button" class="cms-filter-pill active" data-status-filter="ALL">All</button>
-              <button type="button" class="cms-filter-pill" data-status-filter="PUBLISHED">Published</button>
-              <button type="button" class="cms-filter-pill" data-status-filter="DRAFT">Drafts</button>
+          <!-- 2A. Owner Login Panel (Shown when unauthenticated) -->
+          <div id="login-section" class="cms-card cms-login-card">
+            <div style="text-align: center; margin-bottom: 24px;">
+              <span class="cms-header-badge" style="margin-bottom: 12px;">EDITORIAL DESK ACCESS</span>
+              <h1 style="font-size: 1.6rem; margin: 8px 0 6px; font-weight: 800; color: var(--color-black);">Owner Sign In</h1>
+              <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin: 0;">Enter your owner password to manage drafts and live stories.</p>
             </div>
 
-            <select id="story-category-filter" class="cms-select cms-category-select" aria-label="Filter by category">
-              <option value="ALL">All Categories</option>
-              <option value="Founder Playbook">Founder Playbook</option>
-              <option value="Startup Ecosystem">Startup Ecosystem</option>
-              <option value="Fundraising">Fundraising</option>
-              <option value="Market Intelligence">Market Intelligence</option>
-              <option value="PR & Media">PR & Media</option>
-            </select>
+            <form id="login-form" class="cms-field" style="gap: 16px;">
+              <div class="cms-field">
+                <label class="cms-label" for="password">Owner Password</label>
+                <input id="password" class="cms-input" type="password" autocomplete="current-password" required placeholder="Enter owner password...">
+              </div>
+              <button class="cms-btn-primary" type="submit" style="width: 100%;">Sign In to Dashboard</button>
+              <div id="login-feedback"></div>
+            </form>
           </div>
-        </div>
 
-        <!-- Stories Container -->
-        <div id="stories-list-container" aria-live="polite">
-          <p class="pub-empty-state">Loading stories...</p>
+          <!-- 2B. Owner Dashboard (Shown when authenticated) -->
+          <div id="dashboard-section" style="display: none;">
+
+            <!-- Toolbar -->
+            <div class="cms-toolbar">
+              <div class="cms-toolbar-text">
+                <span class="cms-header-badge">EDITORIAL DESK</span>
+                <h1 class="cms-toolbar-title">Stories Management</h1>
+                <p class="cms-toolbar-sub">Manage, draft, publish, and edit articles for BharatLaunch.</p>
+              </div>
+              <button id="btn-new-story" class="cms-btn-primary" type="button">+ New Story</button>
+            </div>
+
+            <!-- Overview Metrics Grid -->
+            <div class="cms-metrics-grid" id="cms-metrics-grid">
+              <div class="cms-metric-card">
+                <div class="cms-metric-info">
+                  <span class="cms-metric-label">Total Stories</span>
+                  <span class="cms-metric-value" id="metric-total-stories">0</span>
+                </div>
+                <div class="cms-metric-icon">📰</div>
+              </div>
+              <div class="cms-metric-card">
+                <div class="cms-metric-info">
+                  <span class="cms-metric-label">Live Published</span>
+                  <span class="cms-metric-value text-gold" id="metric-published-stories">0</span>
+                </div>
+                <div class="cms-metric-icon">●</div>
+              </div>
+              <div class="cms-metric-card">
+                <div class="cms-metric-info">
+                  <span class="cms-metric-label">Draft Articles</span>
+                  <span class="cms-metric-value" id="metric-draft-stories">0</span>
+                </div>
+                <div class="cms-metric-icon">📝</div>
+              </div>
+              <div class="cms-metric-card">
+                <div class="cms-metric-info">
+                  <span class="cms-metric-label">Categories Covered</span>
+                  <span class="cms-metric-value" id="metric-categories-count">0</span>
+                </div>
+                <div class="cms-metric-icon">🏷️</div>
+              </div>
+            </div>
+
+            <!-- Story Editor Card -->
+            <section class="cms-card" id="editor-card" aria-labelledby="editor-title">
+              <div class="cms-card-header">
+                <div>
+                  <h2 id="editor-title">New Story</h2>
+                  <span class="hint" id="editor-mode-hint">Drafting a new article</span>
+                </div>
+              </div>
+
+              <form id="story-form" novalidate>
+                <input id="story-original-slug" type="hidden" value="">
+
+                <div class="cms-form-grid">
+
+                  <!-- Title (Full Width) -->
+                  <div class="cms-field cms-field-full">
+                    <label class="cms-label" for="story-title">Title <span style="color: #D4AF37;">*</span></label>
+                    <input id="story-title" class="cms-input" type="text" required placeholder="Enter story title">
+                  </div>
+
+                  <!-- Slug (Full Width) -->
+                  <div class="cms-field cms-field-full">
+                    <label class="cms-label" for="story-slug">
+                      <span>Slug <span style="color: #D4AF37;">*</span></span>
+                      <span class="hint">e.g. startup-funding-playbook</span>
+                    </label>
+                    <input id="story-slug" class="cms-input" type="text" required placeholder="your-story-slug">
+                  </div>
+
+                  <!-- Category (Col 1) -->
+                  <div class="cms-field cms-field-half">
+                    <label class="cms-label" for="story-category">Category <span style="color: #D4AF37;">*</span></label>
+                    <select id="story-category" class="cms-select" required>
+                      <option value="" disabled selected>Select category</option>
+                      <option value="Founder Playbook">Founder Playbook</option>
+                      <option value="Startup Ecosystem">Startup Ecosystem</option>
+                      <option value="Fundraising">Fundraising</option>
+                      <option value="Market Intelligence">Market Intelligence</option>
+                      <option value="PR & Media">PR & Media</option>
+                    </select>
+                  </div>
+
+                  <!-- Author (Col 2) -->
+                  <div class="cms-field cms-field-half">
+                    <label class="cms-label" for="story-author">Author</label>
+                    <input id="story-author" class="cms-input" type="text" placeholder="Author name">
+                  </div>
+
+                  <!-- Featured Image URL (Full Width) -->
+                  <div class="cms-field cms-field-full">
+                    <label class="cms-label" for="story-image">
+                      <span>Featured Image URL</span>
+                      <span class="hint">https://... or assets/blog-*.jpg</span>
+                    </label>
+                    <input id="story-image" class="cms-input" type="text" placeholder="https://...">
+                    <div id="image-preview-wrap" class="cms-image-preview-box">
+                      <img id="image-preview-img" src="" alt="Cover preview">
+                    </div>
+                  </div>
+
+                  <!-- Excerpt (Full Width) -->
+                  <div class="cms-field cms-field-full">
+                    <label class="cms-label" for="story-excerpt">Excerpt <span style="color: #D4AF37;">*</span></label>
+                    <textarea id="story-excerpt" class="cms-textarea" rows="3" required placeholder="Short summary..."></textarea>
+                  </div>
+
+                  <!-- Article Content (Full Width Editor) -->
+                  <div class="cms-field cms-field-full">
+                    <div class="cms-label-row">
+                      <label class="cms-label" for="story-content">
+                        <span>Article Content <span style="color: #D4AF37;">*</span></span>
+                        <span class="hint">Rich Markdown formatting</span>
+                      </label>
+                    </div>
+
+                    <!-- Quick Markdown Toolbar -->
+                    <div class="cms-md-toolbar" role="toolbar" aria-label="Markdown formatting tools">
+                      <button type="button" class="cms-md-btn" data-md="h2" title="Insert Heading 2">H2</button>
+                      <button type="button" class="cms-md-btn" data-md="h3" title="Insert Heading 3">H3</button>
+                      <button type="button" class="cms-md-btn" data-md="bold" title="Insert Bold text"><strong>B</strong></button>
+                      <button type="button" class="cms-md-btn" data-md="italic" title="Insert Italic text"><em>I</em></button>
+                      <button type="button" class="cms-md-btn" data-md="list" title="Insert Bullet List">• List</button>
+                      <button type="button" class="cms-md-btn" data-md="numlist" title="Insert Numbered List">1. List</button>
+                      <button type="button" class="cms-md-btn" data-md="callout" title="Insert Tip Callout Box">💡 Tip Box</button>
+                      <button type="button" class="cms-md-btn" data-md="table" title="Insert Comparison Table">📊 Table</button>
+                      <button type="button" class="cms-md-btn" data-md="link" title="Insert Markdown Link">🔗 Link</button>
+                    </div>
+
+                    <textarea id="story-content" class="cms-textarea cms-textarea-editor" rows="14" required placeholder="Write your article in Markdown..."></textarea>
+                  </div>
+
+                  <!-- Publication Date (Col 1) -->
+                  <div class="cms-field cms-field-half">
+                    <label class="cms-label" for="story-date">Publication Date <span style="color: #D4AF37;">*</span></label>
+                    <input id="story-date" class="cms-input" type="date" required>
+                  </div>
+
+                  <!-- Publication Status (Col 2) -->
+                  <div class="cms-field cms-field-half">
+                    <label class="cms-label" for="story-status">Status</label>
+                    <select id="story-status" class="cms-select">
+                      <option value="true">● Published</option>
+                      <option value="false">○ Draft</option>
+                    </select>
+                  </div>
+
+                </div>
+
+                <!-- Form Actions Row -->
+                <div class="cms-actions-row">
+                  <button id="btn-cancel-story" class="cms-btn-secondary" type="button">Cancel</button>
+                  <button id="btn-preview-story" class="cms-btn-secondary" type="button" style="display: inline-flex; align-items: center; gap: 6px;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <span>Preview Article</span>
+                  </button>
+                  <button id="btn-save-story" class="cms-btn-primary" type="submit">Save Story</button>
+                </div>
+
+                <div id="editor-feedback"></div>
+              </form>
+            </section>
+
+            <!-- Stories List Card -->
+            <section class="cms-card" aria-labelledby="stories-list-heading">
+              <div class="cms-card-header cms-card-header-flex">
+                <div>
+                  <h2 id="stories-list-heading">All Stories (<span id="story-count">0</span>)</h2>
+                  <span class="hint">Filter and manage all live and draft publications</span>
+                </div>
+              </div>
+
+              <!-- Filter & Search Toolbar -->
+              <div class="cms-filter-toolbar">
+                <div class="cms-search-wrap">
+                  <svg class="cms-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input id="story-search" class="cms-search-input" type="text" placeholder="Search stories by title, author, or slug...">
+                </div>
+
+                <div class="cms-filter-group">
+                  <div class="cms-filter-pills" role="tablist" aria-label="Filter stories by status">
+                    <button type="button" class="cms-filter-pill active" data-status-filter="ALL">All</button>
+                    <button type="button" class="cms-filter-pill" data-status-filter="PUBLISHED">Published</button>
+                    <button type="button" class="cms-filter-pill" data-status-filter="DRAFT">Drafts</button>
+                  </div>
+
+                  <select id="story-category-filter" class="cms-select cms-category-select" aria-label="Filter by category">
+                    <option value="ALL">All Categories</option>
+                    <option value="Founder Playbook">Founder Playbook</option>
+                    <option value="Startup Ecosystem">Startup Ecosystem</option>
+                    <option value="Fundraising">Fundraising</option>
+                    <option value="Market Intelligence">Market Intelligence</option>
+                    <option value="PR & Media">PR & Media</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Stories Container -->
+              <div id="stories-list-container" aria-live="polite">
+                <p class="pub-empty-state">Loading stories...</p>
+              </div>
+            </section>
+
+          </div>
+
         </div>
-      </section>
+      </main>
 
     </div>
-
-  </main>
+  </div>
 
   <!-- Article Live Preview Modal -->
   <div id="cms-preview-modal" class="cms-preview-backdrop" role="dialog" aria-modal="true" aria-labelledby="preview-modal-title">
@@ -304,6 +368,48 @@
       let activeStatusFilter = 'ALL';
       let activeCategoryFilter = 'ALL';
       let activeSearchQuery = '';
+
+      // Sidebar Mobile Navigation Controller
+      const sidebar = $('admin-sidebar');
+      const backdrop = $('admin-sidebar-backdrop');
+      const toggleBtn = $('admin-sidebar-toggle');
+      const closeBtn = $('admin-sidebar-close');
+
+      function openSidebar() {
+        if (sidebar) sidebar.classList.add('active');
+        if (backdrop) backdrop.classList.add('active');
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeSidebar() {
+        if (sidebar) sidebar.classList.remove('active');
+        if (backdrop) backdrop.classList.remove('active');
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      if (toggleBtn) toggleBtn.onclick = openSidebar;
+      if (closeBtn) closeBtn.onclick = closeSidebar;
+      if (backdrop) backdrop.onclick = closeSidebar;
+
+      document.querySelectorAll('.admin-nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+          if (window.innerWidth < 1024) closeSidebar();
+        });
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && sidebar && sidebar.classList.contains('active')) {
+          closeSidebar();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024 && sidebar && sidebar.classList.contains('active')) {
+          closeSidebar();
+        }
+      });
 
       function escapeHtml(str) {
         return String(str || '')
@@ -412,7 +518,7 @@
         });
       });
 
-      // Reset form to completely blank state (zero fake demo values)
+      // Reset form to completely blank state
       function resetEditorForm() {
         $('story-form').reset();
         $('story-original-slug').value = '';
@@ -470,14 +576,10 @@
 
       function getFilteredStories() {
         return stories.filter(story => {
-          // Status filter
           if (activeStatusFilter === 'PUBLISHED' && story.published === false) return false;
           if (activeStatusFilter === 'DRAFT' && story.published !== false) return false;
-
-          // Category filter
           if (activeCategoryFilter !== 'ALL' && story.category !== activeCategoryFilter) return false;
 
-          // Search query
           if (activeSearchQuery) {
             const q = activeSearchQuery.toLowerCase();
             const titleMatch = (story.title || '').toLowerCase().includes(q);
@@ -563,7 +665,6 @@
           `;
         }).join('');
 
-        // Attach action event listeners
         container.querySelectorAll('[data-edit]').forEach(btn => {
           btn.onclick = () => {
             const slug = decodeURIComponent(btn.dataset.edit);
