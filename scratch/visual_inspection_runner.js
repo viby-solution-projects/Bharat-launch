@@ -8,12 +8,18 @@ console.log('================================================================\n'
 
 const VIEWPORTS = [
   { name: 'iPhone SE (1st gen)', width: 320, height: 568 },
+  { name: 'Android Compact (Galaxy/Redmi)', width: 360, height: 800 },
   { name: 'iPhone SE / Mini', width: 375, height: 667 },
-  { name: 'iPhone 12/13/14/15', width: 390, height: 844 },
-  { name: 'iPhone Pro Max', width: 430, height: 932 },
+  { name: 'iPhone 12/13/14/15/16', width: 390, height: 844 },
+  { name: 'iPhone Pro Max / Pixel Pro', width: 430, height: 932 },
+  { name: 'Foldable / Small Tablet', width: 640, height: 900 },
   { name: 'iPad / Tablet (Portrait)', width: 768, height: 1024 },
-  { name: 'Desktop HD', width: 1440, height: 900 }
+  { name: 'iPad Pro / Laptop (11-13")', width: 1024, height: 768 },
+  { name: 'Desktop HD (14-16")', width: 1440, height: 900 },
+  { name: 'Full HD / 2K Monitor', width: 1920, height: 1080 },
+  { name: 'Ultrawide / 4K Display', width: 2560, height: 1440 }
 ];
+
 
 const PAGES = [
   { file: 'index.html', title: 'Home / Publication Hub' },
@@ -116,4 +122,5 @@ console.log(`Passed: ${passCount}`);
 console.log(`Failed: ${failCount}`);
 
 assert.strictEqual(failCount, 0, 'All visual viewport checks must pass');
-console.log('\nALL DETAILED VISUAL/RESPONSIVE INSPECTIONS PASSED ACROSS ALL 6 VIEWPORTS & 11 PAGES! ✅\n');
+console.log('\nALL DETAILED VISUAL/RESPONSIVE INSPECTIONS PASSED ACROSS ALL 11 VIEWPORTS & 11 PAGES (121 TOTAL VIEWPORT CHECKS)! ✅\n');
+

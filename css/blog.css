@@ -1825,7 +1825,7 @@
   }
 
   .article-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
   }
 
   .article-step-badge {
@@ -1839,5 +1839,63 @@
 
   .cms-preview-body {
     padding: 16px 10px 32px;
+  }
+
+  .pub-secondary-card {
+    grid-template-columns: minmax(0, 1fr) 85px;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .pub-secondary-image-wrap {
+    width: 85px;
+    height: 65px;
+  }
+}
+
+@media (max-width: 320px) {
+  .article-container {
+    padding: 14px 10px;
+  }
+
+  .article-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .article-author-card {
+    gap: 8px;
+  }
+
+  .article-author-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .pub-secondary-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .pub-secondary-image-wrap {
+    width: 100%;
+    height: 140px;
+    order: -1;
+  }
+}
+
+@media (min-width: 1920px) {
+  .article-container {
+    max-width: 860px;
+  }
+
+  .article-layout {
+    max-width: 860px;
+  }
+
+  .article-reading-body {
+    max-width: 760px;
+    font-size: 1.18rem;
+    line-height: 1.9;
   }
 }

@@ -4,7 +4,7 @@ const path = require('path');
 
 console.log('--- TESTING VIEWPORT STYLES & MOBILE LAYOUT INTEGRITY ---');
 
-const VIEWPORTS = [320, 360, 375, 390, 414, 430, 768, 1024, 1440];
+const VIEWPORTS = [320, 360, 375, 390, 414, 430, 640, 768, 1024, 1440, 1920, 2560];
 
 // Verify that all CSS files exist and compile cleanly
 const cssFiles = ['css/main.css', 'css/components.css', 'css/blog.css'];
@@ -30,10 +30,12 @@ for (const p of pages) {
   const content = fs.readFileSync(path.join(__dirname, '..', p), 'utf8');
   assert.ok(content.includes('href="css/main.css"'), `${p} must include main.css`);
   assert.ok(content.includes('href="css/components.css"'), `${p} must include components.css`);
+  assert.ok(content.includes('href="css/blog.css"'), `${p} must include blog.css`);
   if (p !== 'admin.html') {
     assert.ok(content.includes('src="js/mobile-nav.js"'), `${p} must include js/mobile-nav.js`);
   }
   console.log(`PASS: ${p} correctly wired with core stylesheet and mobile navigation.`);
 }
 
-console.log('\nALL VIEWPORTS (320px - 1440px) VALIDATED SUCCESSFULLY! ✅');
+console.log('\nALL VIEWPORTS (320px - 2560px+) VALIDATED SUCCESSFULLY! ✅');
+

@@ -1,6 +1,26 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { fork } = require('child_process');
+
+let childServer = null;
+
+function waitForServer(port, maxAttempts = 20) {
+  return new Promise((resolve, reject) => {
+    let attempts = 0;
+    function tryConnect() {
+      attempts++;
+      const req = http.get(`http://localhost:${port}/robots.txt`, res => {
+        resolve();
+      });
+      req.on('error', () => {
+        if (attempts >= maxAttempts) return reject(new Error('Server failed to start'));
+        setTimeout(tryConnect, 150);
+      });
+    }
+    tryConnect();
+  });
+}
 
 function fetchUrl(urlPath) {
   return new Promise((resolve, reject) => {
@@ -12,9 +32,21 @@ function fetchUrl(urlPath) {
   });
 }
 
+async function ensureServerRunning() {
+  try {
+    await fetchUrl('/robots.txt');
+  } catch (e) {
+    console.log('[Test Setup] Starting local test server on port 3000...');
+    childServer = fork(path.join(__dirname, '../server.js'), [], { silent: true });
+    await waitForServer(3000);
+  }
+}
+
 async function runTests() {
+  await ensureServerRunning();
   console.log('--- STARTING SEO & PRODUCTION AUDIT ---');
   let failures = 0;
+
 
   // 1. Robots.txt
   const robots = await fetchUrl('/robots.txt');
@@ -118,6 +150,9 @@ async function runTests() {
   }
 
   console.log('---------------------------------------');
+  if (childServer) {
+    childServer.kill();
+  }
   if (failures === 0) {
     console.log('ALL TESTS PASSED SUCCESSFULLY! ✅');
   } else {
@@ -127,6 +162,8 @@ async function runTests() {
 }
 
 runTests().catch(err => {
+  if (childServer) childServer.kill();
   console.error('Test execution error:', err);
   process.exit(1);
 });
+

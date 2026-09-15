@@ -324,20 +324,49 @@ h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea, td, th {
   word-break: normal;
 }
 
-@media (max-width: 768px) {
+/* Ultrawide & 4K Displays (1920px - 2560px+) */
+@media (min-width: 1920px) {
+  :root {
+    --max-content-width: 1280px;
+  }
+
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (min-width: 2560px) {
+  :root {
+    --max-content-width: 1360px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Tablet & Laptop Breakpoints */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: clamp(18px, 3vw, 24px);
+    padding-right: clamp(18px, 3vw, 24px);
+  }
+
+  .section-wrapper,
+  .section-wrapper-subtle {
+    padding: clamp(36px, 5vw, 52px) 0;
+  }
+}
+
+@media (max-width: 800px) {
   .container {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .section-wrapper,
-  .section-wrapper-subtle {
-    padding: 44px 0;
-  }
-
-  .btn {
-    min-height: 44px;
-    padding: 10px 18px;
+  .site-header {
+    height: 64px;
   }
 }
 
@@ -345,15 +374,17 @@ h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea, td, th {
   .container {
     padding-left: 16px;
     padding-right: 16px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
   }
 
   .section-wrapper,
   .section-wrapper-subtle {
-    padding: 36px 0;
+    padding: 32px 0;
   }
 
   .site-header {
-    height: 62px;
+    height: 60px;
   }
 
   .nav-container {
@@ -361,7 +392,7 @@ h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea, td, th {
   }
 
   .brand-logo {
-    font-size: 1.1rem;
+    font-size: 1.12rem;
   }
 
   .btn {
@@ -378,6 +409,7 @@ h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea, td, th {
     align-items: flex-start;
     flex-direction: column;
     gap: 14px;
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
   }
 
   .footer-bottom-bar > div:last-child {
@@ -388,8 +420,10 @@ h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea, td, th {
 
 @media (max-width: 480px) {
   .container {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-left: max(14px, env(safe-area-inset-left));
+    padding-right: max(14px, env(safe-area-inset-right));
   }
 
   .btn {
@@ -402,6 +436,8 @@ h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea, td, th {
   .container {
     padding-left: 12px;
     padding-right: 12px;
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
   }
 
   .brand-logo {
@@ -412,5 +448,21 @@ h1, h2, h3, h4, h5, h6, p, a, span, button, input, select, textarea, td, th {
   .brand-logo-icon {
     width: 28px;
     height: 28px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .brand-logo {
+    font-size: 0.95rem;
   }
 }
