@@ -193,10 +193,11 @@
             </div>
 
             <!-- Story Editor Card -->
-            <section class="cms-card" id="editor-card" aria-labelledby="editor-title">
+            <section class="cms-card cms-editor-card" id="editor-card" aria-labelledby="editor-title">
               <div class="cms-card-header">
-                <div>
-                  <h2 id="editor-title">New Story</h2>
+                <div class="cms-card-header-main">
+                  <span class="cms-header-badge" id="editor-badge">PUBLICATION CMS</span>
+                  <h2 id="editor-title" style="margin-top: 6px;">New Story</h2>
                   <span class="hint" id="editor-mode-hint">Drafting a new article</span>
                 </div>
               </div>
@@ -204,116 +205,240 @@
               <form id="story-form" novalidate>
                 <input id="story-original-slug" type="hidden" value="">
 
-                <div class="cms-form-grid">
+                <!-- Editor Main Layout: 2-Column Desktop Grid / 1-Column Mobile -->
+                <div class="cms-publish-layout">
+                  
+                  <!-- Primary Column: Details & Content -->
+                  <div class="cms-publish-main-col">
+                    
+                    <!-- Step 1: Article Details -->
+                    <fieldset class="cms-fieldset">
+                      <legend class="cms-legend">
+                        <span class="cms-step-num">1</span>
+                        <span>Article Details</span>
+                      </legend>
+                      
+                      <div class="cms-form-grid">
+                        <!-- Title (Full Width) -->
+                        <div class="cms-field cms-field-full">
+                          <label class="cms-label" for="story-title">Title <span style="color: #D4AF37;">*</span></label>
+                          <input id="story-title" class="cms-input" type="text" required placeholder="e.g. How Indian Startups Build Defensible Moats">
+                        </div>
 
-                  <!-- Title (Full Width) -->
-                  <div class="cms-field cms-field-full">
-                    <label class="cms-label" for="story-title">Title <span style="color: #D4AF37;">*</span></label>
-                    <input id="story-title" class="cms-input" type="text" required placeholder="Enter story title">
+                        <!-- URL Slug (Full Width) -->
+                        <div class="cms-field cms-field-full">
+                          <label class="cms-label" for="story-slug">
+                            <span>URL Slug <span style="color: #D4AF37;">*</span></span>
+                            <span class="hint">Auto-generated from title</span>
+                          </label>
+                          <input id="story-slug" class="cms-input" type="text" required placeholder="how-indian-startups-build-defensible-moats">
+                        </div>
+
+                        <!-- Category (Col 1) -->
+                        <div class="cms-field cms-field-half">
+                          <label class="cms-label" for="story-category">Category <span style="color: #D4AF37;">*</span></label>
+                          <select id="story-category" class="cms-select" required>
+                            <option value="" disabled selected>Select category</option>
+                            <option value="Founder Playbook">Founder Playbook</option>
+                            <option value="Startup Ecosystem">Startup Ecosystem</option>
+                            <option value="Fundraising">Fundraising</option>
+                            <option value="Market Intelligence">Market Intelligence</option>
+                            <option value="PR & Media">PR & Media</option>
+                          </select>
+                        </div>
+
+                        <!-- Author (Col 2) -->
+                        <div class="cms-field cms-field-half">
+                          <label class="cms-label" for="story-author">Author <span style="color: #D4AF37;">*</span></label>
+                          <input id="story-author" class="cms-input" type="text" placeholder="e.g. BharatLaunch Editorial">
+                        </div>
+
+                        <!-- Featured Image URL (Col 1) -->
+                        <div class="cms-field cms-field-half">
+                          <label class="cms-label" for="story-image">
+                            <span>Featured Image URL <span style="color: #D4AF37;">*</span></span>
+                          </label>
+                          <input id="story-image" class="cms-input" type="text" placeholder="https://... or assets/blog-*.jpg">
+                        </div>
+
+                        <!-- Image Alt Text (Col 2) -->
+                        <div class="cms-field cms-field-half">
+                          <label class="cms-label" for="story-image-alt">
+                            <span>Image Alt Text</span>
+                            <span class="hint">For SEO & accessibility</span>
+                          </label>
+                          <input id="story-image-alt" class="cms-input" type="text" placeholder="Descriptive image summary">
+                        </div>
+
+                        <!-- Cover Preview (Full Width) -->
+                        <div class="cms-field cms-field-full">
+                          <div id="image-preview-wrap" class="cms-image-preview-box" style="display: none;">
+                            <img id="image-preview-img" src="" alt="Cover preview">
+                          </div>
+                        </div>
+
+                        <!-- Excerpt (Full Width) -->
+                        <div class="cms-field cms-field-full">
+                          <label class="cms-label" for="story-excerpt">
+                            <span>Excerpt / Summary <span style="color: #D4AF37;">*</span></span>
+                            <span class="hint">1-2 sentences for feed cards & snippets</span>
+                          </label>
+                          <textarea id="story-excerpt" class="cms-textarea" rows="2" required placeholder="Concise article summary..."></textarea>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <!-- Step 2: Article Content -->
+                    <fieldset class="cms-fieldset" style="margin-top: 18px;">
+                      <legend class="cms-legend">
+                        <span class="cms-step-num">2</span>
+                        <span>Article Content</span>
+                      </legend>
+
+                      <div class="cms-field cms-field-full">
+                        <div class="cms-label-row">
+                          <label class="cms-label" for="story-content">
+                            <span>Markdown Editor <span style="color: #D4AF37;">*</span></span>
+                            <span class="hint">Rich typography, tables & callout cards</span>
+                          </label>
+                        </div>
+
+                        <!-- Quick Markdown Toolbar -->
+                        <div class="cms-md-toolbar" role="toolbar" aria-label="Markdown formatting tools">
+                          <button type="button" class="cms-md-btn" data-md="h2" title="Insert Heading 2">H2</button>
+                          <button type="button" class="cms-md-btn" data-md="h3" title="Insert Heading 3">H3</button>
+                          <button type="button" class="cms-md-btn" data-md="bold" title="Insert Bold text"><strong>B</strong></button>
+                          <button type="button" class="cms-md-btn" data-md="italic" title="Insert Italic text"><em>I</em></button>
+                          <button type="button" class="cms-md-btn" data-md="link" title="Insert Markdown Link">🔗 Link</button>
+                          <button type="button" class="cms-md-btn" data-md="list" title="Insert Bullet List">• List</button>
+                          <button type="button" class="cms-md-btn" data-md="numlist" title="Insert Numbered List">1. List</button>
+                          <button type="button" class="cms-md-btn" data-md="callout" title="Insert Tip Box">💡 Tip</button>
+                          <button type="button" class="cms-md-btn" data-md="table" title="Insert Comparison Table">📊 Table</button>
+                          <button type="button" class="cms-md-btn" data-md="image" title="Insert Image Embed">🖼️ Image</button>
+                        </div>
+
+                        <textarea id="story-content" class="cms-textarea cms-textarea-editor" rows="15" required placeholder="Write your full story using Markdown formatting..."></textarea>
+                      </div>
+                    </fieldset>
+
                   </div>
 
-                  <!-- Slug (Full Width) -->
-                  <div class="cms-field cms-field-full">
-                    <label class="cms-label" for="story-slug">
-                      <span>Slug <span style="color: #D4AF37;">*</span></span>
-                      <span class="hint">e.g. startup-funding-playbook</span>
-                    </label>
-                    <input id="story-slug" class="cms-input" type="text" required placeholder="your-story-slug">
-                  </div>
+                  <!-- Secondary Column: SEO, Organization & Actions -->
+                  <div class="cms-publish-side-col">
 
-                  <!-- Category (Col 1) -->
-                  <div class="cms-field cms-field-half">
-                    <label class="cms-label" for="story-category">Category <span style="color: #D4AF37;">*</span></label>
-                    <select id="story-category" class="cms-select" required>
-                      <option value="" disabled selected>Select category</option>
-                      <option value="Founder Playbook">Founder Playbook</option>
-                      <option value="Startup Ecosystem">Startup Ecosystem</option>
-                      <option value="Fundraising">Fundraising</option>
-                      <option value="Market Intelligence">Market Intelligence</option>
-                      <option value="PR & Media">PR & Media</option>
-                    </select>
-                  </div>
+                    <!-- Step 3: SEO Settings (Auto-Generated Social & Search Snippet) -->
+                    <fieldset class="cms-fieldset">
+                      <legend class="cms-legend">
+                        <span class="cms-step-num">3</span>
+                        <span>SEO Settings</span>
+                      </legend>
 
-                  <!-- Author (Col 2) -->
-                  <div class="cms-field cms-field-half">
-                    <label class="cms-label" for="story-author">Author</label>
-                    <input id="story-author" class="cms-input" type="text" placeholder="Author name">
-                  </div>
+                      <div class="cms-side-fields">
+                        <div class="cms-field">
+                          <label class="cms-label" for="story-seo-title">
+                            <span>SEO Title</span>
+                            <span class="hint">50–60 chars</span>
+                          </label>
+                          <input id="story-seo-title" class="cms-input" type="text" placeholder="Title for Google & social sharing">
+                        </div>
 
-                  <!-- Featured Image URL (Full Width) -->
-                  <div class="cms-field cms-field-full">
-                    <label class="cms-label" for="story-image">
-                      <span>Featured Image URL</span>
-                      <span class="hint">https://... or assets/blog-*.jpg</span>
-                    </label>
-                    <input id="story-image" class="cms-input" type="text" placeholder="https://...">
-                    <div id="image-preview-wrap" class="cms-image-preview-box">
-                      <img id="image-preview-img" src="" alt="Cover preview">
+                        <div class="cms-field">
+                          <label class="cms-label" for="story-seo-desc">
+                            <span>Meta Description</span>
+                            <span class="hint">150–160 chars</span>
+                          </label>
+                          <textarea id="story-seo-desc" class="cms-textarea" rows="2" placeholder="Summary snippet for search results..."></textarea>
+                        </div>
+
+                        <div class="cms-field">
+                          <label class="cms-label" for="story-focus-keyword">
+                            <span>Focus Topic / Keyword</span>
+                          </label>
+                          <input id="story-focus-keyword" class="cms-input" type="text" placeholder="e.g. Startup Funding India">
+                        </div>
+
+                        <div class="cms-field">
+                          <label class="cms-label" for="story-canonical-url">
+                            <span>Canonical URL (Auto)</span>
+                          </label>
+                          <input id="story-canonical-url" class="cms-input cms-input-readonly" type="text" readonly value="https://bharat-launch.vercel.app/blog-detail.html">
+                        </div>
+
+                        <!-- Google Search Live Snippet Preview -->
+                        <div class="google-snippet-card" aria-label="Google Search Preview">
+                          <div class="google-snippet-header">
+                            <span class="google-snippet-badge">Google Search Preview</span>
+                          </div>
+                          <div class="google-snippet-body">
+                            <div class="google-snippet-url">
+                              <span class="google-snippet-favicon">🌐</span>
+                              <span>bharat-launch.vercel.app › blogs › <span id="google-preview-slug">story-slug</span></span>
+                            </div>
+                            <div class="google-snippet-title" id="google-preview-title">Story Title — BharatLaunch</div>
+                            <div class="google-snippet-desc" id="google-preview-desc">Article excerpt and search summary snippet will appear here on search engine result pages...</div>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <!-- Step 4: Organization & Publishing -->
+                    <fieldset class="cms-fieldset" style="margin-top: 18px;">
+                      <legend class="cms-legend">
+                        <span class="cms-step-num">4</span>
+                        <span>Organization & Publishing</span>
+                      </legend>
+
+                      <div class="cms-side-fields">
+                        <div class="cms-field">
+                          <label class="cms-label" for="story-tags">Tags (Comma-separated)</label>
+                          <input id="story-tags" class="cms-input" type="text" placeholder="Startups, India, Seed Funding, SaaS">
+                        </div>
+
+                        <div class="cms-field">
+                          <label class="cms-label" for="story-date">Publication Date <span style="color: #D4AF37;">*</span></label>
+                          <input id="story-date" class="cms-input" type="date" required>
+                        </div>
+
+                        <div class="cms-field">
+                          <label class="cms-label" for="story-status">Status</label>
+                          <select id="story-status" class="cms-select">
+                            <option value="true">● Published</option>
+                            <option value="false">○ Draft</option>
+                          </select>
+                        </div>
+
+                        <div class="cms-field cms-checkbox-field">
+                          <label class="cms-checkbox-label" for="story-featured">
+                            <input type="checkbox" id="story-featured" class="cms-checkbox">
+                            <span>Featured Story (Hero Banner)</span>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <!-- Merged Preview & Publish Action Area -->
+                    <div class="cms-publish-actions-box">
+                      <button id="btn-save-story" class="cms-btn-primary" type="submit" style="width: 100%;">Publish Blog</button>
+                      
+                      <div class="cms-actions-sub-row">
+                        <button id="btn-save-draft" class="cms-btn-secondary" type="button" style="flex: 1;">Save Draft</button>
+                        <button id="btn-preview-story" class="cms-btn-secondary" type="button" style="flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 5px;">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                          </svg>
+                          <span>Preview</span>
+                        </button>
+                        <button id="btn-cancel-story" class="cms-btn-ghost" type="button">Cancel</button>
+                      </div>
+
+                      <div id="editor-feedback" style="margin-top: 10px;"></div>
                     </div>
-                  </div>
 
-                  <!-- Excerpt (Full Width) -->
-                  <div class="cms-field cms-field-full">
-                    <label class="cms-label" for="story-excerpt">Excerpt <span style="color: #D4AF37;">*</span></label>
-                    <textarea id="story-excerpt" class="cms-textarea" rows="3" required placeholder="Short summary..."></textarea>
-                  </div>
-
-                  <!-- Article Content (Full Width Editor) -->
-                  <div class="cms-field cms-field-full">
-                    <div class="cms-label-row">
-                      <label class="cms-label" for="story-content">
-                        <span>Article Content <span style="color: #D4AF37;">*</span></span>
-                        <span class="hint">Rich Markdown formatting</span>
-                      </label>
-                    </div>
-
-                    <!-- Quick Markdown Toolbar -->
-                    <div class="cms-md-toolbar" role="toolbar" aria-label="Markdown formatting tools">
-                      <button type="button" class="cms-md-btn" data-md="h2" title="Insert Heading 2">H2</button>
-                      <button type="button" class="cms-md-btn" data-md="h3" title="Insert Heading 3">H3</button>
-                      <button type="button" class="cms-md-btn" data-md="bold" title="Insert Bold text"><strong>B</strong></button>
-                      <button type="button" class="cms-md-btn" data-md="italic" title="Insert Italic text"><em>I</em></button>
-                      <button type="button" class="cms-md-btn" data-md="list" title="Insert Bullet List">• List</button>
-                      <button type="button" class="cms-md-btn" data-md="numlist" title="Insert Numbered List">1. List</button>
-                      <button type="button" class="cms-md-btn" data-md="callout" title="Insert Tip Callout Box">💡 Tip Box</button>
-                      <button type="button" class="cms-md-btn" data-md="table" title="Insert Comparison Table">📊 Table</button>
-                      <button type="button" class="cms-md-btn" data-md="link" title="Insert Markdown Link">🔗 Link</button>
-                    </div>
-
-                    <textarea id="story-content" class="cms-textarea cms-textarea-editor" rows="14" required placeholder="Write your article in Markdown..."></textarea>
-                  </div>
-
-                  <!-- Publication Date (Col 1) -->
-                  <div class="cms-field cms-field-half">
-                    <label class="cms-label" for="story-date">Publication Date <span style="color: #D4AF37;">*</span></label>
-                    <input id="story-date" class="cms-input" type="date" required>
-                  </div>
-
-                  <!-- Publication Status (Col 2) -->
-                  <div class="cms-field cms-field-half">
-                    <label class="cms-label" for="story-status">Status</label>
-                    <select id="story-status" class="cms-select">
-                      <option value="true">● Published</option>
-                      <option value="false">○ Draft</option>
-                    </select>
                   </div>
 
                 </div>
 
-                <!-- Form Actions Row -->
-                <div class="cms-actions-row">
-                  <button id="btn-cancel-story" class="cms-btn-secondary" type="button">Cancel</button>
-                  <button id="btn-preview-story" class="cms-btn-secondary" type="button" style="display: inline-flex; align-items: center; gap: 6px;">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    <span>Preview Article</span>
-                  </button>
-                  <button id="btn-save-story" class="cms-btn-primary" type="submit">Save Story</button>
-                </div>
-
-                <div id="editor-feedback"></div>
               </form>
             </section>
 
@@ -487,16 +612,57 @@
         }
       }
 
+      // Live Image Preview Handler
+      function updateImagePreview() {
+        const url = $('story-image').value.trim();
+        const box = $('image-preview-wrap');
+        const img = $('image-preview-img');
+        if (url) {
+          img.src = url;
+          img.onload = () => { box.style.display = 'block'; };
+          img.onerror = () => { box.style.display = 'none'; };
+        } else {
+          box.style.display = 'none';
+        }
+      }
+
       $('story-image').addEventListener('input', updateImagePreview);
+
+      // Google Search Snippet & SEO Live Preview Sync
+      function updateGooglePreview() {
+        const title = ($('story-title').value || '').trim();
+        const slug = ($('story-slug').value || '').trim();
+        const seoTitle = ($('story-seo-title') ? $('story-seo-title').value : '').trim();
+        const excerpt = ($('story-excerpt').value || '').trim();
+        const seoDesc = ($('story-seo-desc') ? $('story-seo-desc').value : '').trim();
+
+        const displayTitle = seoTitle || (title ? `${title} — BharatLaunch` : 'Story Title — BharatLaunch');
+        const displaySlug = slug || 'story-slug';
+        const displayDesc = seoDesc || excerpt || 'Article excerpt and search summary snippet will appear here on search engine result pages...';
+
+        if ($('google-preview-title')) $('google-preview-title').textContent = displayTitle;
+        if ($('google-preview-slug')) $('google-preview-slug').textContent = displaySlug;
+        if ($('google-preview-desc')) $('google-preview-desc').textContent = displayDesc;
+        if ($('story-canonical-url')) $('story-canonical-url').value = `https://bharat-launch.vercel.app/blog-detail.html?slug=${displaySlug}`;
+      }
 
       // Auto-generate slug from title if slug field has not been manually edited
       let isSlugManuallyEdited = false;
-      $('story-slug').addEventListener('input', () => { isSlugManuallyEdited = true; });
+      $('story-slug').addEventListener('input', () => {
+        isSlugManuallyEdited = true;
+        updateGooglePreview();
+      });
+
       $('story-title').addEventListener('input', () => {
         if (!isSlugManuallyEdited && !$('story-original-slug').value) {
           $('story-slug').value = slugify($('story-title').value);
         }
+        updateGooglePreview();
       });
+
+      $('story-excerpt').addEventListener('input', updateGooglePreview);
+      if ($('story-seo-title')) $('story-seo-title').addEventListener('input', updateGooglePreview);
+      if ($('story-seo-desc')) $('story-seo-desc').addEventListener('input', updateGooglePreview);
 
       // Quick Markdown Helper Insertion
       document.querySelectorAll('.cms-md-btn').forEach(btn => {
@@ -537,6 +703,9 @@
             case 'link':
               replacement = `[${selected || 'Link Title'}](https://bharat-launch.vercel.app/)`;
               break;
+            case 'image':
+              replacement = `\n\n![${selected || 'Featured Image Description'}](https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80)\n\n`;
+              break;
           }
 
           textarea.value = text.substring(0, start) + replacement + text.substring(end);
@@ -554,14 +723,22 @@
         $('story-category').selectedIndex = 0;
         $('story-author').value = '';
         $('story-image').value = '';
+        if ($('story-image-alt')) $('story-image-alt').value = '';
         $('story-excerpt').value = '';
         $('story-content').value = '';
+        if ($('story-seo-title')) $('story-seo-title').value = '';
+        if ($('story-seo-desc')) $('story-seo-desc').value = '';
+        if ($('story-focus-keyword')) $('story-focus-keyword').value = '';
+        if ($('story-tags')) $('story-tags').value = '';
+        if ($('story-featured')) $('story-featured').checked = false;
         $('story-date').value = new Date().toISOString().slice(0, 10);
         $('story-status').value = 'true';
         $('editor-title').textContent = 'New Story';
         $('editor-mode-hint').textContent = 'Drafting a new article';
+        $('btn-save-story').textContent = 'Publish Blog';
         isSlugManuallyEdited = false;
         updateImagePreview();
+        updateGooglePreview();
         showFeedback('editor-feedback', '');
       }
 
@@ -572,14 +749,22 @@
         $('story-category').value = story.category || 'Founder Playbook';
         $('story-author').value = story.author || '';
         $('story-image').value = story.featuredImage || '';
+        if ($('story-image-alt')) $('story-image-alt').value = story.imageAlt || '';
         $('story-excerpt').value = story.excerpt || '';
         $('story-content').value = story.content || '';
+        if ($('story-seo-title')) $('story-seo-title').value = story.seoTitle || '';
+        if ($('story-seo-desc')) $('story-seo-desc').value = story.seoDesc || '';
+        if ($('story-focus-keyword')) $('story-focus-keyword').value = story.focusKeyword || '';
+        if ($('story-tags')) $('story-tags').value = story.tags || '';
+        if ($('story-featured')) $('story-featured').checked = Boolean(story.featured);
         $('story-date').value = story.publicationDate || new Date().toISOString().slice(0, 10);
         $('story-status').value = story.published !== false ? 'true' : 'false';
         $('editor-title').textContent = 'Edit Story: ' + (story.title || story.slug);
         $('editor-mode-hint').textContent = 'Editing existing article';
+        $('btn-save-story').textContent = story.published !== false ? 'Update Blog' : 'Publish Blog';
         isSlugManuallyEdited = true;
         updateImagePreview();
+        updateGooglePreview();
         $('editor-card').scrollIntoView({ behavior: 'smooth' });
       }
 
@@ -813,21 +998,34 @@
         const originalSlug = $('story-original-slug').value;
         const isEditing = Boolean(originalSlug);
 
+        const imageAlt = $('story-image-alt') ? $('story-image-alt').value.trim() : '';
+        const seoTitle = $('story-seo-title') ? $('story-seo-title').value.trim() : '';
+        const seoDesc = $('story-seo-desc') ? $('story-seo-desc').value.trim() : '';
+        const focusKeyword = $('story-focus-keyword') ? $('story-focus-keyword').value.trim() : '';
+        const tags = $('story-tags') ? $('story-tags').value.trim() : '';
+        const featured = $('story-featured') ? $('story-featured').checked : false;
+
         const body = {
           title,
           slug,
           category: category || 'Founder Playbook',
           author: author || 'BharatLaunch Editorial',
           featuredImage,
+          imageAlt,
           excerpt,
           content,
+          seoTitle,
+          seoDesc,
+          focusKeyword,
+          tags,
+          featured,
           publicationDate,
           published
         };
 
         try {
           $('btn-save-story').disabled = true;
-          $('btn-save-story').textContent = 'Saving...';
+          $('btn-save-story').textContent = published ? 'Publishing...' : 'Saving Draft...';
 
           await api('/api/blogs' + (isEditing ? '/' + encodeURIComponent(originalSlug) : ''), {
             method: isEditing ? 'PUT' : 'POST',
@@ -836,14 +1034,26 @@
 
           await loadStories();
           resetEditorForm();
-          showFeedback('editor-feedback', 'Story saved successfully.');
+          showFeedback('editor-feedback', published ? 'Story published successfully!' : 'Draft saved successfully.');
         } catch (err) {
           showFeedback('editor-feedback', err.message || 'Unable to save story.', true);
         } finally {
           $('btn-save-story').disabled = false;
-          $('btn-save-story').textContent = 'Save Story';
+          $('btn-save-story').textContent = isEditing ? 'Update Blog' : 'Publish Blog';
         }
       };
+
+      const saveDraftBtn = $('btn-save-draft');
+      if (saveDraftBtn) {
+        saveDraftBtn.onclick = () => {
+          $('story-status').value = 'false';
+          if ($('story-form').requestSubmit) {
+            $('story-form').requestSubmit();
+          } else {
+            $('story-form').dispatchEvent(new Event('submit', { cancelable: true }));
+          }
+        };
+      }
 
       $('btn-new-story').onclick = () => {
         resetEditorForm();
