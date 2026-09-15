@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "node -e \"console.log('Build validation successful: Static and serverless assets ready.');\"",
-    "test": "node scratch/test_validate_article_parser.js && node scratch/test_article_reader_rendering.js && node scratch/test_seo_production.js && node scratch/test_mobile_responsive_audit.js && node scratch/test_viewport_overflow.js && node scratch/test_mobile_navigation_interaction.js"
+    "test": "node scratch/test_validate_article_parser.js && node scratch/test_article_reader_rendering.js && node scratch/test_seo_production.js && node scratch/test_mobile_responsive_audit.js && node scratch/test_viewport_overflow.js && node scratch/test_mobile_navigation_interaction.js && node scratch/test_admin_responsive_audit.js"
   },
   "keywords": [
     "startup",
